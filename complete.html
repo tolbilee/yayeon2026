@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 창경궁 야연</title>
+    <style>
+        /* 기본 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: 1rem 0;
+        }
+
+        /* 배경 */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 255, 255, 0.01) 51px,
+                    rgba(255, 255, 255, 0.01) 52px
+                );
+        }
+
+        .traditional-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: url("https://cdn.imweb.me/thumbnail/20250917/7b872950f6c48.jpg");
+            background-size: 30px 30px;
+        }
+
+        /* 글래스모피즘 카드 */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            padding: 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            background: rgba(0, 0, 0, 0.4) !important;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:active {
+            transform: translateY(0);
+        }
+
+        .glass-card * {
+            color: white !important;
+        }
+
+        /* 병과 섹션 제목 색상 오버라이드 */
+        #food-section .glass-card h3 {
+            color: #f2d58f !important;
+            font-weight: bold !important;
+        }
+
+        /* 프로그램 상세 섹션 제목 색상 오버라이드 */
+        #program-details .glass-card h4 {
+            color: #f2d58f !important;
+            font-weight: bold !important;
+        }
+
+        /* 컨테이너 */
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        /* 헤더 */
+        .header {
+            padding: 1rem;
+            position: relative;
+            z-index: 15;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-left: 0.5rem;
+        }
+
+        .logo-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            height: 2rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: filter 0.3s ease;
+        }
+
+        .logo-link:hover .logo {
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        .menu-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-button:active {
+            transform: translateY(0);
+        }
+
+        /* 네비게이션 */
+        .navigation {
+            position: fixed;
+            top: 5rem;
+            left: 1rem;
+            right: 1rem;
+            z-index: 25;
+            display: none;
+        }
+
+        .navigation.active {
+            display: block;
+        }
+
+        .navigation .glass-card {
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* 메인 콘텐츠 */
+        .main-content {
+            padding: 1rem;
+            padding-bottom: 6rem;
+        }
+
+        .content-section {
+            display: none !important;
+        }
+
+        .content-section.active {
+            display: block !important;
+        }
+
+        /* 프로그램 서브 섹션 */
+        .program-subsection {
+            display: none;
+        }
+
+        .program-subsection.active {
+            display: block;
+        }
+
+        /* 음식 카테고리 */
+        .food-category {
+            display: none;
+        }
+
+        .food-category.active {
+            display: block;
+        }
+
+        .home-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .welcome-card {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .welcome-card h2 {
+            margin-bottom: 1rem;
+        }
+
+        .welcome-card p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .image-container {
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* 공연 섹션의 이미지 컨테이너만 고정 높이 적용 */
+        #performance-section .image-container {
+            height: 12rem;
+        }
+
+        #performance-section .image-container img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-title-large {
+            font-size: 1.5em !important;
+            color: #f2d58f !important;
+            text-align: center;
+            margin: 1.5rem 0;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .glass-card .event-title-large {
+            color: #f2d58f !important;
+            font-size: 1.5em !important;
+        }
+
+        .event-description {
+            font-size: 0.9em;
+            color: white;
+            text-align: left;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+            opacity: 1;
+        }
+
+        .schedule-card {
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .schedule-card h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* 현재 시간 표시 */
+        .current-time-container {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .current-time-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-time {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .current-date {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* 타임라인 컨테이너 */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 0.75rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .timeline-header {
+            display: block;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .timeline-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-item.current {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.3) 0%, 
+                rgba(255, 223, 0, 0.2) 50%, 
+                rgba(255, 215, 0, 0.3) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.6),
+                0 0 60px rgba(255, 215, 0, 0.4),
+                inset 0 0 20px rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item.current::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 215, 0, 0.4) 30%,
+                rgba(255, 255, 255, 0.6) 50%, 
+                rgba(255, 215, 0, 0.4) 70%,
+                transparent 100%);
+            animation: shimmer 2s infinite;
+            z-index: 1;
+        }
+
+        .timeline-item.current::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.8), 
+                rgba(255, 223, 0, 0.6), 
+                rgba(255, 215, 0, 0.8));
+            border-radius: inherit;
+            z-index: -1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .timeline-time {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+            font-size: 0.875rem;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .timeline-item.current .timeline-time {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.9) 0%, 
+                rgba(255, 223, 0, 0.8) 100%);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 1);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-activity {
+            font-weight: 500;
+            margin: 0;
+            width: 100%;
+            line-height: 1.4;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 0 0.5rem 0.5rem;
+            box-sizing: border-box;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-location {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        .timeline-item.current .timeline-activity {
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-item.current .timeline-location {
+            opacity: 0.9;
+        }
+
+        /* 타임라인 세부사항 */
+        .timeline-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0;
+        }
+
+        .timeline-details.expanded {
+            max-height: 2000px;
+            padding: 0 0.75rem 0.75rem;
+        }
+
+        .timeline-activity-line {
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .timeline-activity-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-toggle {
+            position: absolute;
+            top: 50%;
+            right: 0.75rem;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .timeline-toggle.rotated {
+            transform: rotate(180deg);
+        }
+
+        .timeline-detail {
+            margin-bottom: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .timeline-detail s {
+            font-size: 0.8em;
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .timeline-detail b {
+            font-weight: 700;
+        }
+
+
+        /* 아이콘 */
+        .icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: currentColor;
+        }
+
+        .icon-large {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 섹션별 스타일 */
+        .section-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sub-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .expandable-card {
+            cursor: pointer;
+        }
+
+        .expandable-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: none;
+            background: none;
+            color: white;
+            width: 100%;
+            text-align: left;
+        }
+
+        .expandable-content {
+            display: none;
+            padding: 0 1rem 1rem;
+        }
+
+        .expandable-content.active {
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+
+        .info-card p {
+            line-height: 1.2;
+            margin: 0.25rem 0;
+        }
+
+        .glass-card ul, .glass-card ol {
+            margin: 1rem 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .glass-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            margin-bottom: 0.25rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-dot {
+            width: 0.375rem;
+            height: 0.375rem;
+            background: white;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        /* 타임테이블 스타일 */
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-time {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            min-width: fit-content;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-activity {
+            font-weight: 500;
+            margin: 0;
+            width: 100%;
+            line-height: 1.4;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 0 0.5rem 0.5rem;
+            box-sizing: border-box;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-location {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* 캡션 화면 */
+        .caption-display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .caption-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 0.25rem;
+            transition: width 0.1s ease;
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .animate-fade-in-scale {
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        /* 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 반응형 */
+        @media (max-width: 640px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: start;
+                gap: 0.5rem;
+            }
+            
+            .timeline-time {
+                align-self: start;
+            }
+        }
+
+        /* 포토 핫스팟 섹션 전용 스타일 */
+        .photospot-time {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, rgba(242, 213, 143, 0.9) 0%, rgba(242, 213, 143, 0.9) 100%);
+            color: #000;
+            font-weight: bold;
+            border-radius: 0.5rem 0.5rem 0 0;
+            height: 3rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .photospot-time:hover {
+            background: linear-gradient(135deg, rgba(242, 213, 143, 1) 0%, rgba(242, 213, 143, 1) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(242, 213, 143, 0.3);
+        }
+
+        .photospot-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .photospot-toggle.rotated {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .photospot-time .photospot-toggle svg {
+            width: 16px;
+            height: 16px;
+            color: #000;
+        }
+
+        .photospot-time:hover .photospot-toggle svg {
+            color: #333;
+        }
+
+        /* 포토 핫스팟 섹션의 timeline-details 높이 조정 */
+        #photospot-section .timeline-details.expanded {
+            max-height: 1200px !important;
+        }
+
+        /* 공연안내 섹션의 timeline-details 높이 조정 */
+        #performance-section .timeline-details.expanded {
+            max-height: 2000px !important;
+        }
+
+        /* 실시간 자막 버튼 스타일 */
+        .caption-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6) !important;
+        }
+
+        /* 궁중 전통공연 섹션 전용 스타일 */
+        .performance-time {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, rgba(242, 213, 143, 0.9) 0%, rgba(242, 213, 143, 0.9) 100%);
+            color: #000;
+            font-weight: bold;
+            border-radius: 0.5rem 0.5rem 0 0;
+            height: 3rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .performance-time:hover {
+            background: linear-gradient(135deg, rgba(242, 213, 143, 1) 0%, rgba(242, 213, 143, 1) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(242, 213, 143, 0.3);
+        }
+
+        .performance-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .performance-toggle.rotated {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .performance-time .performance-toggle svg {
+            width: 16px;
+            height: 16px;
+            color: #000;
+        }
+
+        .performance-time:hover .performance-toggle svg {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- 배경 -->
+    <div class="background">
+        <img src="https://cdn.imweb.me/thumbnail/20250917/7b872950f6c48.jpg" alt="창경궁 배경">
+        <div class="background-overlay"></div>
+        <div class="background-pattern"></div>
+        <div class="traditional-pattern"></div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <a href="#" onclick="showSection('home'); return false;" class="logo-link">
+                        <img src="https://cdn.imweb.me/thumbnail/20250921/4840141862fd6.png" alt="2025 창경궁 야연 로고" class="logo">
+                    </a>
+                </div>
+                <button class="menu-button" onclick="toggleMenu()">
+                    <svg class="icon icon-large" id="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="4" x2="20" y1="6" y2="6"/>
+                        <line x1="4" x2="20" y1="12" y2="12"/>
+                        <line x1="4" x2="20" y1="18" y2="18"/>
+                    </svg>
+                    <svg class="icon icon-large" id="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <path d="m18 6-12 12"/>
+                        <path d="m6 6 12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- 네비게이션 메뉴 -->
+        <nav class="navigation" id="navigation">
+            <div class="glass-card">
+                <button class="nav-item active" onclick="showSection('home')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    홈
+                </button>
+                <button class="nav-item" onclick="showSection('program')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 2v4"/>
+                        <path d="M16 2v4"/>
+                        <rect width="18" height="18" x="3" y="4" rx="2"/>
+                        <path d="M3 10h18"/>
+                    </svg>
+                    프로그램 안내
+                </button>
+                <button class="nav-item" onclick="showSection('performance')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/>
+                        <circle cx="17" cy="7" r="5"/>
+                    </svg>
+                    공연안내
+                </button>
+                <button class="nav-item" onclick="showSection('food')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                        <path d="M7 2v20"/>
+                        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                    </svg>
+                    병과
+                </button>
+                <button class="nav-item" onclick="showSection('photospot')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    포토 핫스팟
+                </button>
+                <button class="nav-item" onclick="showSection('livecaption')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4,7 4,4 20,4 20,7"/>
+                        <line x1="9" x2="15" y1="20" y2="20"/>
+                        <line x1="12" x2="12" y1="4" y2="20"/>
+                    </svg>
+                    실시간 자막
+                </button>
+            </div>
+        </nav>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 홈 섹션 -->
+            <div class="content-section active home-section" id="home-section">
+                <div class="glass-card schedule-card animate-fade-in-up">
+                    <h3>오늘의 주요 일정 안내</h3>
+                    
+                    <!-- 현재 시간 표시 -->
+                    <div class="current-time-container">
+                        <div class="current-time-label">현재 시간</div>
+                        <div class="current-time" id="current-time">--:--</div>
+                        <div class="current-date" id="current-date">----년 --월 --일</div>
+                    </div>
+
+                    <!-- 타임테이블 -->
+                    <div class="timeline-container">
+                        <div class="timeline-item" data-time="16:00">
+                            <div class="timeline-header">
+                                <div class="timeline-time">16:00~17:00</div>
+                                <div class="timeline-activity"><b> 창경궁 도착 및 대기실 입장</b></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-time="17:00">
+                            <div class="timeline-header">
+                                <div class="timeline-time">17:00~17:40</div>
+                                <div class="timeline-activity"><b>체험객 복식 착용 및 헤어·메이크업</b></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-time="17:40">
+                            <div class="timeline-header">
+                                <div class="timeline-time">17:40~19:10</div>
+                                <div class="timeline-activity" onclick="toggleTimelineItem('timeline-17-40')">
+                                    <b>공연 시작 전 다양한 프로그램 이용</b>
+                                    <div class="timeline-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="timeline-17-40">
+                                <div class="timeline-detail"><s>※공연 20분 전인 18:50부터 공연장 입장 시작</s></div>
+                                <div class="timeline-detail"><s>- 장수사진 촬영</s></div>
+                                <div class="timeline-detail"><s>- 효잡이 체험 및 가족 스냅사진 촬영</s></div>
+                                <div class="timeline-detail"><s>- 대기실 휴식 및 전통 병과 즐기기</s></div>
+                                <div class="timeline-detail"><s>- 부모님께 효심 편지 작성하기</s></div>
+                                <div class="timeline-detail"><s>- 창경궁 포토 스팟 방문 및 자유시간</s></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-time="19:10">
+                            <div class="timeline-header">
+                                <div class="timeline-time">19:10~20:00</div>
+                                <div class="timeline-activity" onclick="toggleTimelineItem('timeline-19-10')">
+                                    <b>궁중연회 및 공연관람</b>
+                                    <div class="timeline-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="timeline-19-10">
+                                <div class="timeline-detail"><s>① 좌통례, 나각입장</s></div>
+                                <div class="timeline-detail"><s>② 체험객 입장</s></div>
+                                <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <향발무></s></div>
+                                <div class="timeline-detail"><s>④ 이엄 및 세자 입장</s></div>
+                                <div class="timeline-detail"><s>⑤ 삼엄 및 국왕 입장</s></div>
+                                <div class="timeline-detail"><s>⑥ 진화 및 진작</s></div>
+                                <div class="timeline-detail"><s>⑦ 공연 <예도무></s></div>
+                                <div class="timeline-detail"><s>⑧ 진병과</s></div>
+                                <div class="timeline-detail"><s>⑨ 치사낭독 (세자)</s></div>
+                                <div class="timeline-detail"><s>⑪ 부모님 전상서 (체험객 가족 대표)</s></div>
+                                <div class="timeline-detail"><s>⑫ 국왕 인사 및 종료</s></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-time="20:00">
+                            <div class="timeline-header">
+                                <div class="timeline-time">20:00~20:30</div>
+                                <div class="timeline-activity" onclick="toggleTimelineItem('timeline-20-00')">
+                                    <b>가족사진 촬영 및 귀가 준비</b>
+                                    <div class="timeline-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="timeline-20-00">
+                                <div class="timeline-detail"><s>- 어좌와 고임상을 배경으로 가족사진 촬영</s></div>
+                                <div class="timeline-detail"><s>- 환복 후 의상 반납 및 메이크업 클렌징 등 귀가 준비</s></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-time="20:30">
+                            <div class="timeline-header">
+                                <div class="timeline-time">20:30~21:00</div>
+                                <div class="timeline-activity"><b>창경궁 퇴장</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로그램 안내 섹션 -->
+            <div class="content-section" id="program-section">
+                <div class="glass-card section-header">
+                    <div class="section-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 2v4"/>
+                            <path d="M16 2v4"/>
+                            <rect width="18" height="18" x="3" y="4" rx="2"/>
+                            <path d="M3 10h18"/>
+                        </svg>
+                        <h2>프로그램 안내</h2>
+                    </div>
+                    
+                    
+                    <div class="sub-nav">
+                        <button class="btn active" onclick="showProgramSubSection('overview')">행사 개요</button>
+                        <button class="btn" onclick="showProgramSubSection('details')">프로그램 상세</button>
+                        <button class="btn" onclick="showProgramSubSection('schedule')">상세 일정</button>
+                    </div>
+                </div>
+
+                <!-- 행사 개요 -->
+                <div class="program-subsection active" id="program-overview">
+                    <div class="glass-card">
+                        <h3></h3>
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/c2d13feff5258.jpg" alt="창경궁 야연">
+                        </div>
+                        <div class="event-title-large">
+                            깊어가는 가을밤,<br>
+                            효심으로 물드는 궁중 연회
+                        </div>
+                        <div class="event-description">
+                            '창경궁 야연'은 19세기 효명세자가 아버지 순조에게 올렸던 지극한 효심의 연회를 재해석하여 부모님에 대한 공경과 사랑을 나누는 체험형 공연입니다.<br>
+                            문무백관과 외명부가 되어 실제 조선시대의 궁중 연회에 초대받은 듯한 특별하고 잊을 수 없는 경험을 해보세요.
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-label">행사기간</div>
+                                <p>2025.10.3.(금) ~ 10.9.(목)</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">행사시간</div>
+                                <p>17:00 ~ 20:30</p>
+                                <p>(본 공연 19:10~20:00)</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">행사장소</div>
+                                <p>창경궁 문정전 일원</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">참여인원</div>
+                                <p>1일 30팀</p>
+                                <p>(체험자 1인과 동반가족 2인 기준)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로그램 상세 -->
+                <div class="program-subsection" id="program-details">
+                    <div class="glass-card">
+                        <h4>
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/ad728103b157b.png" alt="관복 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
+                            문무백관 및 외명부 체험
+                        </h4>
+                        <p>3정승 6판서 등 관직을 부여받아 관복을 입고 왕의 연회에 초대 받는 몰입감있는 체험</p>
+                        <ul>
+                            <li><strong>아버님</strong> | 단령, 사모 등 전통 의복 착용 및 메이크업</li>
+                            <li><strong>어머님</strong> | 당의, 치마, 비녀, 첩지 등 전통 의복 착용 및 메이크업</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <h4>
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/2cd7b247bf258.png" alt="병과 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
+                            궁중병과 체험
+                        </h4>
+                        <ul>
+                            <li>조선 왕실의 특별한 날에 즐겼던 궁중 전통 간식 체험</li>
+                            <li>녹차약식, 곶감단지, 호두정과 등 다양한 병과 11종 제공</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <h4>
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/3956386d5ddcb.png" alt="공연 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
+                            궁중연회 및 공연관람
+                        </h4>
+                        <ul>
+                            <li>궁중 병과와 차를 즐기며 궁중정재 및 민속무용 관람<br>
+                                <em>&lt;향발무&gt;, &lt;예도무&gt;</em></li>
+                            <li>생소한 궁중 의례와 공연을 보다 쉽게 즐길 수 있도록 모바일 자막 서비스 제공</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <h4>
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/aee3d3c67eab4.png" alt="사진 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
+                            전문 사진작가 기념사진 촬영
+                        </h4>
+                        <ul>
+                            <li><strong>장수사진</strong> : 의복을 갖춰입은 부모님의 모습을 전문 사진작가가 촬영하는 독사진</li>
+                            <li><strong>가족사진</strong> : 
+                                <ol>
+                                    <li>공연 종료 후 무대 위 왕의 어좌와 고임상을 배경으로 촬영하는 가족 사진</li>
+                                    <li>효 체험(효잡이) 진행 중 단란한 가족의 모습을 기록하는 스냅 사진</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <h4>
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/1141a01289598.png" alt="효 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
+                            효 체험
+                        </h4>
+                        <ul>
+                            <li><strong>효잡이</strong> : 자녀가 아닌 부모님이 돌잡이의 주인공이 되어보는 가족 참여형 이벤트</li>
+                            <li><strong>효심편지</strong> : 미래의 부모님께 마음을 전하는 편지 작성 (6개월 / 1년 뒤 발송)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 상세 일정 -->
+                <div class="program-subsection" id="program-schedule">
+                    <div class="glass-card">
+                        <h3>상세 일정</h3>
+                        
+                        <!-- 타임테이블 -->
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">16:00~17:00</div>
+                                    <div class="timeline-activity"><b>창경궁 도착 및 대기실 입장</b></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">17:00~17:40</div>
+                                    <div class="timeline-activity"><b>체험객 복식 착용 및 헤어·메이크업</b></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">17:40~19:10</div>
+                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-17-40')">
+                                        <b>공연 시작 전 다양한 프로그램 이용</b>
+                                        <div class="timeline-toggle">
+                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="6,9 12,15 18,9"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-details" id="schedule-timeline-17-40">
+                                    <div class="timeline-detail"><s>※공연 20분 전인 18:50부터 공연장 입장 시작</s></div>
+                                    <div class="timeline-detail"><s>- 장수사진 촬영</s></div>
+                                    <div class="timeline-detail"><s>- 효잡이 체험 및 가족 스냅사진 촬영</s></div>
+                                    <div class="timeline-detail"><s>- 대기실 휴식 및 전통 병과 즐기기</s></div>
+                                    <div class="timeline-detail"><s>- 부모님께 효심 편지 작성하기</s></div>
+                                    <div class="timeline-detail"><s>- 창경궁 포토 스팟 방문 및 자유시간</s></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">19:10~20:00</div>
+                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-19-10')">
+                                        <b>궁중연회 및 공연관람</b>
+                                        <div class="timeline-toggle">
+                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="6,9 12,15 18,9"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-details" id="schedule-timeline-19-10">
+                                    <div class="timeline-detail"><s>① 좌통례, 나각입장</s></div>
+                                    <div class="timeline-detail"><s>② 체험객 입장</s></div>
+                                    <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <향발무></s></div>
+                                    <div class="timeline-detail"><s>④ 이엄 및 세자 입장</s></div>
+                                    <div class="timeline-detail"><s>⑤ 삼엄 및 국왕 입장</s></div>
+                                    <div class="timeline-detail"><s>⑥ 진화 및 진작</s></div>
+                                    <div class="timeline-detail"><s>⑦ 공연 <예도무></s></div>
+                                    <div class="timeline-detail"><s>⑧ 진병과</s></div>
+                                    <div class="timeline-detail"><s>⑨ 치사낭독 (세자)</s></div>
+                                    <div class="timeline-detail"><s>⑪ 부모님 전상서 (체험객 가족 대표)</s></div>
+                                    <div class="timeline-detail"><s>⑫ 국왕 인사 및 종료</s></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">20:00~20:30</div>
+                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-20-00')">
+                                        <b>가족사진 촬영 및 귀가 준비</b>
+                                        <div class="timeline-toggle">
+                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="6,9 12,15 18,9"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-details" id="schedule-timeline-20-00">
+                                    <div class="timeline-detail"><s>- 어좌와 고임상을 배경으로 가족사진 촬영</s></div>
+                                    <div class="timeline-detail"><s>- 환복 후 의상 반납 및 메이크업 클렌징 등 귀가 준비</s></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-header">
+                                    <div class="timeline-time">20:30~21:00</div>
+                                    <div class="timeline-activity"><b>창경궁 퇴장</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 공연안내 섹션 -->
+            <div class="content-section" id="performance-section">
+                <div class="glass-card section-header">
+                    <div class="section-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/>
+                            <circle cx="17" cy="7" r="5"/>
+                        </svg>
+                        <h2>궁중 전통공연</h2>
+                    </div>
+                    <p>조선왕조의 우아한 궁중무용을 감상하며 전통문화의 깊이를 느껴보세요.</p>
+                </div>
+
+                <!-- 궁중 전통무용 -->
+                <div class="glass-card">
+                    <div class="timeline-container">
+                        <!-- 향발무 -->
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <div class="timeline-time performance-time" onclick="toggleTimelineItem('performance-hyangbalmu')">
+                                    향발무
+                                    <div class="timeline-toggle performance-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="timeline-activity">
+                                    <b>작은 타악기 향발을 연주하며 추는 우아한 춤</b>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="performance-hyangbalmu">
+                                <div class="image-container">
+                                    <img src="https://cdn.imweb.me/thumbnail/20250928/3283accbd8613.jpg" alt="향발무">
+                                </div>
+                                <p>조선 전기에 창작된 향악정재 중 하나인 향발무는 작은 타악기인 향발을 양손에 매고 장단에 맞춰 연주하며 추는 춤입니다. 우아하면서도 섬세한 움직임이 돋보이는 무대로 사랑받고 있으며 전통의 멋과 장단이 어우러진 공연입니다.</p>
+                                <div class="info-grid">
+                                    <div class="info-card">
+                                        <div class="info-label">공연시간</div>
+                                        <p>5분</p>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-label">출연진</div>
+                                        <p>국가유산진흥원예술단 6명</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 예도무 -->
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <div class="timeline-time performance-time" onclick="toggleTimelineItem('performance-yedomu')">
+                                    예도무
+                                    <div class="timeline-toggle performance-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="timeline-activity">
+                                    <b>효명세자가 만든 무산향과 춘앵전의 조화</b>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="performance-yedomu">
+                                <div class="image-container">
+                                    <img src="https://cdn.imweb.me/thumbnail/20250928/9ff0e999fdea7.jpg" alt="예도무">
+                                </div>
+                                <p>조선 순조 때 효명세자가 아버지 순조를 위해 만든 무산향과 어머니 순원숙왕후를 위해 만든 춘앵전을 함께 선보이는 공연입니다.</p>
+                                <div class="info-grid">
+                                    <div class="info-card">
+                                        <div class="info-label">공연시간</div>
+                                        <p>5분</p>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-label">출연진</div>
+                                        <p>국가유산진흥원예술단 3명</p>
+                                    </div>
+                                </div>
+                                <h4 style="margin-top: 1rem;">세부 프로그램</h4>
+                                <div class="info-card" style="margin-top: 0.5rem;">
+                                    <h5>무산향</h5>
+                                    <p>초록색의 의상을 입은 무용수가 대모반 위에 올라서서 추는 춤으로, 장엄하면서도 활달한 춤사위를 통해 웅대하고 위엄있는 장중미를 보여주는 공연입니다.</p>
+                                </div>
+                                <div class="info-card" style="margin-top: 0.5rem;">
+                                    <h5>춘앵전</h5>
+                                    <p>노란색 의상을 입은 무용수가 꽃이 수놓아진 화문석 위에 올라서서 추는 춤으로, 부드럽고 우아한 춤사위와 섬세한 표현을 통해 꾀꼬리의 자태를 묘사합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 설장고춤 -->
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <div class="timeline-time performance-time" onclick="toggleTimelineItem('performance-seoljanggo')">
+                                    설장고춤
+                                    <div class="timeline-toggle performance-toggle">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="timeline-activity">
+                                    <b>장고를 어깨에 둘러메고 추는 역동적인 춤</b>
+                                </div>
+                            </div>
+                            <div class="timeline-details" id="performance-seoljanggo">
+                                <div class="image-container">
+                                    <img src="https://cdn.imweb.me/thumbnail/20250928/9c19b3465a4aa.jpg" alt="설장고춤">
+                                </div>
+                                <p>장고를 어깨에 비스듬히 둘러메고 허리에 띠로 동여매어 흔들리지 않도록 고정한 채 다양한 장단을 연주하며 추는 춤으로, 설장고 또는 설장고놀이라고도 불립니다.</p>
+                                <div class="info-grid">
+                                    <div class="info-card">
+                                        <div class="info-label">공연시간</div>
+                                        <p>6분</p>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-label">출연진</div>
+                                        <p>국가유산진흥원예술단 6명</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 병과 섹션 -->
+            <div class="content-section" id="food-section">
+                <div class="glass-card section-header">
+                    <div class="section-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                            <path d="M7 2v20"/>
+                            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                        </svg>
+                        <h2>궁중병과</h2>
+                    </div>
+                    <p>조선시대 궁중에서 즐겨 먹던 전통 병과를 직접 맛보실 수 있습니다.</p>
+                    
+                    <div class="sub-nav">
+                        <button class="btn active" onclick="showFoodCategory('officials')">문무백관용</button>
+                        <button class="btn" onclick="showFoodCategory('family')">동반가족용</button>
+                    </div>
+                </div>
+
+                <!-- 문무백관용 -->
+                <div class="food-category active" id="officials-food">
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/8edb2520df133.jpg" alt="전약">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">전약</h3>
+                        <p>조선 왕실에서는 많은 특별식이 있었겠지만, 그 중에서도 가장 유명한 것 중의 하나가 전약이었습니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">꿀, 아교(우족, 물), 대추, 건강가루, 계핏가루, 도라지, 후추, 정향, 참기름</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/3578d260a56b0.jpg" alt="다식">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">다식</h3>
+                        <p>녹말이나 송화, 검은깨 등의 가루를 꿀이나 조청에 반죽하여 다식판에 박아서 모양을 낸 전통한과입니다. 다식판에 수복강녕, 장수를 상징하는 동물 등의 모양을 내어 건강을 기원하는 모양을 내어 만들었습니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">콩(대두), 호박씨, 꿀</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/9f210d7138ecc.jpg" alt="호두정과">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">호두정과</h3>
+                        <p>호두를 뜨거운 물에 3번 튀긴 후 설탕과 물엿에 졸여 기름에 튀겨낸 한과로 불포화지방산이 풍부하며 두뇌건강과 피부에 좋은 호두로 만들어 건강에도 좋습니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">호두(수입), 설탕, 물엿, 식용유</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/7e223b8fc8ab1.jpg" alt="도라지정과">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">도라지정과</h3>
+                        <p>도라지를 물에 데친 후 물엿이나 꿀을 넣어 졸인 한과로 특유의 씁쓸한 맛과 향이 있어 다양한 요리에 활용되는 도라지의 사포닌 성분 덕분에 호흡기 질환에 효과가 좋아서 기침, 가래, 천식의 완화에 도움이 됩니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">도라지, 물엿, 소금, 콩가루</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/0580a20dff687.jpg" alt="곶감단지">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">곶감단지</h3>
+                        <p>고려시대부터 재배했던 기록이 있는 감은 조선시대에도 많이 애용됐으며 숙종때 중국에 보낸 예물 목록 중에도 기록되어 있습니다. 곶감단지는 유자청, 호두강정, 계피 등을 다져 곶감 속을 채운 한과로 뛰어난 맛을 자랑합니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">곶감, 유자청, 호두, 계피가루, 대추</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/8465de1f8ee6e.jpg" alt="녹차약식">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">녹차약식</h3>
+                        <p>약식은 약밥이라고도 하며 잔칫상에 빠지지 않고 오르던 음식이며, '삼국유사'에 까마귀에 대한 보은으로 내려오는 풍습이 지금까지 내려와 먹는 정월대보름의 절식입니다. 약식의 약(藥)자는 병을 고쳐주는 동시에 이로운 음식이라는 뜻을 지닙니다. 찹쌀을 간장과 설탕을 넣은 물에 하룻밤 재워뒀다가 밤, 대추를 넣고 쪄낸 후 참기름에 버무려 잣 고명을 올려 모양내는 음식입니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">찹쌀, 소금, 밤, 대추, 잣, 설탕, 계피가루, 녹차가루, 꿀, 참기름</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/5bc888f9c5e4b.jpg" alt="연근당과">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">연근당과</h3>
+                        <p>겨울이 제철이며 조선시대 율곡 선생이 어머니인 신사임당을 여의고 오랜 기간 실의에 빠져 지내 건강이 상했을때 건강을 회복시켜준 음식이 연근죽이었습니다. 지혈작용, 열독을 풀고, 어혈을 삭히며 토혈을 멎게하는 기능의 연근을 깨끗이 씻어 채썬 뒤 살짝 데쳐 소금물에 담가 간을 맞춘 후 말려 기름에 튀긴 한과입니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">연근, 식용유, 설탕, 소금</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/d57c4fa303341.jpg" alt="곡차">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">곡차</h3>
+                        <p>곡류를 가공하여 차와 같이 우려내어 음료로 한 것의 통칭으로 겉보리와 말린 옥수수, 콩을 각각 볶은 후 물을 붓고 끓이다가 우러나면 체에 밭쳐 마시는 차를 준비했습니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">보리, 옥수수, 검은콩, 둥굴레</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 동반가족용 -->
+                <div class="food-category" id="family-food">
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/8465de1f8ee6e.jpg" alt="녹차약식">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">녹차약식</h3>
+                        <p>약식은 약밥이라고도 하며 잔칫상에 빠지지 않고 오르던 음식이며, '삼국유사'에 까마귀에 대한 보은으로 내려오는 풍습이 지금까지 내려와 먹는 정월대보름의 절식입니다. 약식의 약(藥)자는 병을 고쳐주는 동시에 이로운 음식이라는 뜻을 지닙니다. 찹쌀을 간장과 설탕을 넣은 물에 하룻밤 재워뒀다가 밤, 대추를 넣고 쪄낸 후 참기름에 버무려 잣 고명을 올려 모양내는 음식입니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">찹쌀, 소금, 밤, 대추, 잣, 설탕, 계피가루, 녹차가루, 꿀, 참기름</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/5bc888f9c5e4b.jpg" alt="연근당과">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">연근당과</h3>
+                        <p>겨울이 제철이며 조선시대 율곡 선생이 어머니인 신사임당을 여의고 오랜 기간 실의에 빠져 지내 건강이 상했을때 건강을 회복시켜준 음식이 연근죽이었습니다. 지혈작용, 열독을 풀고, 어혈을 삭히며 토혈을 멎게하는 기능의 연근을 깨끗이 씻어 채썬 뒤 살짝 데쳐 소금물에 담가 간을 맞춘 후 말려 기름에 튀긴 한과입니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">연근, 식용유, 설탕, 소금</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/57f7e32ef21dd.jpg" alt="참외정과">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">참외정과</h3>
+                        <p>참외를 꿀이나 설탕물에 조려 만든 정과를 뜻하며, 여주 금사참외를 사용하여 전통방법을 활용하여 꽃 모양으로 만들었습니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">참외, 설탕, 박고지</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/33ca01af6afb9.jpg" alt="개성주악">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">개성주악</h3>
+                        <p>조선시대 궁중 잔치에 올리며 귀한 손님의 다과상에 내던 음식으로 찹쌀가루와 밀가루를 막걸리로 반죽하여 빚어서 기름에 튀겨낸 떡입니다.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">찹쌀가루, 밀가루, 막걸리, 설탕, 물엿, 생강, 식용유</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3>시식 안내</h3>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>모든 병과는 전통 방식으로 당일에 정성스럽게 준비됩니다.</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>알레르기가 있으신 분은 사전에 말씀해 주시기 바랍니다.</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>재료 신선도에 따라 메뉴 구성이 일부 변경될 수 있습니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 포토 핫스팟 섹션 -->
+            <div class="content-section" id="photospot-section">
+                <div class="glass-card section-header">
+                    <div class="section-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                            <circle cx="12" cy="13" r="3"/>
+                        </svg>
+                        <h2>포토 핫스팟</h2>
+                    </div>
+                    <p>창경궁의 아름다운 풍경과 함께 특별한 추억을 남겨보세요.</p>
+                </div>
+
+                <div class="glass-card">
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <div class="timeline-time photospot-time" onclick="toggleTimelineItem('photospot-myeongjeongjeon')">
+                                명정전 앞
+                                <div class="timeline-toggle photospot-toggle">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6,9 12,15 18,9"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="timeline-activity">
+                                <b>현존하는 궁궐 정전 중 가장 오래된 건물로 아름다움과 역사적 가치가 함께 존재</b>
+                            </div>
+                        </div>
+                        <div class="timeline-details" id="photospot-myeongjeongjeon">
+                            <div class="image-container">
+                                <img src="https://cdn.imweb.me/thumbnail/20250928/792d2885e14cc.jpg" alt="명정전">
+                            </div>
+                            
+                            <div class="image-container">
+                                <img src="https://cdn.imweb.me/thumbnail/20250928/a588480c303d4.jpg" alt="명정전 전경">
+                            </div>
+                            
+                            <h4>특징</h4>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>아름답고 역사적인 배경에서의 촬영</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>넓은 마당에서 색다른 각도 촬영</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>경복궁 등 다른 궁궐에 비해 쾌적한 촬영 환경</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>저녁 노을이 질 때 아름다운 풍경</span>
+                            </div>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <div class="info-label">최적 촬영시간</div>
+                                    <p>17:30~18:20 (노을이 내려앉는 시간)</p>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-label">촬영팁</div>
+                                    <div class="list-item">
+                                        <div class="list-dot"></div>
+                                        <span>명정전의 웅장함을 살리기 위해 건물 전체가 잘 나오게 촬영하세요.</span>
+                                    </div>
+                                    <div class="list-item">
+                                        <div class="list-dot"></div>
+                                        <span>넓은 마당에서 다양한 각도로도 찍어보세요.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-time photospot-time" onclick="toggleTimelineItem('photospot-okcheonbridge')">
+                                옥천교
+                                <div class="timeline-toggle photospot-toggle">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6,9 12,15 18,9"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="timeline-activity">
+                                <b>아름다운 모습으로 모든 궁궐 내 다리 중 유일하게 보물(제386호)로 지정된 구조물</b>
+                            </div>
+                        </div>
+                        <div class="timeline-details" id="photospot-okcheonbridge">
+                            <div class="image-container">
+                                <img src="https://cdn.imweb.me/thumbnail/20250928/0477162f0b30d.jpg" alt="옥천교">
+                            </div>
+                            
+                            <div class="image-container">
+                                <img src="https://cdn.imweb.me/thumbnail/20250928/7536c1a7eff3c.jpg" alt="옥천교 전경">
+                            </div>
+                            
+                            <h4>특징</h4>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>작지만 동그란 곡선이 아름다운 무지개 형태의 다리</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>유일하게 다리 아래 맑은 자연수가 흐르는 서정적인 분위기</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>다리 정면에서 명정문과 명정전이 한 눈에</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>봄 매화 꽃이 필때와 가을 단풍 질때가 최고 절경</span>
+                            </div>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <div class="info-label">최적 촬영시간</div>
+                                    <p>15:00~17:00 (햇빛이 부드러워지는 시간)</p>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-label">촬영팁</div>
+                                    <div class="list-item">
+                                        <div class="list-dot"></div>
+                                        <span>다리의 옆면에서 멀찍이 가족을 찍어보세요.</span>
+                                    </div>
+                                    <div class="list-item">
+                                        <div class="list-dot"></div>
+                                        <span>다리 정면에서 명정문을 향해 찍어보세요.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-time photospot-time" onclick="toggleTimelineItem('photospot-photography-tips')">
+                                사진촬영 팁
+                                <div class="timeline-toggle photospot-toggle">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6,9 12,15 18,9"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="timeline-activity">
+                                <b>창경궁에서 아름다운 사진을 촬영하기 위한 전문적인 팁과 가이드</b>
+                            </div>
+                        </div>
+                        <div class="timeline-details" id="photospot-photography-tips">
+                            <div class="info-card">
+                                <h4>한복 촬영 팁</h4>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>치마의 볼륨감을 살리기 위해 바람이 있는 날 살짝 펼쳐보세요</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>저고리의 곡선미가 돋보이도록 자세를 취해보세요</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>전통 소품(부채, 노리개 등)을 활용하면 더욱 운치있는 사진이 가능합니다</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>한복의 색감과 배경이 조화를 이루도록 촬영 위치를 선택하세요</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <h4>조명 활용법</h4>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>황금시간대(일몰 1-2시간 전)를 활용하면 따뜻하고 부드러운 사진을 얻을 수 있습니다</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>건물의 그림자를 활용하여 자연스러운 음영 효과를 연출하세요</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>역광을 활용하면 실루엣 효과로 신비로운 분위기를 만들 수 있습니다</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>흐린 날씨에는 자연스러운 소프트박스 효과로 균등한 조명을 얻을 수 있습니다</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <h4>구도와 앵글</h4>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>건물의 선을 활용하여 자연스러운 프레임 효과를 만들어보세요</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>낮은 앵글에서 촬영하면 더욱 위엄있고 웅장한 느낌을 줄 수 있습니다</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>3분할 법칙을 활용하여 균형잡힌 구도를 만들어보세요</span>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-dot"></div>
+                                    <span>배경의 복잡함을 피하고 깔끔한 배경을 선택하세요</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실시간 자막 섹션 -->
+            <div class="content-section" id="livecaption-section">
+                <div class="glass-card section-header">
+                    <div class="section-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="4,7 4,4 20,4 20,7"/>
+                            <line x1="9" x2="15" y1="20" y2="20"/>
+                            <line x1="12" x2="12" y1="4" y2="20"/>
+                        </svg>
+                        <h2>실시간 자막</h2>
+                    </div>
+                    <p>공연 중 실시간으로 제공되는 자막 서비스로 더욱 깊이 있는 관람이 가능합니다.</p>
+                </div>
+
+                <!-- 실시간 자막 보기 버튼 -->
+                <div class="glass-card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">실시간 자막 서비스</h3>
+                        <p style="opacity: 0.8; margin-bottom: 2rem;">공연 중 실시간으로 제공되는 자막 서비스를 이용해보세요</p>
+                        <a href="https://yayeon2025.netlify.app/synchronized_guest2.html?session=show" 
+                           target="_blank" 
+                           class="caption-button"
+                           style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                            🎭 실시간 자막보기
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 이용 안내 -->
+                <div class="glass-card">
+                    <h4 style="margin-bottom: 1rem; color: #f2d58f;">이용 안내</h4>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>공연 시작 10분 전부터 자막 서비스가 활성화됩니다.</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>화면 상단에서 한국어와 영어를 선택하실 수 있습니다.</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span>공연 대본 자막은 공연 종료 후에도 다시 보실 수 있습니다.</span>
+                    </div>
+                </div>
+
+                <!-- 실시간 자막 기능 -->
+                <div class="glass-card">
+                    <h4 style="margin-bottom: 1rem; color: #f2d58f;">실시간 자막 기능</h4>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span><strong>실시간 동기화</strong> : 공연 진행에 맞춰 자동 자막 표시</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span><strong>다국어 지원</strong> : 한국어/영어 실시간 전환</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span><strong>반응형 디자인</strong> : 모든 기기에서 최적화된 화면</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-dot"></div>
+                        <span><strong>연결 상태 표시</strong> : 실시간 연결 상태 모니터링</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- 하단 네비게이션 - 완전 독립 -->
+    <div id="fixed-bottom-nav" style="
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 999999 !important;
+        padding: 1rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        pointer-events: auto !important;
+    ">
+        <div style="
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        ">
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 0.25rem;
+            ">
+                <button onclick="showSection('home')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    홈
+                </button>
+                <button onclick="showSection('program')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 2v4"/>
+                        <path d="M16 2v4"/>
+                        <rect width="18" height="18" x="3" y="4" rx="2"/>
+                        <path d="M3 10h18"/>
+                    </svg>
+                    프로그램
+                </button>
+                <button onclick="showSection('performance')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/>
+                        <circle cx="17" cy="7" r="5"/>
+                    </svg>
+                    공연
+                </button>
+                <button onclick="showSection('food')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                        <path d="M7 2v20"/>
+                        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                    </svg>
+                    병과
+                </button>
+                <button onclick="showSection('photospot')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    포토
+                </button>
+                <button onclick="showSection('livecaption')" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.5rem;
+                    border-radius: 0.75rem;
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-size: 0.75rem;
+                ">
+                    <svg style="width: 1.125rem; height: 1.125rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4,7 4,4 20,4 20,7"/>
+                        <line x1="9" x2="15" y1="20" y2="20"/>
+                        <line x1="12" x2="12" y1="4" y2="20"/>
+                    </svg>
+                    자막
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 전역 상태
+        let isMenuOpen = false;
+        let currentSection = 'home';
+        let isPlaying = false;
+        let isMuted = false;
+        let currentTime = 0;
+        let captionInterval;
+
+        // 자막 데이터
+        const captions = [
+            { time: 0, text: '창경궁 궁중연회에 오신 여러분을 환영합니다.' },
+            { time: 3, text: '오늘 저희와 함께 조선왕조의 아름다운 전통을 체험해보시겠습니다.' },
+            { time: 8, text: '먼저 향발무 공연이 시작됩니다.' },
+            { time: 12, text: '향로에서 피어오르는 은은한 향기와 함께...' },
+            { time: 16, text: '무용수들의 우아한 움직임을 감상해주세요.' },
+            { time: 20, text: '이어서 예도무 중 무산향이 공연됩니다.' },
+            { time: 25, text: '산의 향기를 무용으로 표현한 아름다운 작품입니다.' },
+            { time: 30, text: '공연을 감상해주셔서 감사합니다.' }
+        ];
+
+        // 메뉴 토글
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            const navigation = document.getElementById('navigation');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            if (isMenuOpen) {
+                navigation.classList.add('active');
+                menuIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            } else {
+                navigation.classList.remove('active');
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        }
+
+        // 섹션 표시
+        function showSection(sectionId) {
+            console.log('showSection called with:', sectionId);
+            
+            // 현재 활성 섹션 숨기기
+            const currentActiveSection = document.querySelector('.content-section.active');
+            if (currentActiveSection) {
+                currentActiveSection.classList.remove('active');
+                console.log('Removed active from:', currentActiveSection.id);
+            }
+
+            // 새 섹션 보이기
+            const newSection = document.getElementById(sectionId + '-section');
+            if (newSection) {
+                newSection.classList.add('active');
+                console.log('Added active to:', newSection.id);
+            } else {
+                console.error('Section not found:', sectionId + '-section');
+            }
+
+            // 네비게이션 아이템 업데이트
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 하단 네비게이션 버튼들 업데이트
+            const bottomNavButtons = document.querySelectorAll('#fixed-bottom-nav button');
+            bottomNavButtons.forEach(button => {
+                // 모든 버튼을 비활성화 상태로 설정
+                button.style.color = 'rgba(255, 255, 255, 0.3)';
+                button.style.background = 'transparent';
+            });
+
+            // 클릭된 아이템들에 active 클래스 추가 (상단 네비게이션)
+            const clickedNavItems = document.querySelectorAll(`[onclick="showSection('${sectionId}')"]`);
+            clickedNavItems.forEach(item => {
+                if (item.classList.contains('nav-item')) {
+                    item.classList.add('active');
+                }
+            });
+
+            // 하단 네비게이션에서 클릭된 버튼 활성화
+            const clickedBottomNavButton = document.querySelector(`#fixed-bottom-nav button[onclick="showSection('${sectionId}')"]`);
+            if (clickedBottomNavButton) {
+                clickedBottomNavButton.style.color = 'white';
+                clickedBottomNavButton.style.background = 'rgba(255, 255, 255, 0.2)';
+            }
+
+            // 메뉴 닫기
+            if (isMenuOpen) {
+                toggleMenu();
+            }
+
+            currentSection = sectionId;
+        }
+
+        // 프로그램 하위 섹션 표시
+        function showProgramSubSection(subSectionId) {
+            console.log('showProgramSubSection called with:', subSectionId);
+            
+            // 모든 하위 섹션 숨기기
+            const subSections = document.querySelectorAll('.program-subsection');
+            subSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 선택된 하위 섹션 보이기
+            const targetSection = document.getElementById('program-' + subSectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                console.log('Added active to:', targetSection.id);
+            } else {
+                console.error('Subsection not found:', 'program-' + subSectionId);
+            }
+
+            // 버튼 상태 업데이트
+            const buttons = document.querySelectorAll('.sub-nav .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                // 클릭된 버튼 찾기
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(subSectionId)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // 음식 카테고리 표시
+        function showFoodCategory(categoryId) {
+            console.log('showFoodCategory called with:', categoryId);
+            
+            // 모든 카테고리 숨기기
+            const categories = document.querySelectorAll('.food-category');
+            categories.forEach(category => {
+                category.classList.remove('active');
+            });
+
+            // 선택된 카테고리 보이기
+            const targetCategory = document.getElementById(categoryId + '-food');
+            if (targetCategory) {
+                targetCategory.classList.add('active');
+                console.log('Added active to:', targetCategory.id);
+            } else {
+                console.error('Food category not found:', categoryId + '-food');
+            }
+
+            // 버튼 상태 업데이트
+            const buttons = document.querySelectorAll('#food-section .sub-nav .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                // 클릭된 버튼 찾기
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(categoryId)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // 확장 가능한 카드 토글
+        function toggleExpand(cardId) {
+            const content = document.getElementById(cardId + '-content');
+            if (content) {
+                content.classList.toggle('active');
+            }
+        }
+
+        // 타임라인 아이템 토글
+        function toggleTimelineItem(itemId) {
+            const details = document.getElementById(itemId);
+            const header = details.previousElementSibling;
+            let toggle;
+            
+            // 포토 핫스팟 섹션의 경우
+            if (itemId.startsWith('photospot-')) {
+                toggle = header.querySelector('.photospot-toggle');
+            } else if (itemId.startsWith('performance-')) {
+                // 궁중 전통공연 섹션의 경우
+                toggle = header.querySelector('.performance-toggle');
+            } else {
+                // 다른 섹션의 경우
+                toggle = header.querySelector('.timeline-toggle');
+            }
+            
+            if (details) {
+                details.classList.toggle('expanded');
+                if (toggle) {
+                    toggle.classList.toggle('rotated');
+                }
+            }
+        }
+
+        // 확장 가능한 카드 토글
+        function toggleExpandableCard(card) {
+            const content = card.querySelector('.expandable-content');
+            const icon = card.querySelector('.icon');
+            
+            if (content) {
+                content.classList.toggle('expanded');
+                if (icon) {
+                    icon.classList.toggle('rotated');
+                }
+            }
+        }
+
+        // 자막 재생/일시정지
+        function toggleCaption() {
+            isPlaying = !isPlaying;
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            const playText = document.getElementById('play-text');
+
+            if (isPlaying) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                playText.textContent = '일시정지';
+                startCaptionTimer();
+            } else {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                playText.textContent = '재생';
+                stopCaptionTimer();
+            }
+        }
+
+        // 음소거 토글
+        function toggleMute() {
+            isMuted = !isMuted;
+            const volumeIcon = document.getElementById('volume-icon');
+            const muteIcon = document.getElementById('mute-icon');
+            const muteText = document.getElementById('mute-text');
+
+            if (isMuted) {
+                volumeIcon.style.display = 'none';
+                muteIcon.style.display = 'block';
+                muteText.textContent = '음소거';
+            } else {
+                volumeIcon.style.display = 'block';
+                muteIcon.style.display = 'none';
+                muteText.textContent = '음성';
+            }
+        }
+
+        // 자막 타이머 시작
+        function startCaptionTimer() {
+            captionInterval = setInterval(() => {
+                currentTime++;
+                updateCaption();
+                updateProgress();
+                updateTimeDisplay();
+
+                // 마지막에 도달하면 처음으로 돌아가기
+                if (currentTime >= 40) {
+                    currentTime = 0;
+                }
+            }, 1000);
+        }
+
+        // 자막 타이머 정지
+        function stopCaptionTimer() {
+            if (captionInterval) {
+                clearInterval(captionInterval);
+            }
+        }
+
+        // 자막 업데이트
+        function updateCaption() {
+            const currentCaptionData = captions.find(caption => 
+                caption.time <= currentTime && 
+                (captions.find(c => c.time > currentTime)?.time || Infinity) > currentTime
+            );
+            
+            const captionText = document.getElementById('caption-text');
+            if (currentCaptionData) {
+                captionText.textContent = currentCaptionData.text;
+            } else {
+                captionText.textContent = '자막이 여기에 표시됩니다...';
+            }
+        }
+
+        // 진행률 업데이트
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const percentage = (currentTime / 40) * 100;
+            progressFill.style.width = percentage + '%';
+        }
+
+        // 시간 표시 업데이트
+        function updateTimeDisplay() {
+            const timeDisplay = document.getElementById('time-display');
+            const currentMinutes = Math.floor(currentTime / 60);
+            const currentSeconds = currentTime % 60;
+            const totalMinutes = Math.floor(40 / 60);
+            const totalSeconds = 40 % 60;
+            
+            timeDisplay.textContent = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+        }
+
+        // 클릭 외부 영역에서 메뉴 닫기
+        document.addEventListener('click', function(event) {
+            const navigation = document.getElementById('navigation');
+            const menuButton = document.querySelector('.menu-button');
+            
+            if (isMenuOpen && !navigation.contains(event.target) && !menuButton.contains(event.target)) {
+                toggleMenu();
+            }
+        });
+
+        // 애니메이션 트리거
+        function triggerAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-scale');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animationDelay = `${index * 100}ms`;
+                }, 0);
+            });
+        }
+
+        // 현재 시간 업데이트 함수
+        function updateCurrentTime() {
+            const now = new Date();
+            
+            // 한국 시간대로 직접 포맷팅
+            const timeString = now.toLocaleTimeString('ko-KR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+                timeZone: 'Asia/Seoul'
+            });
+            
+            const dateString = now.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'Asia/Seoul'
+            });
+            
+            const timeElement = document.getElementById('current-time');
+            const dateElement = document.getElementById('current-date');
+            
+            if (timeElement) timeElement.textContent = timeString;
+            if (dateElement) dateElement.textContent = dateString;
+            
+            // 디버깅을 위한 콘솔 로그
+            console.log('현재 한국 시간:', timeString);
+            console.log('현재 날짜:', dateString);
+            console.log('브라우저 로컬 시간:', now.toLocaleTimeString('ko-KR'));
+            
+            // 현재 시간대에 해당하는 타임라인 아이템 하이라이트
+            highlightCurrentTimelineItem(timeString);
+        }
+
+        // 현재 시간대 타임라인 아이템 하이라이트
+        function highlightCurrentTimelineItem(currentTime) {
+            console.log('highlightCurrentTimelineItem called with:', currentTime);
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            console.log('Found timeline items:', timelineItems.length);
+            
+            if (!currentTime || currentTime === '--:--') {
+                console.log('Invalid time, skipping highlight');
+                return;
+            }
+            
+            const currentHour = parseInt(currentTime.split(':')[0]);
+            const currentMinute = parseInt(currentTime.split(':')[1]);
+            const currentTimeMinutes = currentHour * 60 + currentMinute;
+            console.log('Current time in minutes:', currentTimeMinutes);
+            
+            // 모든 아이템의 current 클래스 제거
+            timelineItems.forEach(item => {
+                item.classList.remove('current');
+            });
+            
+            let highlighted = false;
+            
+            timelineItems.forEach((item, index) => {
+                const itemTime = item.getAttribute('data-time');
+                if (itemTime) {
+                    const itemHour = parseInt(itemTime.split(':')[0]);
+                    const itemMinute = parseInt(itemTime.split(':')[1]);
+                    const itemTimeMinutes = itemHour * 60 + itemMinute;
+                    
+                    console.log(`Item ${index}: ${itemTime} (${itemTimeMinutes} minutes)`);
+                    
+                    // 정확한 시간 매칭: 현재 시간이 해당 프로그램 시간대에 포함되는지 확인
+                    // 각 프로그램은 30분~90분 정도의 시간대를 가짐
+                    let programDuration = 60; // 기본 60분
+                    
+                    // 특정 프로그램들의 실제 시간대에 맞춰 조정
+                    if (itemTime === '16:00') programDuration = 60;  // 16:00~17:00
+                    else if (itemTime === '17:00') programDuration = 40;  // 17:00~17:40
+                    else if (itemTime === '17:40') programDuration = 90;  // 17:40~19:10
+                    else if (itemTime === '19:10') programDuration = 50;  // 19:10~20:00
+                    else if (itemTime === '20:00') programDuration = 30;  // 20:00~20:30
+                    else if (itemTime === '20:30') programDuration = 30;  // 20:30~21:00
+                    
+                    // 현재 시간이 해당 프로그램 시간대에 포함되는지 확인
+                    if (currentTimeMinutes >= itemTimeMinutes && currentTimeMinutes < itemTimeMinutes + programDuration) {
+                        item.classList.add('current');
+                        highlighted = true;
+                        console.log(`✅ Highlighted item: ${itemTime} (duration: ${programDuration}min, current: ${currentTimeMinutes}, start: ${itemTimeMinutes})`);
+                    }
+                }
+            });
+            
+            if (!highlighted) {
+                console.log('No timeline item highlighted for current time');
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            triggerAnimations();
+            
+            // 현재 시간 업데이트 및 1초마다 갱신
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+            
+            // 하단 네비게이션 강제 고정
+            const bottomNav = document.getElementById('fixed-bottom-nav');
+            if (bottomNav) {
+                bottomNav.style.position = 'fixed';
+                bottomNav.style.bottom = '0';
+                bottomNav.style.left = '0';
+                bottomNav.style.right = '0';
+                bottomNav.style.zIndex = '999999';
+                bottomNav.style.width = '100%';
+                console.log('Bottom navigation fixed');
+            }
+
+            // 하단 네비게이션 초기 활성화 상태 설정
+            const bottomNavButtons = document.querySelectorAll('#fixed-bottom-nav button');
+            bottomNavButtons.forEach(button => {
+                if (button.getAttribute('onclick') === "showSection('home')") {
+                    button.style.color = 'white';
+                    button.style.background = 'rgba(255, 255, 255, 0.2)';
+                } else {
+                    button.style.color = 'rgba(255, 255, 255, 0.3)';
+                    button.style.background = 'transparent';
+                }
+            });
+
+            
+            // 네비게이션 버튼에 이벤트 리스너 추가 (백업)
+            const navButtons = document.querySelectorAll('[onclick*="showSection"]');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const onclick = this.getAttribute('onclick');
+                    const match = onclick.match(/showSection\('([^']+)'\)/);
+                    if (match) {
+                        showSection(match[1]);
+                    }
+                });
+            });
+
+            // 서브 메뉴 버튼들에 이벤트 리스너 추가 (백업)
+            const programSubButtons = document.querySelectorAll('[onclick*="showProgramSubSection"]');
+            programSubButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const onclick = this.getAttribute('onclick');
+                    const match = onclick.match(/showProgramSubSection\('([^']+)'\)/);
+                    if (match) {
+                        showProgramSubSection(match[1]);
+                    }
+                });
+            });
+
+            const foodCategoryButtons = document.querySelectorAll('[onclick*="showFoodCategory"]');
+            foodCategoryButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const onclick = this.getAttribute('onclick');
+                    const match = onclick.match(/showFoodCategory\('([^']+)'\)/);
+                    if (match) {
+                        showFoodCategory(match[1]);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

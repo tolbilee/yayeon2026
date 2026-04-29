@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공연 자막 관리자 (동기화)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            background: white;
+        }
+        
+        .left-panel {
+            flex: 0 0 60%;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+            border-right: 2px solid #e9ecef;
+        }
+        
+        .right-panel {
+            flex: 0 0 40%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .script-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .script-display {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .script-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.25;
+            font-size: 14.4px;
+        }
+        
+        .script-line {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .script-line:hover {
+            background: #e9ecef;
+        }
+        
+        .script-line.current {
+            background: #e3f2fd;
+            border-left-color: #2196f3;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .script-line.current .script-line-number {
+            background: #2196f3;
+            box-shadow: 0 2px 6px rgba(33, 150, 243, 0.4);
+        }
+        
+        .script-line-number {
+            flex: 0 0 40px;
+            background: #667eea;
+            color: white;
+            font-weight: 900;
+            font-size: 13px;
+            text-align: center;
+            padding: 4px 6px;
+            border-radius: 4px;
+            min-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .script-text {
+            flex: 1;
+            line-height: 1.4;
+            padding-top: 2px;
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .input-field:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .textarea-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .config-field {
+            min-height: 200px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary { background: #667eea; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: #333; }
+        .btn-secondary { background: #6c757d; color: white; }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .language-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .language-tab {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .language-tab:not(.active) {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .subtitle-list {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+        }
+        
+        .subtitle-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .subtitle-item.current {
+            background: #e3f2fd;
+            border-left-color: #2196f3;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+        }
+        
+        .subtitle-content {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .subtitle-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .edit-btn {
+            background: #ffc107;
+            color: #333;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .insert-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .subtitle-edit-input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .edit-controls {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .cancel-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .current-display {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            min-height: 80px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+        }
+        
+        .current-display.active {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            color: #1976d2;
+        }
+        
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .guest-url {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 14px;
+        }
+        
+        .help-text {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .sync-info {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #155724;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container { 
+                flex-direction: column;
+                height: 100vh;
+            }
+            
+            .left-panel {
+                height: 50vh;
+                border-right: none;
+                border-bottom: 2px solid #e9ecef;
+            }
+            
+            .right-panel {
+                width: 100%;
+                height: 50vh;
+                overflow-y: auto;
+            }
+            
+            .script-display {
+                padding: 20px;
+            }
+            
+            .script-content {
+                font-size: 13px;
+                line-height: 1.3;
+            }
+            
+            .script-line {
+                padding: 6px 12px;
+                margin: 4px 0;
+            }
+            
+            .main-content { 
+                padding: 15px; 
+            }
+            
+            .nav-buttons .btn { 
+                display: block; 
+                margin: 5px auto; 
+                width: 200px; 
+            }
+            
+            .language-tabs { 
+                flex-direction: column; 
+            }
+            
+            .subtitle-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .subtitle-buttons .btn {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .script-header h1 {
+                font-size: 18px;
+            }
+            
+            .script-header p {
+                font-size: 14px;
+            }
+            
+            .script-content {
+                font-size: 12px;
+                line-height: 1.2;
+            }
+            
+            .script-line {
+                padding: 5px 10px;
+                margin: 3px 0;
+            }
+            
+            .script-line-number {
+                flex: 0 0 30px;
+                font-size: 11px;
+                font-weight: 900;
+                padding: 3px 4px;
+                min-height: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 좌측 패널: 대본 표시 -->
+        <div class="left-panel">
+            <div class="script-header">
+                <h1>🎭 <span id="performanceTitleDisplay">공연명</span></h1>
+                <p>현재 대사: <span id="currentLineNumber">0</span> / <span id="totalLines">0</span></p>
+            </div>
+            <div class="script-display">
+                <div class="script-content" id="scriptContent">
+                    <div style="text-align: center; color: #666; padding: 50px;">
+                        Firebase에 연결하고 자막을 추가하면 여기에 전체 대본이 표시됩니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 우측 패널: 제어 및 관리 -->
+        <div class="right-panel">
+            <div class="main-content">
+            <!-- 상태 표시 -->
+            <div id="statusDisplay" class="status status-info">
+                시스템을 확인하는 중입니다...
+            </div>
+            
+            <!-- Firebase 설정 -->
+            <div class="section">
+                <h3>🔥 Firebase 설정</h3>
+                
+                <div id="configStatus" style="margin-bottom: 20px;">
+                    <!-- 상태가 여기에 표시됩니다 -->
+                </div>
+                
+                <div id="configInput" style="display: none;">
+                    <textarea 
+                        id="firebaseConfig" 
+                        class="input-field config-field" 
+                        placeholder="Firebase 설정을 붙여넣으세요...
+
+{
+  &quot;apiKey&quot;: &quot;your-api-key&quot;,
+  &quot;authDomain&quot;: &quot;your-project.firebaseapp.com&quot;,
+  &quot;databaseURL&quot;: &quot;https://your-project.firebaseio.com&quot;,
+  &quot;projectId&quot;: &quot;your-project&quot;,
+  &quot;storageBucket&quot;: &quot;your-project.appspot.com&quot;,
+  &quot;messagingSenderId&quot;: &quot;123456789&quot;,
+  &quot;appId&quot;: &quot;your-app-id&quot;
+}"
+                    ></textarea>
+                    <button class="btn btn-success" onclick="saveFirebaseConfig()">💾 설정 저장</button>
+                    <button class="btn btn-secondary" onclick="hideConfigInput()">❌ 취소</button>
+                </div>
+                
+                <button class="btn btn-primary" onclick="showConfigInput()" id="showConfigBtn">⚙️ Firebase 설정하기</button>
+                <button class="btn btn-success" onclick="connectToFirebase()" id="connectBtn" disabled>🔗 연결하기</button>
+                <button class="btn btn-secondary" onclick="checkStatus()" style="font-size: 14px;">🔍 상태 확인</button>
+            </div>
+            
+            <!-- 세션 ID 설정 -->
+            <div class="section">
+                <h3>🎪 세션 ID 설정</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input 
+                        type="text" 
+                        id="sessionIdInput" 
+                        class="input-field" 
+                        placeholder="예: hamlet2024, my-show" 
+                        style="flex: 1; font-family: monospace;">
+                    <button class="btn btn-primary" onclick="generateSessionId()">🎲</button>
+                </div>
+                <input 
+                    type="text" 
+                    id="performanceTitle" 
+                    class="input-field" 
+                    placeholder="공연 제목" 
+                    disabled>
+                <button class="btn btn-success" onclick="updateTitle()" id="titleBtn" disabled>🎪 제목 설정</button>
+            </div>
+            
+            <!-- 자막 관리 -->
+            <div class="section" id="subtitleSection" style="display: none;">
+                <h3>📝 자막 관리</h3>
+                
+                <!-- 동기화 안내 -->
+                <div class="sync-info">
+                    🔄 언어별 자막이 순서대로 동기화됩니다. 한국어 3번째 자막 = 영어 3번째 자막
+                </div>
+                
+                <!-- 언어 선택 탭 -->
+                <div class="language-tabs">
+                    <button class="language-tab active" id="koreanTab" onclick="switchLanguage('korean')">
+                        🇰🇷 한국어 (<span id="koreanCount">0</span>개)
+                    </button>
+                    <button class="language-tab" id="englishTab" onclick="switchLanguage('english')">
+                        🇺🇸 English (<span id="englishCount">0</span>개)
+                    </button>
+                </div>
+                
+                <textarea 
+                    id="subtitleInput" 
+                    class="input-field textarea-field" 
+                    placeholder="새로운 자막을 입력하세요..."
+                ></textarea>
+                <button class="btn btn-primary" onclick="addSubtitle()">➕ 자막 추가</button>
+                <button class="btn btn-warning" onclick="clearAll()">🗑️ 전체 삭제</button>
+                
+                <div id="subtitleList" class="subtitle-list" style="margin-top: 20px;">
+                    <p style="text-align: center; color: #666; padding: 20px;">자막을 추가해 주세요.</p>
+                </div>
+            </div>
+            
+            <!-- 자막 제어 -->
+            <div class="section" id="controlSection" style="display: none;">
+                <h3>🎮 자막 제어 (동기화)</h3>
+                
+                <div id="currentDisplay" class="current-display">
+                    Firebase에 연결하면 자막 제어가 가능합니다.
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="previousSubtitle()" id="prevBtn" disabled>⬅️ 이전</button>
+                    <button class="btn btn-success" onclick="nextSubtitle()" id="nextBtn" disabled>다음 ➡️</button>
+                    <button class="btn btn-warning" onclick="resetToFirst()" id="resetBtn" disabled>🔄 처음으로</button>
+                </div>
+                
+                <div style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    현재 위치 (공통): <strong><span id="currentIndex">0</span> / <span id="maxCount">0</span></strong><br>
+                    <small>편집 중: <span id="currentLangDisplay">한국어</span></small>
+                </div>
+            </div>
+            
+            <!-- 게스트 링크 -->
+            <div class="section" id="linkSection" style="display: none; background: #e8f5e8; border: 2px solid #28a745;">
+                <h3>📱 관객용 링크</h3>
+                <div class="guest-url" id="guestUrl">
+                    연결 후 게스트 링크가 생성됩니다.
+                </div>
+                <button class="btn btn-primary" onclick="copyGuestLink()">📋 링크 복사</button>
+                <button class="btn btn-primary" onclick="generateQR()">📱 QR코드</button>
+                
+                <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+    
+    <script>
+        // 전역 변수
+        let firebaseApp = null;
+        let database = null;
+        let sessionId = null;
+        let performanceTitle = '🎭 공연명을 입력하세요';
+        let isConnected = false;
+        let currentLanguage = 'korean'; // 현재 편집 중인 언어
+        let currentIndex = -1; // 공통 인덱스 (동기화)
+        let subtitlesData = {
+            korean: [],
+            english: []
+        };
+
+        // 페이지 로드 시 즉시 상태 확인
+        window.addEventListener('load', function() {
+            console.log('페이지 로드됨');
+            checkStatus();
+        });
+
+        // 상태 확인 (핵심 함수)
+        function checkStatus() {
+            console.log('상태 확인 시작');
+            
+            // localStorage에서 Firebase 설정 확인
+            const savedConfig = localStorage.getItem('firebaseConfig');
+            const savedSessionId = localStorage.getItem('fixedSessionId');
+            
+            console.log('저장된 Firebase 설정:', savedConfig ? '있음' : '없음');
+            console.log('저장된 세션 ID:', savedSessionId || '없음');
+            
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    console.log('Firebase 설정 파싱 성공');
+                    
+                    // 설정이 있으면 연결 버튼 활성화
+                    document.getElementById('connectBtn').disabled = false;
+                    
+                    // 상태 표시 업데이트
+                    updateStatusDisplay('success', '✅ Firebase 설정이 저장되어 있습니다. 세션 ID를 입력하고 연결하세요.');
+                    
+                    // 설정 상태 표시
+                    document.getElementById('configStatus').innerHTML = `
+                        <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; border: 2px solid #c3e6cb;">
+                            <strong>✅ Firebase 설정 저장됨</strong><br>
+                            프로젝트 ID: ${config.projectId || '알 수 없음'}<br>
+                            API 키: ${config.apiKey ? config.apiKey.substring(0, 10) + '...' : '알 수 없음'}
+                        </div>
+                    `;
+                    
+                } catch (error) {
+                    console.error('Firebase 설정 파싱 오류:', error);
+                    updateStatusDisplay('error', '❌ 저장된 Firebase 설정에 오류가 있습니다. 다시 설정해 주세요.');
+                }
+            } else {
+                console.log('Firebase 설정 없음');
+                updateStatusDisplay('info', '🔧 Firebase 설정이 필요합니다. "Firebase 설정하기" 버튼을 눌러주세요.');
+                
+                document.getElementById('configStatus').innerHTML = `
+                    <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; border: 2px solid #ffeaa7;">
+                        <strong>❌ Firebase 설정 없음</strong><br>
+                        먼저 Firebase 설정을 완료해야 합니다.
+                    </div>
+                `;
+            }
+            
+            // 세션 ID 복원
+            if (savedSessionId) {
+                document.getElementById('sessionIdInput').value = savedSessionId;
+            } else {
+                const defaultId = 'show-' + Date.now().toString(36);
+                document.getElementById('sessionIdInput').value = defaultId;
+            }
+        }
+
+        // 상태 표시 업데이트
+        function updateStatusDisplay(type, message) {
+            const statusEl = document.getElementById('statusDisplay');
+            statusEl.className = 'status status-' + type;
+            statusEl.textContent = message;
+        }
+
+        // Firebase 설정 입력창 표시/숨기기
+        function showConfigInput() {
+            document.getElementById('configInput').style.display = 'block';
+            document.getElementById('showConfigBtn').style.display = 'none';
+            document.getElementById('firebaseConfig').focus();
+        }
+
+        function hideConfigInput() {
+            document.getElementById('configInput').style.display = 'none';
+            document.getElementById('showConfigBtn').style.display = 'inline-block';
+        }
+
+        // Firebase 설정 저장
+        function saveFirebaseConfig() {
+            const configText = document.getElementById('firebaseConfig').value.trim();
+            
+            if (!configText) {
+                alert('❌ Firebase 설정을 입력해 주세요.');
+                return;
+            }
+            
+            try {
+                let config;
+                if (configText.startsWith('{')) {
+                    config = JSON.parse(configText);
+                } else {
+                    config = eval('(' + configText + ')');
+                }
+                
+                // 필수 필드 확인
+                const required = ['apiKey', 'authDomain', 'databaseURL', 'projectId'];
+                const missing = required.filter(field => !config[field]);
+                
+                if (missing.length > 0) {
+                    throw new Error('필수 필드 누락: ' + missing.join(', '));
+                }
+                
+                // 저장
+                localStorage.setItem('firebaseConfig', JSON.stringify(config));
+                console.log('Firebase 설정 저장 완료');
+                
+                // UI 업데이트
+                hideConfigInput();
+                checkStatus(); // 상태 다시 확인
+                
+                alert('✅ Firebase 설정이 저장되었습니다!');
+                
+            } catch (error) {
+                alert('❌ 설정 형식 오류: ' + error.message);
+                console.error('설정 저장 오류:', error);
+            }
+        }
+
+        // 세션 ID 생성
+        function generateSessionId() {
+            const adjectives = ['awesome', 'brilliant', 'epic', 'fantastic', 'great', 'magic', 'perfect'];
+            const nouns = ['show', 'play', 'concert', 'musical', 'theater', 'stage'];
+            
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const noun = nouns[Math.floor(Math.random() * nouns.length)];
+            const num = Math.floor(Math.random() * 999) + 1;
+            
+            const newId = adj + '-' + noun + '-' + num;
+            document.getElementById('sessionIdInput').value = newId;
+        }
+
+        // 언어 전환 함수 (편집용)
+        function switchLanguage(language) {
+            currentLanguage = language;
+            updateLanguageTabs();
+            updateDisplay();
+        }
+
+        // 언어 탭 UI 업데이트
+        function updateLanguageTabs() {
+            const koreanTab = document.getElementById('koreanTab');
+            const englishTab = document.getElementById('englishTab');
+            const langDisplay = document.getElementById('currentLangDisplay');
+            
+            if (currentLanguage === 'korean') {
+                koreanTab.className = 'language-tab active';
+                englishTab.className = 'language-tab';
+                langDisplay.textContent = '한국어';
+            } else {
+                koreanTab.className = 'language-tab';
+                englishTab.className = 'language-tab active';
+                langDisplay.textContent = 'English';
+            }
+            
+            // 자막 개수 업데이트
+            document.getElementById('koreanCount').textContent = subtitlesData.korean.length;
+            document.getElementById('englishCount').textContent = subtitlesData.english.length;
+        }
+
+        // Firebase 연결
+        function connectToFirebase() {
+            const sessionInput = document.getElementById('sessionIdInput').value.trim();
+            
+            if (!sessionInput) {
+                alert('❌ 세션 ID를 입력해 주세요.');
+                return;
+            }
+            
+            if (!/^[a-zA-Z0-9\-_]{3,50}$/.test(sessionInput)) {
+                alert('❌ 세션 ID는 3-50자의 영문, 숫자, 하이픈만 사용 가능합니다.');
+                return;
+            }
+            
+            updateStatusDisplay('info', '🔄 Firebase에 연결 중...');
+            
+            try {
+                const savedConfig = localStorage.getItem('firebaseConfig');
+                if (!savedConfig) {
+                    throw new Error('Firebase 설정이 없습니다.');
+                }
+                
+                const config = JSON.parse(savedConfig);
+                
+                if (firebaseApp) {
+                    firebaseApp.delete();
+                }
+                
+                firebaseApp = firebase.initializeApp(config);
+                database = firebase.database();
+                sessionId = sessionInput;
+                
+                // 세션 ID 저장
+                localStorage.setItem('fixedSessionId', sessionId);
+                
+                // 연결 테스트
+                database.ref('.info/connected').on('value', function(snapshot) {
+                    if (snapshot.val() === true) {
+                        isConnected = true;
+                        updateStatusDisplay('success', '🎉 Firebase 연결 성공! 이제 자막 시스템을 사용할 수 있습니다.');
+                        
+                        // UI 활성화
+                        document.getElementById('performanceTitle').disabled = false;
+                        document.getElementById('titleBtn').disabled = false;
+                        document.getElementById('subtitleSection').style.display = 'block';
+                        document.getElementById('controlSection').style.display = 'block';
+                        document.getElementById('linkSection').style.display = 'block';
+                        
+                        // 게스트 URL 업데이트
+                        updateGuestUrl();
+                        
+                        // 데이터 로드
+                        loadData();
+                        
+                        alert('✅ Firebase 연결 성공!\n세션 ID: ' + sessionId);
+                        
+                    } else {
+                        updateStatusDisplay('error', '❌ Firebase 연결 실패');
+                    }
+                });
+                
+            } catch (error) {
+                updateStatusDisplay('error', '❌ 연결 오류: ' + error.message);
+                console.error('Firebase 연결 오류:', error);
+            }
+        }
+
+        // 공연 제목 업데이트
+        function updateTitle() {
+            const title = document.getElementById('performanceTitle').value.trim();
+            if (title) {
+                performanceTitle = title;
+                saveData();
+                alert('✅ 공연 제목이 설정되었습니다!');
+            }
+        }
+
+        // 자막 추가
+        function addSubtitle() {
+            const input = document.getElementById('subtitleInput');
+            const text = input.value.trim();
+            
+            if (text) {
+                subtitlesData[currentLanguage].push(text);
+                input.value = '';
+                
+                // 첫 번째 자막이면 인덱스를 0으로 설정
+                if (getCurrentMaxCount() === 1 && currentIndex === -1) {
+                    currentIndex = 0;
+                }
+                
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        // 자막 수정
+        function editSubtitle(index) {
+            const currentList = subtitlesData[currentLanguage];
+            const currentText = currentList[index];
+            
+            const itemEl = document.getElementById('subtitle-item-' + index);
+            const textEl = document.getElementById('subtitle-text-' + index);
+            
+            // 편집 모드로 전환
+            textEl.innerHTML = `
+                <input type="text" 
+                       id="edit-input-${index}" 
+                       class="subtitle-edit-input" 
+                       value="${currentText.replace(/"/g, '&quot;')}" 
+                       onkeydown="handleEditKeydown(event, ${index})">
+                <div class="edit-controls">
+                    <button class="save-btn" onclick="saveEdit(${index})">저장</button>
+                    <button class="cancel-btn" onclick="cancelEdit(${index})">취소</button>
+                </div>
+            `;
+            
+            // 입력 필드에 포커스
+            setTimeout(() => {
+                const input = document.getElementById('edit-input-' + index);
+                if (input) {
+                    input.focus();
+                    input.select();
+                }
+            }, 100);
+        }
+        
+        // 수정 저장
+        function saveEdit(index) {
+            const input = document.getElementById('edit-input-' + index);
+            const newText = input.value.trim();
+            
+            if (newText) {
+                subtitlesData[currentLanguage][index] = newText;
+                updateDisplay();
+                saveData();
+            } else {
+                alert('❌ 자막 내용을 입력해 주세요.');
+            }
+        }
+        
+        // 수정 취소
+        function cancelEdit(index) {
+            updateDisplay();
+        }
+        
+        // 수정 중 키보드 이벤트 처리
+        function handleEditKeydown(event, index) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                saveEdit(index);
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelEdit(index);
+            }
+        }
+        
+        // 자막 삽입
+        function insertSubtitle(index) {
+            const newText = prompt('삽입할 자막을 입력하세요:');
+            
+            if (newText && newText.trim()) {
+                // 지정된 위치에 자막 삽입
+                subtitlesData[currentLanguage].splice(index, 0, newText.trim());
+                
+                // 현재 인덱스가 삽입된 위치보다 뒤에 있으면 1 증가
+                if (currentIndex >= index) {
+                    currentIndex++;
+                }
+                
+                updateDisplay();
+                saveData();
+            }
+        }
+        
+        // 자막 삭제
+        function deleteSubtitle(index) {
+            if (confirm('이 자막을 삭제하시겠습니까?')) {
+                subtitlesData[currentLanguage].splice(index, 1);
+                
+                // 현재 인덱스 조정
+                const maxCount = getCurrentMaxCount();
+                if (currentIndex >= maxCount) {
+                    currentIndex = Math.max(-1, maxCount - 1);
+                }
+                
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        // 전체 삭제
+        function clearAll() {
+            if (confirm('현재 언어의 모든 자막을 삭제하시겠습니까?')) {
+                subtitlesData[currentLanguage] = [];
+                
+                // 인덱스 재조정
+                const maxCount = getCurrentMaxCount();
+                if (currentIndex >= maxCount) {
+                    currentIndex = Math.max(-1, maxCount - 1);
+                }
+                
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        // 현재 최대 자막 개수 (두 언어 중 많은 쪽)
+        function getCurrentMaxCount() {
+            return Math.max(subtitlesData.korean.length, subtitlesData.english.length);
+        }
+
+        // 이전/다음/처음 자막
+        function previousSubtitle() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        function nextSubtitle() {
+            const maxCount = getCurrentMaxCount();
+            if (currentIndex < maxCount - 1) {
+                currentIndex++;
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        function resetToFirst() {
+            const maxCount = getCurrentMaxCount();
+            if (maxCount > 0) {
+                currentIndex = 0;
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        // 화면 업데이트
+        function updateDisplay() {
+            updateSubtitleList();
+            updateCurrentDisplay();
+            updateButtons();
+            updateCounter();
+            updateLanguageTabs();
+            updateScriptDisplay();
+        }
+        
+        // 대본 표시 업데이트
+        function updateScriptDisplay() {
+            const scriptContent = document.getElementById('scriptContent');
+            const currentList = subtitlesData[currentLanguage];
+            const performanceTitleDisplay = document.getElementById('performanceTitleDisplay');
+            const currentLineNumber = document.getElementById('currentLineNumber');
+            const totalLines = document.getElementById('totalLines');
+            
+            // 공연 제목 업데이트
+            performanceTitleDisplay.textContent = performanceTitle;
+            
+            // 총 라인 수 업데이트
+            totalLines.textContent = currentList.length;
+            
+            if (currentList.length === 0) {
+                scriptContent.innerHTML = '<div style="text-align: center; color: #666; padding: 50px;">자막을 추가해 주세요.</div>';
+                currentLineNumber.textContent = '0';
+                return;
+            }
+            
+            // 현재 라인 번호 업데이트
+            currentLineNumber.textContent = Math.max(0, currentIndex + 1);
+            
+            // 대본 HTML 생성
+            let html = '';
+            for (let i = 0; i < currentList.length; i++) {
+                const isCurrent = i === currentIndex;
+                html += `
+                    <div class="script-line ${isCurrent ? 'current' : ''}" 
+                         onclick="goToLine(${i})" 
+                         id="script-line-${i}">
+                        <div class="script-line-number">${i + 1}</div>
+                        <div class="script-text">${currentList[i].replace(/\n/g, '<br>')}</div>
+                    </div>
+                `;
+            }
+            
+            scriptContent.innerHTML = html;
+            
+            // 현재 라인을 중앙으로 스크롤
+            if (currentIndex >= 0) {
+                setTimeout(() => {
+                    const currentLine = document.getElementById('script-line-' + currentIndex);
+                    if (currentLine) {
+                        currentLine.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }, 100);
+            }
+        }
+        
+        // 특정 라인으로 이동
+        function goToLine(index) {
+            if (index >= 0 && index < subtitlesData[currentLanguage].length) {
+                currentIndex = index;
+                updateDisplay();
+                saveData();
+            }
+        }
+
+        // 자막 목록 업데이트
+        function updateSubtitleList() {
+            const listEl = document.getElementById('subtitleList');
+            const currentList = subtitlesData[currentLanguage];
+            
+            if (currentList.length === 0) {
+                listEl.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">자막을 추가해 주세요.</p>';
+                return;
+            }
+            
+            let html = '';
+            for (let i = 0; i < currentList.length; i++) {
+                html += '<div class="subtitle-item ' + (i === currentIndex ? 'current' : '') + '" id="subtitle-item-' + i + '">';
+                html += '<div class="subtitle-content">';
+                html += '<strong>' + (i + 1) + '.</strong> <span id="subtitle-text-' + i + '">' + currentList[i] + '</span>';
+                html += '</div>';
+                html += '<div class="subtitle-buttons">';
+                html += '<button class="edit-btn" onclick="editSubtitle(' + i + ')">수정</button>';
+                html += '<button class="insert-btn" onclick="insertSubtitle(' + i + ')">삽입</button>';
+                html += '<button class="delete-btn" onclick="deleteSubtitle(' + i + ')">삭제</button>';
+                html += '</div>';
+                html += '</div>';
+            }
+            listEl.innerHTML = html;
+        }
+
+        // 현재 자막 표시 업데이트
+        function updateCurrentDisplay() {
+            const displayEl = document.getElementById('currentDisplay');
+            const currentList = subtitlesData[currentLanguage];
+            
+            if (currentIndex >= 0 && currentIndex < currentList.length) {
+                displayEl.textContent = currentList[currentIndex];
+                displayEl.classList.add('active');
+            } else {
+                displayEl.textContent = '자막을 추가하고 제어하세요.';
+                displayEl.classList.remove('active');
+            }
+        }
+
+        // 버튼 상태 업데이트
+        function updateButtons() {
+            const maxCount = getCurrentMaxCount();
+            document.getElementById('prevBtn').disabled = currentIndex <= 0;
+            document.getElementById('nextBtn').disabled = currentIndex >= maxCount - 1 || maxCount === 0;
+            document.getElementById('resetBtn').disabled = maxCount === 0;
+        }
+
+        // 카운터 업데이트
+        function updateCounter() {
+            const maxCount = getCurrentMaxCount();
+            document.getElementById('currentIndex').textContent = Math.max(0, currentIndex + 1);
+            document.getElementById('maxCount').textContent = maxCount;
+        }
+
+        // Firebase에 데이터 저장 (동기화 구조)
+        function saveData() {
+            if (!database || !sessionId) return;
+            
+            // 공통 인덱스로 현재 자막 결정
+            const koreanSubtitle = currentIndex >= 0 && currentIndex < subtitlesData.korean.length ? 
+                subtitlesData.korean[currentIndex] : '';
+            const englishSubtitle = currentIndex >= 0 && currentIndex < subtitlesData.english.length ? 
+                subtitlesData.english[currentIndex] : '';
+            
+            // Firebase에 저장할 데이터 구조 (동기화)
+            const data = {
+                korean: {
+                    list: subtitlesData.korean,
+                    currentSubtitle: koreanSubtitle
+                },
+                english: {
+                    list: subtitlesData.english,
+                    currentSubtitle: englishSubtitle
+                },
+                currentIndex: currentIndex, // 공통 인덱스
+                performanceTitle: performanceTitle,
+                currentLanguage: currentLanguage, // 관리자가 편집 중인 언어
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            
+            database.ref('sessions/' + sessionId + '/subtitles').set(data);
+            console.log('데이터 저장됨 (동기화):', data);
+        }
+
+        // 데이터 로드
+        function loadData() {
+            if (!database || !sessionId) return;
+            
+            database.ref('sessions/' + sessionId + '/subtitles').on('value', function(snapshot) {
+                const data = snapshot.val();
+                if (data) {
+                    console.log('데이터 로드됨:', data);
+                    
+                    // 새로운 동기화 구조 처리
+                    if (data.korean && data.english && typeof data.currentIndex === 'number') {
+                        subtitlesData.korean = data.korean.list || [];
+                        subtitlesData.english = data.english.list || [];
+                        currentIndex = data.currentIndex;
+                        currentLanguage = data.currentLanguage || 'korean';
+                    } 
+                    // 기존 구조 호환성 (자동 마이그레이션)
+                    else if (data.list) {
+                        subtitlesData.korean = data.list || [];
+                        subtitlesData.english = [];
+                        currentIndex = typeof data.currentIndex === 'number' ? data.currentIndex : -1;
+                        currentLanguage = 'korean';
+                        
+                        // 마이그레이션 후 바로 새 구조로 저장
+                        setTimeout(() => saveData(), 1000);
+                    }
+                    // 다국어 구조이지만 공통 인덱스가 없는 경우
+                    else if (data.korean && data.english) {
+                        subtitlesData.korean = data.korean.list || [];
+                        subtitlesData.english = data.english.list || [];
+                        // 기존 개별 인덱스 중 하나를 공통으로 사용
+                        currentIndex = data.korean.currentIndex || data.english.currentIndex || -1;
+                        currentLanguage = data.currentLanguage || 'korean';
+                        
+                        // 새 구조로 저장
+                        setTimeout(() => saveData(), 1000);
+                    }
+                    
+                    performanceTitle = data.performanceTitle || '🎭 공연명을 입력하세요';
+                    
+                    // UI 업데이트
+                    updateDisplay();
+                    document.getElementById('performanceTitle').value = performanceTitle;
+                }
+            });
+        }
+
+        // 게스트 URL 업데이트
+        function updateGuestUrl() {
+    const baseUrl = window.location.href.replace('synchronized_admin.html', 'synchronized_guest2.html');
+    const guestUrl = baseUrl + '?session=' + sessionId;
+    
+    document.getElementById('guestUrl').textContent = guestUrl;
+}
+
+        // 게스트 링크 복사
+        function copyGuestLink() {
+            const url = document.getElementById('guestUrl').textContent;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(function() {
+                    alert('✅ 게스트 링크가 복사되었습니다!');
+                });
+            } else {
+                prompt('게스트 링크를 복사하세요:', url);
+            }
+        }
+
+        // QR코드 생성
+        function generateQR() {
+            const qrContainer = document.getElementById('qrcode');
+            const url = document.getElementById('guestUrl').textContent;
+            
+            qrContainer.innerHTML = '';
+            
+            QRCode.toCanvas(qrContainer, url, {
+                width: 200,
+                height: 200
+            }, function (error) {
+                if (error) {
+                    qrContainer.innerHTML = '<p style="color: red;">QR코드 생성 실패</p>';
+                } else {
+                    const canvas = qrContainer.querySelector('canvas');
+                    if (canvas) {
+                        canvas.style.border = '2px solid #ddd';
+                        canvas.style.borderRadius = '8px';
+                    }
+                }
+            });
+        }
+
+        // 키보드 단축키
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+            
+            if (isConnected) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextSubtitle();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousSubtitle();
+                } else if (e.key === '1') {
+                    e.preventDefault();
+                    switchLanguage('korean');
+                } else if (e.key === '2') {
+                    e.preventDefault();
+                    switchLanguage('english');
+                }
+            }
+        });
+
+        // Ctrl + Enter로 자막 추가
+        document.addEventListener('keydown', function(e) {
+            const subtitleInput = document.getElementById('subtitleInput');
+            if (e.target === subtitleInput && e.key === 'Enter' && e.ctrlKey && isConnected) {
+                e.preventDefault();
+                addSubtitle();
+            }
+        });
+    </script>
+</body>
+</html>
