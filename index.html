@@ -16,6 +16,8 @@
         html {
             height: 100%;
             overflow-x: hidden;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
         }
 
         body {
@@ -195,7 +197,7 @@
         }
 
         .logo-link:hover {
-            transform: scale(1.05);
+            transform: none;
         }
 
         .logo {
@@ -205,7 +207,7 @@
         }
 
         .logo-link:hover .logo {
-            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
         }
 
         .menu-button {
@@ -1096,6 +1098,20 @@
         .timeline-time { background: rgba(255, 255, 255, 0.07); border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
         .timeline-activity { background: rgba(255, 255, 255, 0.07); }
 
+        /* Prevent text shift on expand/collapse by overriding duplicate flex timeline rules */
+        .timeline-container .timeline-item {
+            display: block;
+            gap: 0;
+            align-items: initial;
+        }
+
+        .timeline-container .timeline-header,
+        .timeline-container .timeline-time,
+        .timeline-container .timeline-activity {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         .current-time-container,
         .btn,
         .btn.active {
@@ -1108,6 +1124,23 @@
         .btn { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.25); }
         .btn:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.34); }
         .btn.active { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.4); }
+
+        .sub-nav .btn {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .sub-nav .btn:not(.active) {
+            opacity: 0.78;
+        }
+
+        .sub-nav .btn.active {
+            background: rgba(255, 255, 255, 0.34);
+            color: #243b6b;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(36, 59, 107, 0.22);
+            opacity: 1;
+        }
 
         body,
         .section-title,
@@ -1281,7 +1314,7 @@
                             <div class="timeline-details" id="timeline-19-10">
                                 <div class="timeline-detail"><s>① 좌통례, 나각입장</s></div>
                                 <div class="timeline-detail"><s>② 체험객 입장</s></div>
-                                <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <향발무></s></div>
+                                <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <박접무></s></div>
                                 <div class="timeline-detail"><s>④ 이엄 및 세자 입장</s></div>
                                 <div class="timeline-detail"><s>⑤ 삼엄 및 국왕 입장</s></div>
                                 <div class="timeline-detail"><s>⑥ 진화 및 진작</s></div>
@@ -1345,20 +1378,20 @@
                     <div class="glass-card">
                         <h3></h3>
                         <div class="image-container">
-                            <img src="https://cdn.imweb.me/thumbnail/20250928/c2d13feff5258.jpg" alt="창경궁 야연">
+                            <img src="images/poster.jpg" alt="창경궁 야연">
                         </div>
                         <div class="event-title-large">
-                            깊어가는 가을밤,<br>
-                            효심으로 물드는 궁중 연회
+                            가정의 달 5월, 효심이 피어나는<br>
+                            궁중 연회로의 초대
                         </div>
                         <div class="event-description">
                             '창경궁 야연'은 19세기 효명세자가 아버지 순조에게 올렸던 지극한 효심의 연회를 재해석하여 부모님에 대한 공경과 사랑을 나누는 체험형 공연입니다.<br>
-                            문무백관과 외명부가 되어 실제 조선시대의 궁중 연회에 초대받은 듯한 특별하고 잊을 수 없는 경험을 해보세요.
+                            문무백관과 외명부가 되어 조선시대 궁중 연회에 참여하는 특별하고 잊을 수 없는 경험을 부모님께 선물해보세요.
                         </div>
                         <div class="info-grid">
                             <div class="info-card">
                                 <div class="info-label">행사기간</div>
-                                <p>2025.10.3.(금) ~ 10.9.(목)</p>
+                                <p>2026.5.7.(목) ~ 5.17.(일)</p>
                             </div>
                             <div class="info-card">
                                 <div class="info-label">행사시간</div>
@@ -1385,7 +1418,7 @@
                             <img src="https://cdn.imweb.me/thumbnail/20250928/ad728103b157b.png" alt="관복 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
                             문무백관 및 외명부 체험
                         </h4>
-                        <p>3정승 6판서 등 관직을 부여받아 관복을 입고 왕의 연회에 초대 받는 몰입감있는 체험</p>
+                        <p>3정승 6판서 등 관직을 부여받아 관복을 입고 왕의 연회에 참여하는 몰입형 체험</p>
                         <ul>
                             <li><strong>아버님</strong> | 단령, 사모 등 전통 의복 착용 및 메이크업</li>
                             <li><strong>어머님</strong> | 당의, 치마, 비녀, 첩지 등 전통 의복 착용 및 메이크업</li>
@@ -1398,8 +1431,8 @@
                             궁중병과 체험
                         </h4>
                         <ul>
-                            <li>조선 왕실의 특별한 날에 즐겼던 궁중 전통 간식 체험</li>
-                            <li>녹차약식, 곶감단지, 호두정과 등 다양한 병과 11종 제공</li>
+                            <li>조선 왕실의 특별한 날에 즐겼던 궁중 전통 다과 체험</li>
+                            <li>녹차약식, 곶감단지, 호두정과 등 다양한 병과 제공</li>
                         </ul>
                     </div>
                     
@@ -1410,18 +1443,19 @@
                         </h4>
                         <ul>
                             <li>궁중 병과와 차를 즐기며 궁중정재 및 민속무용 관람<br>
-                                <em>&lt;향발무&gt;, &lt;예도무&gt;, &lt;설장고춤&gt;</em></li>
-                            <li>생소한 궁중 의례와 공연을 보다 쉽게 즐길 수 있도록 모바일 자막 서비스 제공</li>
+                                <em>&lt;박접무&gt;, &lt;예도무&gt;, &lt;설장고춤&gt;</em></li>
+                            <li>*생소한 궁중 의례와 공연을 보다 쉽게 즐길 수 있도록 모바일 자막 서비스 제공</li>
                         </ul>
                     </div>
                     
                     <div class="glass-card">
                         <h4>
                             <img src="https://cdn.imweb.me/thumbnail/20250928/aee3d3c67eab4.png" alt="사진 아이콘" style="width: 40px; height: 40px; margin-right: 8px; vertical-align: middle;">
-                            전문 사진작가 기념사진 촬영
+                            전문 사진작가 사진·영상 촬영
                         </h4>
                         <ul>
                             <li><strong>장수사진</strong> : 의복을 갖춰입은 부모님의 모습을 전문 사진작가가 촬영하는 독사진</li>
+                            <li><strong>영상편지</strong> : 부모와 자녀가 서로에게 마음을 전하는 인터뷰 형식의 스냅 영상</li>
                             <li><strong>가족사진</strong> : 
                                 <ol>
                                     <li>공연 종료 후 무대 위 왕의 어좌와 고임상을 배경으로 촬영하는 가족 사진</li>
@@ -1439,6 +1473,7 @@
                         <ul>
                             <li><strong>효잡이</strong> : 자녀가 아닌 부모님이 돌잡이의 주인공이 되어보는 가족 참여형 이벤트</li>
                             <li><strong>효심편지</strong> : 미래의 부모님께 마음을 전하는 편지 작성 (6개월 / 1년 뒤 발송)</li>
+                            <li><strong>왕의 어찰 찾기</strong> : 창경궁 곳곳에 숨어 있는 효명세자의 편지 찾기 체험</li>
                         </ul>
                     </div>
                 </div>
@@ -1480,7 +1515,7 @@
                                     <div class="timeline-detail"><s>- 효잡이 체험 및 가족 스냅사진 촬영</s></div>
                                     <div class="timeline-detail"><s>- 대기실 휴식 및 전통 병과 즐기기</s></div>
                                     <div class="timeline-detail"><s>- 부모님께 효심 편지 작성 및 발송</s></div>
-                                    <div class="timeline-detail"><s>- 창경궁 곳곳에 숨겨진 어찰 찾기 체험</s></div>`r`n                                <div class="timeline-detail"><s>- 창경궁 포토 스팟, 포토 부스 등 자율 이용</s></div>
+                                    <div class="timeline-detail"><s>- 창경궁 곳곳에 숨겨진 어찰 찾기 체험</s></div>                                <div class="timeline-detail"><s>- 창경궁 포토 스팟, 포토 부스 등 자율 이용</s></div>
                                 </div>
                             </div>
                             <div class="timeline-item">
@@ -1498,7 +1533,7 @@
                                 <div class="timeline-details" id="schedule-timeline-19-10">
                                     <div class="timeline-detail"><s>① 좌통례, 나각입장</s></div>
                                     <div class="timeline-detail"><s>② 체험객 입장</s></div>
-                                    <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <향발무></s></div>
+                                    <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <박접무></s></div>
                                     <div class="timeline-detail"><s>④ 이엄 및 세자 입장</s></div>
                                     <div class="timeline-detail"><s>⑤ 삼엄 및 국왕 입장</s></div>
                                     <div class="timeline-detail"><s>⑥ 진화 및 진작</s></div>
@@ -1557,17 +1592,17 @@
                         <div class="timeline-item">
                             <div class="timeline-header">
                                 <div class="timeline-time performance-time">
-                                    향발무
+                                    박접무
                                 </div>
                                 <div class="timeline-activity">
-                                    <b>작은 타악기 향발을 연주하며 추는 우아한 춤</b>
+                                    <b>나비가 꽃을 찾아 노니는 모습을 형상화한 우아한 춤</b>
                                 </div>
                             </div>
                             <div class="timeline-details performance-details" id="performance-hyangbalmu">
                                 <div class="image-container">
-                                    <img src="https://cdn.imweb.me/thumbnail/20250928/3283accbd8613.jpg" alt="향발무">
+                                    <img src="images/bakjeopmoo.jpg" alt="박접무">
                                 </div>
-                                <p>조선 전기에 창작된 향악정재 중 하나인 향발무는 작은 타악기인 향발을 양손에 매고 장단에 맞춰 연주하며 추는 춤입니다. 우아하면서도 섬세한 움직임이 돋보이는 무대로 사랑받고 있으며 전통의 멋과 장단이 어우러진 공연입니다.</p>
+                                <p>조선 후기에 효명세자가 새로 지은 향악정재 중 하나인 박접무는 채색 나비가 봄볕을 찾아 쌍쌍이 날아와 꽃을 스치며 노니는 모습을 묘사했습니다. 여섯 명의 무용수가 나비가 수놓인 녹색의상「녹라포」를 입고 우아하면서 아름다운 동작을 선보입니다.</p>
                                 <div class="info-grid">
                                     <div class="info-card">
                                         <div class="info-label">공연시간</div>
@@ -1593,7 +1628,7 @@
                             </div>
                             <div class="timeline-details performance-details" id="performance-yedomu">
                                 <div class="image-container">
-                                    <img src="https://cdn.imweb.me/thumbnail/20250928/9ff0e999fdea7.jpg" alt="예도무">
+                                    <img src="images/yedomoo.jpg" alt="예도무">
                                 </div>
                                 <p>조선 순조 때 효명세자가 아버지 순조를 위해 만든 무산향과 어머니 순원숙왕후를 위해 만든 춘앵전을 함께 선보이는 공연입니다.</p>
                                 <div class="info-grid">
@@ -1630,7 +1665,7 @@
                             </div>
                             <div class="timeline-details performance-details" id="performance-seoljanggo">
                                 <div class="image-container">
-                                    <img src="https://cdn.imweb.me/thumbnail/20250928/9c19b3465a4aa.jpg" alt="설장고춤">
+                                    <img src="images/seoljanggo.jpg" alt="설장고춤">
                                 </div>
                                 <p>장고를 어깨에 비스듬히 둘러메고 허리에 띠로 동여매어 흔들리지 않도록 고정한 채 다양한 장단을 연주하며 추는 춤으로, 설장고 또는 설장고놀이라고도 불립니다.</p>
                                 <div class="info-grid">
@@ -1795,13 +1830,13 @@
                     
                     <div class="glass-card">
                         <div class="image-container">
-                            <img src="https://cdn.imweb.me/thumbnail/20250928/57f7e32ef21dd.jpg" alt="참외정과">
+                            <img src="images/baejeonggha.jpg" alt="배정과">
                         </div>
-                        <h3 style="color: #f2d58f; font-weight: bold;">참외정과</h3>
-                        <p>참외를 꿀이나 설탕물에 조려 만든 정과를 뜻하며, 여주 금사참외를 사용하여 전통방법을 활용하여 꽃 모양으로 만들었습니다.</p>
+                        <h3 style="color: #f2d58f; font-weight: bold;">배정과</h3>
+                        <p>수분, 식이섬유가 풍부해 소화와 장운동을 돕고, 기관지.폐 건강에 도움을 주는 배를 꿀이나 설탕물에 조려 만든 정과입니다.</p>
                         <div class="info-card">
                             <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">주재료</div>
-                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">참외, 설탕, 박고지</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">배, 설탕, 잣</p>
                         </div>
                     </div>
                     
@@ -2052,8 +2087,8 @@
                     <div style="text-align: center; margin-bottom: 2rem;">
                         <h3 style="margin-bottom: 1rem;">실시간 자막 서비스</h3>
                         <p style="opacity: 0.8; margin-bottom: 2rem;">공연 중 실시간으로 제공되는 자막 서비스를 이용해보세요</p>
-                        <a href="https://yayeon2025.netlify.app/synchronized_guest2.html?session=show" 
-                           target="_blank" 
+                        <a href="#" 
+                            
                            class="caption-button"
                            style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
                             🎭 실시간 자막보기
@@ -2375,7 +2410,7 @@
             }
 
             // 버튼 상태 업데이트
-            const buttons = document.querySelectorAll('.sub-nav .btn');
+            const buttons = document.querySelectorAll('#program-section .sub-nav .btn');
             buttons.forEach(btn => {
                 btn.classList.remove('active');
                 // 클릭된 버튼 찾기
@@ -2745,5 +2780,15 @@
     </script>
 </body>
 </html> 
+
+
+
+
+
+
+
+
+
+
 
 
