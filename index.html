@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 창경궁 야연</title>
+    <title>2026 &#xCC3D;&#xACBD;&#xAD81; &#xC57C;&#xC5F0;</title>
     <style>
         /* 기본 스타일 */
         * {
@@ -113,8 +113,15 @@
             width: 100%;
             height: 100%;
             opacity: 0.05;
-            background-image: url("https://cdn.imweb.me/thumbnail/20250917/7b872950f6c48.jpg");
+            background-image: url("images/yayeon-bg.jpg");
             background-size: 30px 30px;
+        }
+
+        .background-overlay,
+        .background-pattern,
+        .traditional-pattern {
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 110px, black 145px);
+            mask-image: linear-gradient(to bottom, transparent 0, transparent 110px, black 145px);
         }
 
         /* 글래스모피즘 카드 */
@@ -170,9 +177,10 @@
 
         /* 헤더 */
         .header {
-            padding: 1rem;
+            padding: 0.9rem 1rem 1rem;
             position: relative;
             z-index: 15;
+            background: transparent;
         }
 
         .header-content {
@@ -180,6 +188,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0.75rem 0;
+            background: transparent;
         }
 
         .logo-container {
@@ -209,20 +218,20 @@
         }
 
         .menu-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            border: none;
             color: white;
             cursor: pointer;
             padding: 0.75rem;
             border-radius: 0.75rem;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         .menu-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: transparent;
+            border-color: transparent;
             transform: translateY(-1px);
         }
 
@@ -246,7 +255,7 @@
 
         .navigation .glass-card {
             border-radius: 1rem;
-            padding: 1rem;
+            padding: 0.9rem 1rem 1rem;
         }
 
         .nav-item {
@@ -265,7 +274,7 @@
         }
 
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             color: white;
         }
 
@@ -276,7 +285,7 @@
 
         /* 메인 콘텐츠 */
         .main-content {
-            padding: 1rem;
+            padding: 0.9rem 1rem 1rem;
             padding-bottom: 6rem;
         }
 
@@ -386,8 +395,8 @@
         .current-time-container {
             text-align: center;
             margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 0.9rem 1rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 0.75rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -408,7 +417,7 @@
 
         .current-date {
             font-size: 0.875rem;
-            opacity: 0.7;
+            opacity: 0;
         }
 
         /* 타임라인 컨테이너 */
@@ -419,7 +428,7 @@
         }
 
         .timeline-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 0.5rem;
             transition: all 0.3s ease;
             position: relative;
@@ -502,7 +511,7 @@
         }
 
         .timeline-time {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             padding: 0.75rem 1rem;
             border-radius: 0.5rem 0.5rem 0 0;
             font-weight: 600;
@@ -549,7 +558,7 @@
 
         .timeline-location {
             font-size: 0.875rem;
-            opacity: 0.7;
+            opacity: 0;
         }
 
         .timeline-item.current .timeline-activity {
@@ -640,7 +649,7 @@
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .btn.active {
@@ -675,7 +684,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem;
+            padding: 0.9rem 1rem 1rem;
             border: none;
             background: none;
             color: white;
@@ -700,7 +709,7 @@
         }
 
         .info-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 0.5rem;
             padding: 0.75rem;
         }
@@ -722,7 +731,7 @@
 
         .info-label {
             font-size: 0.875rem;
-            opacity: 0.7;
+            opacity: 0;
             margin-bottom: 0.25rem;
         }
 
@@ -748,13 +757,13 @@
             align-items: center;
             gap: 1rem;
             padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 0.5rem;
             margin-bottom: 0.75rem;
         }
 
         .timeline-time {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             padding: 0.5rem 0.75rem;
             border-radius: 0.5rem;
             font-weight: 600;
@@ -784,7 +793,7 @@
 
         .timeline-location {
             font-size: 0.875rem;
-            opacity: 0.7;
+            opacity: 0;
         }
 
         /* 캡션 화면 */
@@ -820,7 +829,7 @@
         .progress-bar {
             width: 100%;
             height: 0.5rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             border-radius: 0.25rem;
             overflow: hidden;
         }
@@ -869,7 +878,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 3px;
         }
 
@@ -1024,12 +1033,171 @@
             padding: 0.75rem !important;
             overflow: visible !important;
         }
+    
+        /* 2026 visual skin override: colorful bg + refined glass */
+        :root {
+            --glass-fill: rgba(255, 255, 255, 0.07);
+            --glass-fill-strong: rgba(255, 255, 255, 0.07);
+            --glass-stroke: rgba(255, 255, 255, 0.18);
+            --glass-stroke-soft: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --glass-highlight: inset 0 0 0 rgba(255, 255, 255, 0);
+            --text-glow: 0 1px 6px rgba(18, 33, 74, 0.18);
+        }
+
+        body {
+            background:
+                radial-gradient(1200px 560px at -10% -10%, rgba(255, 182, 212, 0.28), transparent 62%),
+                radial-gradient(980px 520px at 110% 0%, rgba(163, 214, 255, 0.28), transparent 60%),
+                radial-gradient(1200px 680px at 50% 120%, rgba(178, 241, 232, 0.24), transparent 64%),
+                linear-gradient(135deg, #f6f9ff 0%, #eef4ff 52%, #e9f2ff 100%);
+            background-attachment: fixed;
+        }
+
+        .background img {
+            filter: none;
+        }
+
+        .background-overlay {
+            background: transparent;
+        }
+
+        .background-pattern {
+            opacity: 0;
+            background:
+                radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.18) 0%, transparent 28%),
+                radial-gradient(circle at 82% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 26%),
+                radial-gradient(circle at 44% 62%, rgba(255, 255, 255, 0.08) 0%, transparent 24%),
+                repeating-linear-gradient(105deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 34px);
+        }
+
+        .traditional-pattern {
+            opacity: 0;
+            background-size: 36px 36px;
+            mix-blend-mode: normal;
+        }
+
+        .container {
+            background: transparent;
+        }
+
+        .header-content {
+            border-radius: 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            padding: 0.78rem 0.9rem;
+        }
+
+        .logo {
+            filter: drop-shadow(var(--text-glow));
+        }
+
+        .menu-button {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: var(--glass-highlight), 0 10px 24px rgba(52, 85, 146, 0.18);
+            backdrop-filter: blur(6px) saturate(100%);
+            -webkit-backdrop-filter: blur(6px) saturate(100%);
+        }
+
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .glass-card,
+        .navigation .glass-card,
+        .schedule-card,
+        .info-card,
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid var(--glass-stroke-soft);
+            box-shadow: var(--glass-highlight), var(--glass-shadow);
+            backdrop-filter: blur(6px) saturate(100%);
+            -webkit-backdrop-filter: blur(6px) saturate(100%);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: var(--glass-stroke);
+            box-shadow: var(--glass-highlight), 0 22px 44px rgba(6, 10, 24, 0.52);
+            transform: translateY(-3px);
+        }
+
+        .timeline-header:hover {
+            background: transparent;
+        }
+
+        .timeline-time {
+            background: rgba(255, 255, 255, 0.17);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-activity {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .current-time-container,
+        .btn,
+        .btn.active {
+            backdrop-filter: blur(6px) saturate(100%);
+            -webkit-backdrop-filter: blur(6px) saturate(100%);
+            box-shadow: var(--glass-highlight), 0 10px 24px rgba(6, 10, 22, 0.35);
+        }
+
+        .current-time-container {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .btn.active {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        body,
+        .section-title,
+        h1,
+        h2,
+        h3,
+        h4,
+        .timeline-activity,
+        .timeline-time {
+            text-shadow: var(--text-glow);
+        }
+
+        @media (max-width: 768px) {
+            .glass-card,
+            .navigation .glass-card,
+            .schedule-card,
+            .info-card,
+            .timeline-item {
+                backdrop-filter: blur(6px) saturate(100%);
+                -webkit-backdrop-filter: blur(6px) saturate(100%);
+            }
+
+            .header-content {
+                border-radius: 14px;
+                padding: 0.7rem 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- 배경 -->
     <div class="background">
-        <img src="https://cdn.imweb.me/thumbnail/20250917/7b872950f6c48.jpg" alt="창경궁 배경">
+        <img src="images/yayeon-bg.jpg" alt="창경궁 배경">
         <div class="background-overlay"></div>
         <div class="background-pattern"></div>
         <div class="traditional-pattern"></div>
@@ -1041,7 +1209,7 @@
             <div class="header-content">
                 <div class="logo-container">
                     <a href="#" onclick="showSection('home'); return false;" class="logo-link">
-                        <img src="https://cdn.imweb.me/thumbnail/20250921/4840141862fd6.png" alt="2025 창경궁 야연 로고" class="logo">
+                        <img src="images/yayeon-logo.png" alt="2025 창경궁 야연 로고" class="logo">
                     </a>
                 </div>
                 <button class="menu-button" onclick="toggleMenu()">
@@ -2004,15 +2172,16 @@
         right: 0 !important;
         width: 100% !important;
         z-index: 999999 !important;
-        padding: 1rem;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 0.9rem 1rem 1rem;
+        background: transparent;
         pointer-events: auto !important;
     ">
         <div style="
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, #ce93b3 0%, #7db9e3 100%);
+            box-shadow: 0 8px 24px rgba(91, 118, 170, 0.18);
             border-radius: 1rem;
             padding: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(146, 167, 206, 0.28);
         ">
             <div style="
                 display: grid;
@@ -2048,7 +2217,7 @@
                     border-radius: 0.75rem;
                     background: transparent;
                     border: none;
-                    color: rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.78);
                     cursor: pointer;
                     transition: all 0.3s;
                     font-size: 0.75rem;
@@ -2070,7 +2239,7 @@
                     border-radius: 0.75rem;
                     background: transparent;
                     border: none;
-                    color: rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.78);
                     cursor: pointer;
                     transition: all 0.3s;
                     font-size: 0.75rem;
@@ -2090,7 +2259,7 @@
                     border-radius: 0.75rem;
                     background: transparent;
                     border: none;
-                    color: rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.78);
                     cursor: pointer;
                     transition: all 0.3s;
                     font-size: 0.75rem;
@@ -2111,7 +2280,7 @@
                     border-radius: 0.75rem;
                     background: transparent;
                     border: none;
-                    color: rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.78);
                     cursor: pointer;
                     transition: all 0.3s;
                     font-size: 0.75rem;
@@ -2131,7 +2300,7 @@
                     border-radius: 0.75rem;
                     background: transparent;
                     border: none;
-                    color: rgba(255, 255, 255, 0.3);
+                    color: rgba(255, 255, 255, 0.78);
                     cursor: pointer;
                     transition: all 0.3s;
                     font-size: 0.75rem;
@@ -2216,8 +2385,10 @@
             const bottomNavButtons = document.querySelectorAll('#fixed-bottom-nav button');
             bottomNavButtons.forEach(button => {
                 // 모든 버튼을 비활성화 상태로 설정
-                button.style.color = 'rgba(255, 255, 255, 0.3)';
+                button.style.color = 'rgba(255, 255, 255, 0.78)';
                 button.style.background = 'transparent';
+                button.style.border = '1px solid transparent';
+                button.style.boxShadow = 'none';
             });
 
             // 클릭된 아이템들에 active 클래스 추가 (상단 네비게이션)
@@ -2231,8 +2402,10 @@
             // 하단 네비게이션에서 클릭된 버튼 활성화
             const clickedBottomNavButton = document.querySelector(`#fixed-bottom-nav button[onclick="showSection('${sectionId}')"]`);
             if (clickedBottomNavButton) {
-                clickedBottomNavButton.style.color = 'white';
-                clickedBottomNavButton.style.background = 'rgba(255, 255, 255, 0.2)';
+                clickedBottomNavButton.style.color = '#243b6b';
+                clickedBottomNavButton.style.background = 'rgba(255, 255, 255, 0.34)';
+                clickedBottomNavButton.style.border = 'none';
+                clickedBottomNavButton.style.boxShadow = '0 4px 12px rgba(36, 59, 107, 0.22)';
             }
 
             // 메뉴 닫기
@@ -2579,11 +2752,15 @@
             const bottomNavButtons = document.querySelectorAll('#fixed-bottom-nav button');
             bottomNavButtons.forEach(button => {
                 if (button.getAttribute('onclick') === "showSection('home')") {
-                    button.style.color = 'white';
-                    button.style.background = 'rgba(255, 255, 255, 0.2)';
+                    button.style.color = '#243b6b';
+                    button.style.background = 'rgba(255, 255, 255, 0.34)';
+                    button.style.border = 'none';
+                    button.style.boxShadow = '0 4px 12px rgba(36, 59, 107, 0.22)';
                 } else {
-                    button.style.color = 'rgba(255, 255, 255, 0.3)';
+                    button.style.color = 'rgba(255, 255, 255, 0.78)';
                     button.style.background = 'transparent';
+                button.style.border = '1px solid transparent';
+                button.style.boxShadow = 'none';
                 }
             });
 
