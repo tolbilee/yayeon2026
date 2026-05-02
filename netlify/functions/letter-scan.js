@@ -98,7 +98,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>창경궁 야연 편지 찾기</title>
+  <title>&#50773;&#51032; &#50612;&#52272; &#52286;&#44592;</title>
   <style>
     :root {
       --glass: rgba(255, 255, 255, 0.12);
@@ -156,8 +156,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
 </head>
 <body>
   <main class="card">
-    <p class="eyebrow">CHANGGYEONGGUNG YAYEON</p>
-    <h1>편지 찾기 QR 이벤트</h1>
+    <h1>&#50773;&#51032; &#50612;&#52272; &#52286;&#44592;</h1>
     <div class="count">${safeFoundCount}<small>/${maxCount}</small></div>
     <p class="message">${message}</p>
     <div class="bar" aria-label="진행률"><span></span></div>
