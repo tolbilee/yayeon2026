@@ -1,0 +1,13 @@
+﻿# Netlify environment variables for the Yayeon lottery event using Supabase
+
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=YOUR_SUPABASE_SERVICE_ROLE_KEY
+LOTTERY_VISITOR_SALT=CHANGE_TO_A_LONG_RANDOM_SECRET
+
+# Run this SQL in Supabase SQL Editor before deployment:
+# supabase/lottery.sql
+
+# Expected image assets:
+# images/lottery-win.png
+# images/lottery-lose.png
+

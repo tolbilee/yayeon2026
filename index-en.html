@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 &#xCC3D;&#xACBD;&#xAD81; &#xC57C;&#xC5F0;</title>
+    <title>2026 Changgyeonggung Yayeon</title>
     <style>
         /* 기본 스타일 */
         * {
@@ -1290,8 +1290,8 @@
                     </a>
                 </div>
                 <div class="lang-switch">
-                    <a class="lang-button active" href="index.html">KO</a>
-                    <a class="lang-button" href="index-en.html">EN</a>
+                    <a class="lang-button" href="index.html">KO</a>
+                    <a class="lang-button active" href="index-en.html">EN</a>
                 </div>
                 <button class="menu-button" onclick="toggleMenu()">
                     <svg class="icon icon-large" id="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2251,21 +2251,21 @@
     <!-- 하단 네비게이션 - 완전 독립 -->
 
 
-    <button class="lottery-float-button" id="lottery-float-button" onclick="openLotteryModal()" aria-label="&#xD589;&#xC6B4;&#xC758; &#xC81C;&#xBE44;&#xBF51;&#xAE30; &#xC5F4;&#xAE30;">
+    <button class="lottery-float-button" id="lottery-float-button" onclick="openLotteryModal()" aria-label="Open lucky draw event">
         <img src="images/jebi.png" alt="">
     </button>
 
     <div class="lottery-modal" id="lottery-modal" aria-hidden="true">
         <div class="lottery-panel">
-            <div class="lottery-title">행운의 제비뽑기 : 성은첩지</div>
-            <div class="lottery-guide" id="lottery-guide">18:30~19:50 시간 동안, 무료 공연 관람객만 참여 가능합니다.<br>공연 종료 후 선정되신 2팀에게는 어좌 위 기념사진 촬영 기회가 주어집니다.</div>
+            <div class="lottery-title">Lucky Draw: Seongeun Cheopji</div>
+            <div class="lottery-guide" id="lottery-guide">Available daily from 6:30 PM to 7:50 PM KST.<br>Each visitor may enter once.</div>
             <div class="lottery-result" id="lottery-result">
                 <img id="lottery-result-image" src="" alt="">
                 <div class="lottery-result-title" id="lottery-result-title"></div>
                 <div class="lottery-result-text" id="lottery-result-text"></div>
             </div>
-            <button class="lottery-action" id="lottery-draw-button" type="button">&#xC81C;&#xBE44;&#xBF51;&#xAE30; &#xCC38;&#xC5EC;&#xD558;&#xAE30;</button>
-            <button class="lottery-close" type="button" onclick="closeLotteryModal()">&#xB2EB;&#xAE30;</button>
+            <button class="lottery-action" id="lottery-draw-button" type="button">Draw Now</button>
+            <button class="lottery-close" type="button" onclick="closeLotteryModal()">Close</button>
         </div>
     </div>
 
@@ -2445,15 +2445,15 @@
 
 
         const lotteryText = {
-            lang: 'ko',
-            ready: "\uC81C\uBE44\uB97C \uBF51\uACE0 \uC788\uC2B5\uB2C8\uB2E4.",
-            winTitle: "\uC131\uC740\uCCA9\uC9C0 \uB2F9\uCCA8",
-            winText: "\uCD95\uD558\uD569\uB2C8\uB2E4. \uD604\uC7A5 \uC6B4\uC601\uC9C4\uC5D0\uAC8C \uB2F9\uCCA8 \uD654\uBA74\uC744 \uBCF4\uC5EC\uC8FC\uC138\uC694.",
-            loseTitle: "\uB2E4\uC74C \uAE30\uD68C\uB97C \uAE30\uB300\uD574\uC8FC\uC138\uC694",
-            loseText: "\uC544\uC27D\uC9C0\uB9CC \uC774\uBC88 \uC81C\uBE44\uB294 \uB2F9\uCCA8\uC774 \uC544\uB2D9\uB2C8\uB2E4.",
-            already: "\uC774\uBBF8 \uCC38\uC5EC\uD558\uC168\uC2B5\uB2C8\uB2E4.",
-            closed: "\uC9C0\uAE08\uC740 \uC774\uBCA4\uD2B8 \uCC38\uC5EC\uC2DC\uAC04\uC774 \uC544\uB2D9\uB2C8\uB2E4.",
-            error: "\uC7A0\uC2DC \uD6C4 \uB2E4\uC2DC \uC2DC\uB3C4\uD574\uC8FC\uC138\uC694."
+            lang: 'en',
+            ready: "Drawing your slip.",
+            winTitle: "Winning Slip",
+            winText: "Congratulations. Please show this screen to event staff.",
+            loseTitle: "Please Try Again Next Time",
+            loseText: "This slip was not a winner.",
+            already: "You have already entered.",
+            closed: "The event is not open right now.",
+            error: "Please try again shortly."
         };
 
         function getLotteryVisitorId() {
@@ -2513,6 +2513,11 @@
         }
 
         async function drawLottery() {
+            if (!isLotteryOpenNow()) {
+                alert(lotteryText.closed);
+                return;
+            }
+
             const button = document.getElementById('lottery-draw-button');
             if (!button) return;
             button.disabled = true;
