@@ -6,3 +6,18 @@
   from = "/api/draw-lottery"
   to = "/.netlify/functions/draw-lottery"
   status = 200
+
+[[redirects]]
+  from = "/s/:token"
+  to = "/.netlify/functions/letter-scan?token=:token"
+  status = 200
+
+[[redirects]]
+  from = "/S/:token"
+  to = "/.netlify/functions/letter-scan?token=:token"
+  status = 200
+
+[[redirects]]
+  from = "/letter-progress"
+  to = "/.netlify/functions/letter-scan"
+  status = 200
