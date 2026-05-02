@@ -140,7 +140,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     }
     .eyebrow { margin: 0 0 0.5rem; font-size: 0.82rem; color: var(--muted); letter-spacing: 0.08em; }
     h1 { margin: 0; font-size: 1.55rem; line-height: 1.35; text-shadow: 0 3px 14px rgba(0,0,0,0.28); }
-    .count { margin: 1.25rem auto 0.9rem; font-size: 4.3rem; font-weight: 800; line-height: 1; }
+    .count { margin: 1.25rem auto 0.9rem; font-size: 4.3rem; font-weight: 500; line-height: 1; }
     .count small { font-size: 1.3rem; }
     .message { margin: 0.35rem 0 0; font-size: 1.15rem; font-weight: 700; }
     .detail { margin: 0.85rem 0 0; color: var(--muted); line-height: 1.55; font-size: 0.94rem; }
