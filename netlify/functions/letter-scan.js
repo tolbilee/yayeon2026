@@ -130,8 +130,10 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
       pointer-events: none;
     }
     .event-logo-link {
-      position: relative;
-      z-index: 1;
+      position: fixed;
+      top: 0.78rem;
+      left: 0.9rem;
+      z-index: 2;
       display: inline-flex;
       align-items: center;
       justify-content: center;
