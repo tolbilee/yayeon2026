@@ -115,8 +115,11 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       color: var(--ink);
       background: #0c2344 url('/images/yayeon-bg.jpg') center/cover fixed no-repeat;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       padding: 1.2rem;
     }
     body::before {
@@ -125,6 +128,20 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
       inset: 0;
       background: linear-gradient(135deg, rgba(20, 43, 85, 0.36), rgba(206, 147, 179, 0.18), rgba(125, 185, 227, 0.2));
       pointer-events: none;
+    }
+    .event-logo-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .event-logo {
+      display: block;
+      height: 2.15rem;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
     }
     .card {
       position: relative;
@@ -154,6 +171,9 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
   </style>
 </head>
 <body>
+  <a class="event-logo-link" href="/" aria-label="Yayeon home">
+    <img class="event-logo" src="/images/yayeon-logo.png" alt="2026 &#52285;&#44221;&#44417; &#50556;&#50672;">
+  </a>
   <main class="card">
     <h1>&#50773;&#51032; &#50612;&#52272; &#52286;&#44592;</h1>
     <div class="count">${safeFoundCount}<small>/${maxCount}</small></div>
