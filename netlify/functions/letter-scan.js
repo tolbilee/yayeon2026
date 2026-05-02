@@ -151,7 +151,6 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     .code-value { margin-top: 0.25rem; font-size: 1.45rem; font-weight: 800; letter-spacing: 0.12em; }
     .actions { display: grid; gap: 0.55rem; margin-top: 1.15rem; }
     a.button { display: block; text-decoration: none; color: #243b6b; font-weight: 800; padding: 0.86rem 1rem; border-radius: 999px; background: linear-gradient(90deg, #f2d8e7, #b7dff7); }
-    a.link { color: rgba(255,255,255,0.84); text-decoration: none; font-size: 0.88rem; }
   </style>
 </head>
 <body>
@@ -163,8 +162,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     <p class="detail">${detail || (complete ? '현장 스태프에게 이 화면을 보여주세요.' : '창경궁 곳곳에 숨겨진 다른 편지도 찾아보세요.')}</p>
     ${displayCode ? `<div class="code"><div class="code-label">확인 코드</div><div class="code-value">${displayCode}</div></div>` : ''}
     <div class="actions">
-      <a class="button" href="/letter-progress">내 진행 상황 다시 보기</a>
-      <a class="link" href="/">야연 모바일웹으로 돌아가기</a>
+      <a class="button" href="/">&#50556;&#50672; &#47784;&#48148;&#51068;&#50937;&#51004;&#47196; &#46028;&#50500;&#44032;&#44592;</a>
     </div>
   </main>
 </body>
