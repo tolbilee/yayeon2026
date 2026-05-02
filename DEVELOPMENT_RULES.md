@@ -69,6 +69,10 @@ Current daily winner cap:
 
 `2`
 
+Current win rate:
+
+`0.15` by default, configurable with `LOTTERY_WIN_RATE`
+
 Current database:
 
 `Supabase`

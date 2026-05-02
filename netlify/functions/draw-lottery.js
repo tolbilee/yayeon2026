@@ -3,6 +3,7 @@
 const START_MINUTES = 18 * 60 + 30;
 const END_MINUTES = 19 * 60 + 50;
 const MAX_WINNERS = 2;
+const WIN_RATE = Number(process.env.LOTTERY_WIN_RATE || '0.15');
 
 function json(statusCode, body) {
   return {
@@ -98,6 +99,7 @@ exports.handler = async (event) => {
       p_event_date: dateKey,
       p_visitor_hash: visitorHash,
       p_max_winners: MAX_WINNERS,
+      p_win_rate: WIN_RATE,
     });
 
     if (!result || !result.result) {

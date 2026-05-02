@@ -1,4 +1,4 @@
-﻿-- Yayeon 2026 lottery storage and atomic draw function
+-- Yayeon 2026 lottery storage and atomic draw function
 
 create table if not exists public.yayeon_lottery_attempts (
   id bigserial primary key,
@@ -14,10 +14,15 @@ create index if not exists yayeon_lottery_attempts_event_result_idx
 
 alter table public.yayeon_lottery_attempts enable row level security;
 
-create or replace function public.draw_yayeon_lottery(
+-- Remove older RPC signatures so PostgREST has no ambiguity.
+drop function if exists public.draw_yayeon_lottery(date, text, integer);
+drop function if exists public.draw_yayeon_lottery(date, text, integer, numeric);
+
+create function public.draw_yayeon_lottery(
   p_event_date date,
   p_visitor_hash text,
-  p_max_winners integer default 2
+  p_max_winners integer default 2,
+  p_win_rate numeric default 0.15
 )
 returns table(result text, code text)
 language plpgsql
@@ -27,8 +32,11 @@ as $$
 declare
   existing_result text;
   winner_count integer;
+  normalized_win_rate numeric;
 begin
   perform pg_advisory_xact_lock(hashtext('yayeon_lottery_' || p_event_date::text));
+
+  normalized_win_rate := least(greatest(coalesce(p_win_rate, 0.15), 0), 1);
 
   select a.result into existing_result
   from public.yayeon_lottery_attempts a
@@ -47,7 +55,7 @@ begin
   where a.event_date = p_event_date
     and a.result = 'win';
 
-  if winner_count < p_max_winners then
+  if winner_count < p_max_winners and random() < normalized_win_rate then
     result := 'win';
   else
     result := 'lose';
@@ -61,5 +69,5 @@ begin
 end;
 $$;
 
-revoke all on function public.draw_yayeon_lottery(date, text, integer) from public;
-grant execute on function public.draw_yayeon_lottery(date, text, integer) to service_role;
+revoke all on function public.draw_yayeon_lottery(date, text, integer, numeric) from public;
+grant execute on function public.draw_yayeon_lottery(date, text, integer, numeric) to service_role;

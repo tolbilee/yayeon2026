@@ -2471,6 +2471,11 @@
             if (!modal) return;
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
+
+            const savedAttempt = getSavedLotteryAttempt();
+            if (savedAttempt && savedAttempt.result) {
+                showLotteryResult(savedAttempt.result, 'ALREADY_PLAYED');
+            }
         }
 
         function closeLotteryModal() {
@@ -2486,6 +2491,7 @@
             const image = document.getElementById('lottery-result-image');
             const title = document.getElementById('lottery-result-title');
             const text = document.getElementById('lottery-result-text');
+            const button = document.getElementById('lottery-draw-button');
             if (!box || !image || !title || !text) return;
             const isWin = result === 'win';
             image.src = isWin ? 'images/lottery-win.png' : 'images/lottery-lose.png';
@@ -2495,10 +2501,36 @@
             title.textContent = isWin ? lotteryText.winTitle : lotteryText.loseTitle;
             text.textContent = code === 'ALREADY_PLAYED' ? lotteryText.already : (isWin ? lotteryText.winText : lotteryText.loseText);
             if (guide) guide.style.display = 'none';
+            if (button) button.style.display = 'none';
             box.classList.add('active');
         }
 
+        function getLotteryDateKey() {
+            const parts = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'Asia/Seoul',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(new Date());
+            const map = Object.fromEntries(parts.map(part => [part.type, part.value]));
+            return `${map.year}-${map.month}-${map.day}`;
+        }
 
+        function getLotteryAttemptKey() {
+            return 'yayeon_lottery_attempt_' + getLotteryDateKey();
+        }
+
+        function getSavedLotteryAttempt() {
+            try {
+                return JSON.parse(localStorage.getItem(getLotteryAttemptKey()) || 'null');
+            } catch {
+                return null;
+            }
+        }
+
+        function saveLotteryAttempt(result, code) {
+            localStorage.setItem(getLotteryAttemptKey(), JSON.stringify({ result, code, savedAt: new Date().toISOString() }));
+        }
 
         function isLotteryOpenNow() {
             const parts = new Intl.DateTimeFormat('en-US', {
@@ -2513,6 +2545,12 @@
         }
 
         async function drawLottery() {
+            const savedAttempt = getSavedLotteryAttempt();
+            if (savedAttempt && savedAttempt.result) {
+                showLotteryResult(savedAttempt.result, 'ALREADY_PLAYED');
+                return;
+            }
+
             if (!isLotteryOpenNow()) {
                 alert(lotteryText.closed);
                 return;
@@ -2531,8 +2569,10 @@
                 });
                 const data = await response.json();
                 if (data.code === 'OUT_OF_TIME') alert(lotteryText.closed);
-                else if (data.ok && data.result) showLotteryResult(data.result, data.code);
-                else alert(lotteryText.error);
+                else if (data.ok && data.result) {
+                    saveLotteryAttempt(data.result, data.code);
+                    showLotteryResult(data.result, data.code);
+                } else alert(lotteryText.error);
             } catch (error) {
                 console.error('Lottery draw failed:', error);
                 alert(lotteryText.error);

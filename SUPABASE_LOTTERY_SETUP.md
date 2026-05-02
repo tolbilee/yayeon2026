@@ -27,6 +27,7 @@ Add these in Netlify Site settings > Environment variables:
 SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=YOUR_SUPABASE_SERVICE_ROLE_KEY
 LOTTERY_VISITOR_SALT=CHANGE_TO_A_LONG_RANDOM_SECRET
+LOTTERY_WIN_RATE=0.15
 ```
 
 Use the Supabase `service_role` key only on Netlify server functions. Do not expose it in HTML.
@@ -46,9 +47,25 @@ If they are missing, the text result still appears, but the result image will be
 
 ```text
 Open time: 18:30~19:50 KST
-Daily winners: 2
+Daily winners: up to 2
+Win rate: 15% by default (`LOTTERY_WIN_RATE=0.15`)
 Attempt limit: 1 per visitor device/browser
 ```
 
 The browser checks the time first for a clean message. The Netlify Function checks the time again as the source of truth.
 
+
+
+## Testing reset
+
+If you already tested once in the same browser, the page may show the saved result instead of drawing again. For a fresh browser test, use one of these options:
+
+- Open an incognito/private window.
+- Clear this site's localStorage key that starts with `yayeon_lottery_attempt_`.
+
+To reset today's Supabase attempts during testing, run this in Supabase SQL Editor:
+
+```sql
+delete from public.yayeon_lottery_attempts
+where event_date = (now() at time zone 'Asia/Seoul')::date;
+```
