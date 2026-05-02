@@ -131,8 +131,8 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     }
     .event-logo-link {
       position: fixed;
-      top: 0.78rem;
-      left: 0.9rem;
+      top: 1.65rem;
+      left: 1.5rem;
       z-index: 2;
       display: inline-flex;
       align-items: center;
@@ -141,9 +141,9 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     }
     .event-logo {
       display: block;
-      height: 2.15rem;
+      height: 2rem;
       width: auto;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     }
     .card {
       position: relative;
