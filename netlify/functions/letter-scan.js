@@ -112,7 +112,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       color: var(--ink);
       background: #0c2344 url('/images/yayeon-bg.jpg') center/cover fixed no-repeat;
       display: grid;
