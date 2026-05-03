@@ -27,6 +27,17 @@ function makeDisplayCode() {
   return code;
 }
 
+function getKstDateKey(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${map.year}-${map.month}-${map.day}`;
+}
 function supabaseHeaders() {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) throw new Error('SUPABASE_SERVICE_ROLE_KEY is not configured.');
@@ -201,6 +212,7 @@ exports.handler = async (event) => {
     const existingSessionId = isUuid(cookies[COOKIE_NAME]) ? cookies[COOKIE_NAME] : null;
     const sessionId = existingSessionId || crypto.randomUUID();
     const token = getToken(event);
+    const eventDate = getKstDateKey();
 
     let result;
     if (token) {
@@ -208,10 +220,12 @@ exports.handler = async (event) => {
         p_public_token: token,
         p_session_id: sessionId,
         p_display_code: makeDisplayCode(),
+        p_event_date: eventDate,
       });
     } else if (existingSessionId) {
       result = await callRpc('get_yayeon_letter_progress', {
         p_session_id: existingSessionId,
+        p_event_date: eventDate,
       });
     } else {
       result = { ok: true, code: 'NO_SESSION', found_count: 0, max_count: 3, display_code: null };
