@@ -233,9 +233,10 @@
         }
 
         .lang-button.active {
-            background: rgba(255, 255, 255, 0.3);
-            color: #223965;
-            border-color: transparent;
+            background: #ffffff;
+            color: #1f3158;
+            border-color: #ffffff;
+            box-shadow: 0 0.25rem 0.9rem rgba(255, 255, 255, 0.28);
         }
 
 
@@ -1390,7 +1391,6 @@
                     <div class="sub-nav">
                         <button class="btn active" onclick="showProgramSubSection('overview')">행사 개요</button>
                         <button class="btn" onclick="showProgramSubSection('details')">프로그램 상세</button>
-                        <button class="btn" onclick="showProgramSubSection('schedule')">상세 일정</button>
                     </div>
                 </div>
 
@@ -1499,98 +1499,6 @@
                     </div>
                 </div>
 
-                <!-- 상세 일정 -->
-                <div class="program-subsection" id="program-schedule">
-                    <div class="glass-card">
-                        <h3>상세 일정</h3>
-                        
-                        <!-- 타임테이블 -->
-                        <div class="timeline-container">
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">16:00~17:00</div>
-                                    <div class="timeline-activity"><b>창경궁 도착 및 대기실 입장</b></div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">17:00~17:40</div>
-                                    <div class="timeline-activity"><b>체험객 복식 착용 및 헤어·메이크업</b></div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">17:40~19:10</div>
-                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-17-40')">
-                                        <b>공연 시작 전 다양한 프로그램 이용</b>
-                                        <div class="timeline-toggle">
-                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="6,9 12,15 18,9"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-details" id="schedule-timeline-17-40">
-                                    <div class="timeline-detail"><s>※공연 20분 전인 18:50부터 공연장 입장 시작</s></div>
-                                    <div class="timeline-detail"><s>- 장수사진 및 영상편지 촬영</s></div>
-                                    <div class="timeline-detail"><s>- 효잡이 체험 및 가족 스냅사진 촬영</s></div>
-                                    <div class="timeline-detail"><s>- 대기실 휴식 및 전통 병과 즐기기</s></div>
-                                    <div class="timeline-detail"><s>- 부모님께 효심 편지 작성 및 발송</s></div>
-                                    <div class="timeline-detail"><s>- 창경궁 곳곳에 숨겨진 어찰 찾기 체험</s></div>                                <div class="timeline-detail"><s>- 창경궁 포토 스팟, 포토 부스 등 자율 이용</s></div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">19:10~20:00</div>
-                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-19-10')">
-                                        <b>궁중연회 및 공연관람</b>
-                                        <div class="timeline-toggle">
-                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="6,9 12,15 18,9"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-details" id="schedule-timeline-19-10">
-                                    <div class="timeline-detail"><s>① 좌통례, 나각입장</s></div>
-                                    <div class="timeline-detail"><s>② 체험객 입장</s></div>
-                                    <div class="timeline-detail"><s>③ 초엄 및 식전 공연 <박접무></s></div>
-                                    <div class="timeline-detail"><s>④ 이엄 및 세자 입장</s></div>
-                                    <div class="timeline-detail"><s>⑤ 삼엄 및 국왕 입장</s></div>
-                                    <div class="timeline-detail"><s>⑥ 진화 및 진작</s></div>
-                                    <div class="timeline-detail"><s>⑦ 공연 <예도무></s></div>
-                                    <div class="timeline-detail"><s>⑧ 진병과</s></div>
-                                    <div class="timeline-detail"><s>⑨ 치사낭독 (세자)</s></div>
-                                    <div class="timeline-detail"><s>⑪ 부모님 전상서 (체험객 가족 대표)</s></div>
-                                    <div class="timeline-detail"><s>⑫ 국왕 인사 및 종료</s></div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">20:00~20:30</div>
-                                    <div class="timeline-activity" onclick="toggleTimelineItem('schedule-timeline-20-00')">
-                                        <b>가족사진 촬영 및 귀가 준비</b>
-                                        <div class="timeline-toggle">
-                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="6,9 12,15 18,9"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-details" id="schedule-timeline-20-00">
-                                    <div class="timeline-detail"><s>- 어좌와 고임상을 배경으로 가족사진 촬영</s></div>
-                                    <div class="timeline-detail"><s>- 환복 후 의상 반납 및 메이크업 클렌징 등 귀가 준비</s></div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-header">
-                                    <div class="timeline-time">20:30~21:00</div>
-                                    <div class="timeline-activity"><b>창경궁 퇴장</b></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 공연안내 섹션 -->
@@ -2123,14 +2031,6 @@
                         <div class="list-dot"></div>
                         <span>공연 시작 10분 전부터 자막 서비스가 활성화됩니다.</span>
                     </div>
-                    <div class="list-item">
-                        <div class="list-dot"></div>
-                        <span>화면 상단에서 한국어와 영어를 선택하실 수 있습니다.</span>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-dot"></div>
-                        <span>공연 대본 자막은 공연 종료 후에도 다시 보실 수 있습니다.</span>
-                    </div>
                 </div>
 
                 <!-- 실시간 자막 기능 -->
@@ -2142,7 +2042,7 @@
                     </div>
                     <div class="list-item">
                         <div class="list-dot"></div>
-                        <span><strong>다국어 지원</strong> : 한국어/영어 실시간 전환</span>
+                        <span><strong>다국어 지원</strong> : 21개국 언어 실시간 전환</span>
                     </div>
                     <div class="list-item">
                         <div class="list-dot"></div>
