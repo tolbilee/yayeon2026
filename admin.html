@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>야연 퀴즈 관리자</title>
+  <link rel="icon" href="data:,">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Malgun Gothic", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #1f2937; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    h1, h2 { margin: 0 0 12px 0; }
+    .muted { color: #6b7280; font-size: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .row4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+    label { display: block; font-weight: 700; margin: 10px 0 6px; }
+    input, textarea, select, button { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 14px; }
+    textarea { min-height: 88px; resize: vertical; }
+    .btns { display: flex; gap: 8px; margin-top: 12px; }
+    .btns button { width: auto; cursor: pointer; border: 0; color: #fff; }
+    .btn-primary { background: #4f46e5; }
+    .btn-gray { background: #6b7280; }
+    .status { margin-top: 8px; font-size: 13px; }
+    .ok { color: #166534; }
+    .err { color: #b91c1c; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f9fafb; }
+    .small { font-size: 12px; color: #6b7280; }
+    .delete-btn { margin-top: 6px; background: #dc2626; color: #fff; border: 0; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+    @media (max-width: 900px) { .row, .row4 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>야연 퀴즈 관리자</h1>
+    <div class="muted">문제 등록/수정/삭제 및 참가 통계를 관리합니다.</div>
+  </div>
+
+  <div class="card">
+    <h2>Supabase 연결</h2>
+    <div class="row">
+      <div>
+        <label for="sbUrl">SUPABASE_URL</label>
+        <input id="sbUrl" type="text" placeholder="https://xxxx.supabase.co">
+      </div>
+      <div>
+        <label for="sbKey">SUPABASE_ANON_KEY</label>
+        <input id="sbKey" type="text" placeholder="eyJ...">
+      </div>
+      <div style="align-self:end;">
+        <button class="btn-primary" id="connectBtn" type="button">연결하기</button>
+      </div>
+    </div>
+    <div class="btns">
+      <button class="btn-gray" id="reloadBtn" type="button">목록 새로고침</button>
+    </div>
+    <div id="connectStatus" class="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>문제 입력</h2>
+    <form id="questionForm">
+      <input type="hidden" id="questionId">
+      <div class="row">
+        <div>
+          <label for="quizType">퀴즈 유형</label>
+          <select id="quizType">
+            <option value="ko">한국어 (ko)</option>
+            <option value="en">영문 (en)</option>
+          </select>
+        </div>
+        <div>
+          <label for="displayOrder">표시 순서</label>
+          <input id="displayOrder" type="number" min="0" value="0" required>
+        </div>
+        <div>
+          <label for="correctAnswer">정답 번호</label>
+          <select id="correctAnswer">
+            <option value="0">1번</option>
+            <option value="1">2번</option>
+            <option value="2">3번</option>
+            <option value="3">4번</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="questionText">문제</label>
+      <textarea id="questionText" required></textarea>
+      <label for="questionImage">문제 이미지 URL (선택)</label>
+      <input id="questionImage" type="url">
+
+      <div class="row4">
+        <div><label for="option1">보기 1</label><input id="option1" required><label for="option1Image">보기1 이미지 URL</label><input id="option1Image" type="url"></div>
+        <div><label for="option2">보기 2</label><input id="option2" required><label for="option2Image">보기2 이미지 URL</label><input id="option2Image" type="url"></div>
+        <div><label for="option3">보기 3</label><input id="option3" required><label for="option3Image">보기3 이미지 URL</label><input id="option3Image" type="url"></div>
+        <div><label for="option4">보기 4</label><input id="option4" required><label for="option4Image">보기4 이미지 URL</label><input id="option4Image" type="url"></div>
+      </div>
+
+      <label for="explanation">해설</label>
+      <textarea id="explanation" required></textarea>
+      <label for="explanationImage">해설 이미지 URL (선택)</label>
+      <input id="explanationImage" type="url">
+
+      <div class="btns">
+        <button class="btn-primary" type="submit">저장</button>
+        <button class="btn-gray" type="button" id="clearBtn">초기화</button>
+      </div>
+      <div id="formStatus" class="status"></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>문제 목록</h2>
+    <table>
+      <thead><tr><th>순서</th><th>문제</th><th>정답</th><th>작업</th></tr></thead>
+      <tbody id="questionRows"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>참가 통계</h2>
+    <div id="stats" class="small">연결 후 표시됩니다.</div>
+  </div>
+</div>
+
+<script>
+let db = null;
+let questionCache = [];
+const $ = (id) => document.getElementById(id);
+
+function setStatus(id, text, ok = true) {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = `status ${ok ? 'ok' : 'err'}`;
+}
+
+function clearForm() {
+  $('questionId').value = '';
+  $('quizType').value = 'ko';
+  $('displayOrder').value = 0;
+  $('questionText').value = '';
+  $('questionImage').value = '';
+  $('option1').value = '';
+  $('option1Image').value = '';
+  $('option2').value = '';
+  $('option2Image').value = '';
+  $('option3').value = '';
+  $('option3Image').value = '';
+  $('option4').value = '';
+  $('option4Image').value = '';
+  $('correctAnswer').value = '0';
+  $('explanation').value = '';
+  $('explanationImage').value = '';
+}
+
+async function connectSupabase() {
+  const url = $('sbUrl').value.trim();
+  const key = $('sbKey').value.trim();
+  if (!url || !key) {
+    setStatus('connectStatus', 'SUPABASE_URL / SUPABASE_ANON_KEY를 입력해 주세요.', false);
+    return;
+  }
+  db = supabase.createClient(url, key);
+  const { error } = await db.from('quiz_questions').select('id').limit(1);
+  if (error) {
+    setStatus('connectStatus', `연결 실패: ${error.message}`, false);
+    return;
+  }
+  setStatus('connectStatus', '연결 성공');
+  await reloadAll();
+}
+
+function buildPayloadFromForm() {
+  return {
+    quiz_type: $('quizType').value,
+    display_order: parseInt($('displayOrder').value, 10) || 0,
+    question: $('questionText').value.trim(),
+    image: $('questionImage').value.trim() || null,
+    options: [
+      { text: $('option1').value.trim(), image: $('option1Image').value.trim() || null },
+      { text: $('option2').value.trim(), image: $('option2Image').value.trim() || null },
+      { text: $('option3').value.trim(), image: $('option3Image').value.trim() || null },
+      { text: $('option4').value.trim(), image: $('option4Image').value.trim() || null }
+    ],
+    correct: parseInt($('correctAnswer').value, 10),
+    explanation: $('explanation').value.trim(),
+    explanation_image: $('explanationImage').value.trim() || null
+  };
+}
+
+async function saveQuestion(e) {
+  e.preventDefault();
+  if (!db) { setStatus('formStatus', '먼저 Supabase 연결을 완료해 주세요.', false); return; }
+  const payload = buildPayloadFromForm();
+  if (!payload.question || payload.options.some(o => !o.text) || !payload.explanation) { setStatus('formStatus', '필수 항목을 모두 입력해 주세요.', false); return; }
+  const editId = $('questionId').value.trim();
+  let error = null;
+  if (editId) ({ error } = await db.from('quiz_questions').update(payload).eq('id', editId));
+  else ({ error } = await db.from('quiz_questions').insert(payload));
+  if (error) { setStatus('formStatus', `저장 실패: ${error.message}`, false); return; }
+  setStatus('formStatus', editId ? '수정 완료' : '등록 완료');
+  clearForm();
+  await reloadAll();
+}
+
+async function loadQuestions() {
+  const body = $('questionRows');
+  body.innerHTML = '';
+  if (!db) return;
+  const { data, error } = await db.from('quiz_questions').select('id, quiz_type, display_order, question, options, correct').order('quiz_type', { ascending: true }).order('display_order', { ascending: true });
+  if (error) { body.innerHTML = `<tr><td colspan="4">문제 목록 로딩 실패: ${error.message}</td></tr>`; return; }
+  questionCache = data || [];
+  if (!questionCache.length) { body.innerHTML = '<tr><td colspan="4">등록된 문제가 없습니다.</td></tr>'; return; }
+  body.innerHTML = questionCache.map((q) => {
+    const answer = q.options?.[q.correct]?.text || '-';
+    return `<tr><td>${q.display_order}</td><td>[${q.quiz_type}] ${q.question}</td><td>${answer}</td><td><button data-action="edit" data-id="${q.id}">수정</button><button data-action="delete" data-id="${q.id}" class="delete-btn">삭제</button></td></tr>`;
+  }).join('');
+}
+
+function editQuestion(id) {
+  const q = questionCache.find((x) => x.id === id);
+  if (!q) return;
+  $('questionId').value = q.id;
+  $('quizType').value = q.quiz_type ?? 'ko';
+  $('displayOrder').value = q.display_order ?? 0;
+  $('questionText').value = q.question ?? '';
+  $('questionImage').value = q.image ?? '';
+  $('option1').value = q.options?.[0]?.text ?? '';
+  $('option1Image').value = q.options?.[0]?.image ?? '';
+  $('option2').value = q.options?.[1]?.text ?? '';
+  $('option2Image').value = q.options?.[1]?.image ?? '';
+  $('option3').value = q.options?.[2]?.text ?? '';
+  $('option3Image').value = q.options?.[2]?.image ?? '';
+  $('option4').value = q.options?.[3]?.text ?? '';
+  $('option4Image').value = q.options?.[3]?.image ?? '';
+  $('correctAnswer').value = String(q.correct ?? 0);
+  $('explanation').value = q.explanation ?? '';
+  $('explanationImage').value = q.explanation_image ?? '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deleteQuestion(id) {
+  if (!db) return;
+  if (!confirm('정말 삭제하시겠습니까?')) return;
+  const { error } = await db.from('quiz_questions').delete().eq('id', id);
+  if (error) { alert(`삭제 실패: ${error.message}`); return; }
+  await reloadAll();
+}
+
+async function loadStats() {
+  if (!db) return;
+  const [{ data: qData, error: qErr }, { data: uData, error: uErr }] = await Promise.all([
+    db.from('quiz_questions').select('id'),
+    db.from('quiz_users').select('score')
+  ]);
+  if (qErr || uErr) { $('stats').textContent = `통계 로딩 실패: ${(qErr || uErr).message}`; return; }
+  const totalQuestions = (qData || []).length;
+  const totalUsers = (uData || []).length;
+  const highScore = totalUsers ? Math.max(...uData.map(u => u.score)) : 0;
+  const avgScore = totalUsers ? (uData.reduce((a, b) => a + b.score, 0) / totalUsers).toFixed(2) : '0.00';
+  $('stats').textContent = `문제 ${totalQuestions}개 / 참가자 ${totalUsers}명 / 최고점 ${highScore} / 평균점수 ${avgScore}`;
+}
+
+async function reloadAll() {
+  await loadQuestions();
+  await loadStats();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  $('connectBtn').addEventListener('click', connectSupabase);
+  $('reloadBtn').addEventListener('click', reloadAll);
+  $('clearBtn').addEventListener('click', clearForm);
+  $('questionForm').addEventListener('submit', saveQuestion);
+  $('questionRows').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const action = btn.dataset.action;
+    if (action === 'edit') editQuestion(id);
+    if (action === 'delete') deleteQuestion(id);
+  });
+});
+</script>
+</body>
+</html>
