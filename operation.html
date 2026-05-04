@@ -8,9 +8,8 @@
 <meta name="theme-color" content="#0a0e1a">
 <title>창경궁 야연 | 운영 핸디북</title>
 <style>
-/* ===== DESIGN SYSTEM — LINEAR-INSPIRED DEEP BLUE ===== */
+/* ===== DESIGN SYSTEM ===== */
 :root {
-  /* Base surfaces — Linear dark */
   --bg:          #0a0e1a;
   --bg-2:        #0e1220;
   --bg-3:        #111828;
@@ -19,7 +18,6 @@
   --surface-3:   #1f2c4e;
   --surface-4:   #243358;
 
-  /* Blue accent scale — Linear signature */
   --blue-50:     #eef4ff;
   --blue-100:    #c7dcff;
   --blue-200:    #93bcff;
@@ -31,47 +29,44 @@
   --blue-glow:   rgba(59,130,246,0.18);
   --blue-glow-lg:rgba(59,130,246,0.08);
 
-  /* Cyan accent */
-  --cyan-300:    #67e8f9;
   --cyan-400:    #22d3ee;
-  --cyan-500:    #06b6d4;
-
-  /* Indigo */
   --indigo-400:  #818cf8;
   --indigo-500:  #6366f1;
 
-  /* Text scale */
   --text-1:      #f0f4ff;
   --text-2:      #c8d6f0;
   --text-3:      #8fa4c8;
   --text-4:      #4a6080;
 
-  /* Borders */
   --border-1:    rgba(59,130,246,0.15);
   --border-2:    rgba(59,130,246,0.08);
   --border-focus:rgba(59,130,246,0.5);
 
-  /* Semantic */
   --red:         #ef4444;
   --red-bg:      #1a0a0a;
   --red-border:  rgba(239,68,68,0.3);
   --green:       #22c55e;
-  --green-bg:    #0a1a0a;
   --amber:       #f59e0b;
-  --amber-bg:    #1a1200;
   --purple:      #a855f7;
-  --purple-bg:   #130a1a;
 
-  /* Radius & shadow */
   --r-sm:  8px;
   --r-md:  12px;
   --r-lg:  16px;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px var(--border-2);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px var(--border-1);
   --shadow-blue: 0 0 24px rgba(59,130,246,0.15);
+
+  /* ── 폰트 사이즈 스케일 ── */
+  --fs-xs:   12px;   /* 태그·뱃지 최소 */
+  --fs-sm:   13px;   /* 보조 캡션 */
+  --fs-base: 15px;   /* 서브 본문 */
+  --fs-md:   16px;   /* 본문 (메인) */
+  --fs-lg:   18px;   /* 소제목 */
+  --fs-xl:   20px;   /* 섹션 제목 */
+  --fs-2xl:  22px;   /* 페이지 제목 */
+  --fs-3xl:  26px;   /* 강조 숫자 */
 }
 
-/* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { height: 100%; -webkit-font-smoothing: antialiased; }
 body {
@@ -80,129 +75,126 @@ body {
   background: var(--bg);
   color: var(--text-1);
   min-height: 100%;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--fs-md);   /* 기본 16px */
+  line-height: 1.65;
   overflow-x: hidden;
-  padding-bottom: 76px;
+  padding-bottom: 80px;
 }
 
-/* ===== GLOBAL AMBIENT ===== */
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background:
     radial-gradient(ellipse 80% 40% at 50% -10%, rgba(37,99,235,0.12) 0%, transparent 60%),
     radial-gradient(ellipse 50% 30% at 80% 100%, rgba(99,102,241,0.07) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
-/* ===== SCREENS ===== */
 .screen { display: none; padding: 0 0 8px; position: relative; z-index: 1; }
-.screen.active { display: block; animation: fadeUp 0.2s ease; }
+.screen.active { display: block; animation: fadeUp 0.18s ease; }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(5px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
-/* ===== TOP HEADER ===== */
+/* ===== HEADER ===== */
 .app-header {
-  background: rgba(10,14,26,0.92);
+  background: rgba(10,14,26,0.93);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-1);
   padding: 11px 16px 10px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: sticky; top: 0; z-index: 100;
 }
-.app-header-inner { display: flex; align-items: center; justify-content: space-between; }
-.header-left { display: flex; align-items: center; gap: 10px; }
+.app-header-inner { display:flex; align-items:center; justify-content:space-between; }
+.header-left { display:flex; align-items:center; gap:10px; }
 .header-logo {
-  width: 30px; height: 30px;
+  width: 34px; height: 34px;
   background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
+  border-radius: 9px;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 18px;
   box-shadow: 0 0 12px rgba(37,99,235,0.4);
   flex-shrink: 0;
 }
-.header-title { font-size: 15px; font-weight: 700; color: var(--text-1); letter-spacing: -0.2px; }
-.header-sub { font-size: 11px; color: var(--text-4); margin-top: 1px; }
+.header-title {
+  font-size: var(--fs-base);   /* 15px */
+  font-weight: 700; color: var(--text-1); letter-spacing: -0.2px;
+}
+.header-sub {
+  font-size: var(--fs-xs);     /* 12px */
+  color: var(--text-4); margin-top: 1px;
+}
 .header-date {
-  font-size: 11px; font-weight: 600;
-  color: var(--blue-300);
+  font-size: var(--fs-sm);     /* 13px */
+  font-weight: 700; color: var(--blue-300);
   background: var(--blue-glow);
   border: 1px solid var(--border-1);
-  padding: 3px 9px; border-radius: 20px;
+  padding: 4px 10px; border-radius: 20px;
+  white-space: nowrap;
 }
 
 /* ===== EMERGENCY BANNER ===== */
 .emergency-banner {
-  background: linear-gradient(90deg, rgba(239,68,68,0.12) 0%, rgba(239,68,68,0.06) 100%);
+  background: linear-gradient(90deg, rgba(239,68,68,0.13) 0%, rgba(239,68,68,0.05) 100%);
   border-bottom: 1px solid var(--red-border);
   color: #fca5a5;
-  padding: 9px 16px;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 600;
+  padding: 10px 16px;
+  display:flex; align-items:center; gap:9px;
+  font-size: var(--fs-base);  /* 15px */
+  font-weight: 700;
   cursor: pointer;
-  position: sticky;
-  top: 57px;
-  z-index: 99;
+  position: sticky; top: 57px; z-index: 99;
   backdrop-filter: blur(10px);
 }
-.emergency-banner:active { opacity: 0.8; }
+.emergency-banner:active { opacity:.8; }
 .pulse-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: #ef4444;
-  box-shadow: 0 0 6px #ef4444;
-  animation: blink 1.4s infinite;
-  flex-shrink: 0;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #ef4444; box-shadow: 0 0 7px #ef4444;
+  animation: blink 1.4s infinite; flex-shrink: 0;
 }
-@keyframes blink {
-  0%,100% { opacity: 1; } 50% { opacity: 0.3; }
-}
-.banner-arrow { margin-left: auto; font-size: 16px; color: #ef4444; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.banner-arrow { margin-left:auto; font-size:20px; color:#ef4444; }
 
 /* ===== BOTTOM NAV ===== */
 .bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: rgba(10,14,26,0.95);
+  position:fixed; bottom:0; left:0; right:0;
+  background: rgba(10,14,26,0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-top: 1px solid var(--border-1);
-  display: flex;
-  z-index: 200;
+  display:flex; z-index:200;
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .nav-btn {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 8px 2px 6px;
-  font-size: 9px; font-weight: 600; letter-spacing: 0.2px;
+  flex:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding: 9px 2px 7px;
+  font-size: var(--fs-xs);    /* 12px */
+  font-weight: 600; letter-spacing:0.2px;
   color: var(--text-4);
-  background: none; border: none; cursor: pointer;
-  gap: 3px; transition: color 0.15s;
+  background:none; border:none; cursor:pointer;
+  gap:4px; transition:color 0.15s;
 }
-.nav-icon { font-size: 19px; line-height: 1; }
+.nav-icon { font-size: 22px; line-height:1; }
 .nav-btn.active { color: var(--blue-300); }
 .nav-btn.active .nav-icon { filter: drop-shadow(0 0 4px rgba(59,130,246,0.6)); }
-.nav-btn:active { opacity: 0.6; }
+.nav-btn:active { opacity:.6; }
 
 /* ===== PAGE CONTENT ===== */
-.page-content { padding: 14px 14px 4px; }
+.page-content { padding: 16px 15px 4px; }
 
 /* ===== SECTION TITLE ===== */
 .section-title {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+  font-size: var(--fs-xs);    /* 12px — ALLCAPS 라벨 */
+  font-weight: 800; letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--text-4);
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px;
+  display:flex; align-items:center; gap:8px;
 }
 .section-title::after {
-  content: ''; flex: 1; height: 1px;
+  content:''; flex:1; height:1px;
   background: linear-gradient(to right, var(--border-1), transparent);
 }
 
@@ -211,95 +203,104 @@ body::before {
   background: var(--surface-1);
   border: 1px solid var(--border-1);
   border-radius: var(--r-md);
-  padding: 14px;
-  margin-bottom: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow-sm);
 }
 .card-title {
-  font-size: 12px; font-weight: 700;
-  color: var(--blue-300);
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 6px;
+  font-size: var(--fs-base);  /* 15px */
+  font-weight: 700; color: var(--blue-300);
+  margin-bottom: 12px;
+  display:flex; align-items:center; gap:6px;
 }
 
 /* ===== HOME GRID ===== */
-.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.home-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
 .home-card {
   background: var(--surface-1);
   border: 1px solid var(--border-1);
   border-radius: var(--r-md);
-  padding: 16px 12px;
-  text-align: center; cursor: pointer;
-  transition: all 0.15s;
-  box-shadow: var(--shadow-sm);
+  padding: 20px 14px;
+  text-align:center; cursor:pointer;
+  transition:all 0.15s; box-shadow:var(--shadow-sm);
 }
-.home-card:active { transform: scale(0.96); }
-.home-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-blue); }
-.hc-icon { font-size: 26px; margin-bottom: 6px; }
-.hc-label { font-size: 12px; font-weight: 700; color: var(--text-1); }
-.hc-sub { font-size: 10px; color: var(--text-3); margin-top: 2px; }
+.home-card:active { transform:scale(0.96); }
+.home-card:hover  { border-color:var(--border-focus); box-shadow:var(--shadow-blue); }
+.hc-icon  { font-size:30px; margin-bottom:8px; }
+.hc-label { font-size: var(--fs-base); font-weight:700; color:var(--text-1); }  /* 15px */
+.hc-sub   { font-size: var(--fs-sm);   color:var(--text-3); margin-top:3px; }   /* 13px */
 
 .home-card.featured {
-  grid-column: span 2;
-  background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
-  border-color: var(--blue-500);
-  box-shadow: 0 0 20px rgba(37,99,235,0.2), var(--shadow-sm);
+  grid-column:span 2;
+  background:linear-gradient(135deg, var(--surface-2), var(--surface-1));
+  border-color:var(--blue-500);
+  box-shadow:0 0 20px rgba(37,99,235,0.2), var(--shadow-sm);
 }
-.home-card.featured .hc-label { color: var(--blue-200); }
+.home-card.featured .hc-label { color:var(--blue-200); font-size:var(--fs-md); }
 .home-card.emergency {
-  background: linear-gradient(135deg, rgba(239,68,68,0.08), var(--surface-1));
-  border-color: var(--red-border);
+  background:linear-gradient(135deg, rgba(239,68,68,0.08), var(--surface-1));
+  border-color:var(--red-border);
 }
-.home-card.emergency .hc-label { color: #fca5a5; }
-.home-card.emergency .hc-icon { filter: drop-shadow(0 0 4px rgba(239,68,68,0.5)); }
+.home-card.emergency .hc-label { color:#fca5a5; }
+
+/* 참여인원 숫자 */
+.stat-num   { font-size: var(--fs-3xl); font-weight:800; color:var(--blue-300); } /* 26px */
+.stat-label { font-size: var(--fs-sm);  color:var(--text-3); margin-top:3px; }    /* 13px */
+.stat-total { font-size: var(--fs-md);  font-weight:800; color:var(--blue-200); } /* 16px */
 
 /* ===== POSITION GRID ===== */
-.pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pos-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .pos-card {
   background: var(--surface-1);
   border: 1px solid var(--border-1);
   border-radius: var(--r-md);
-  padding: 14px 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-  position: relative; overflow: hidden;
+  padding: 16px 13px;
+  cursor:pointer; transition:all 0.15s;
+  position:relative; overflow:hidden;
 }
 .pos-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: var(--pc-color, var(--blue-500));
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--pc-color, var(--blue-500));
 }
-.pos-card:active { transform: scale(0.96); }
-.pos-card:hover { border-color: var(--border-focus); }
-.pc-icon { font-size: 22px; margin-bottom: 6px; display: block; }
-.pc-num { font-size: 9px; font-weight: 700; letter-spacing: 0.5px; color: var(--text-4); margin-bottom: 2px; }
-.pc-name { font-size: 12px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
-.pc-who { font-size: 10px; color: var(--text-3); margin-top: 4px; }
+.pos-card:active { transform:scale(0.96); }
+.pc-icon { font-size:26px; margin-bottom:7px; display:block; }
+.pc-num  { font-size: var(--fs-xs);   font-weight:700; letter-spacing:0.5px; color:var(--text-4); margin-bottom:3px; } /* 12px */
+.pc-name { font-size: var(--fs-base); font-weight:700; color:var(--text-1); line-height:1.4; } /* 15px */
+.pc-who  { font-size: var(--fs-sm);   color:var(--text-3); margin-top:5px; } /* 13px */
 
 /* ===== TIMELINE ===== */
-.tl-item { display: flex; gap: 12px; position: relative; }
-.tl-left { display: flex; flex-direction: column; align-items: center; width: 50px; flex-shrink: 0; }
-.tl-time { font-size: 10px; font-weight: 700; color: var(--blue-300); text-align: center; line-height: 1.3; white-space: nowrap; }
+.tl-item { display:flex; gap:12px; position:relative; }
+.tl-left { display:flex; flex-direction:column; align-items:center; width:54px; flex-shrink:0; }
+.tl-time {
+  font-size: var(--fs-sm);  /* 13px */
+  font-weight:700; color:var(--blue-300); text-align:center; line-height:1.35; white-space:nowrap;
+}
 .tl-dot {
-  width: 9px; height: 9px; border-radius: 50%; margin: 5px 0; flex-shrink: 0;
-  border: 2px solid;
+  width:10px; height:10px; border-radius:50%; margin:6px 0; flex-shrink:0; border:2px solid;
 }
-.tl-line { flex: 1; width: 1px; background: var(--border-1); min-height: 18px; }
-.tl-right { flex: 1; padding-bottom: 16px; }
+.tl-line { flex:1; width:1px; background:var(--border-1); min-height:20px; }
+.tl-right { flex:1; padding-bottom:18px; }
 .tl-zone {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 9px; font-weight: 700; padding: 2px 7px;
-  border-radius: 20px; margin-bottom: 5px;
-  letter-spacing: 0.3px;
+  display:inline-flex; align-items:center; gap:4px;
+  font-size: var(--fs-xs);  /* 12px */
+  font-weight:700; padding:3px 9px;
+  border-radius:20px; margin-bottom:6px; letter-spacing:0.3px;
 }
-.tl-title { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 3px; }
-.tl-desc { font-size: 11px; color: var(--text-3); line-height: 1.6; }
+.tl-title {
+  font-size: var(--fs-md);  /* 16px */
+  font-weight:700; color:var(--text-1); margin-bottom:4px;
+}
+.tl-desc {
+  font-size: var(--fs-sm);  /* 13px */
+  color:var(--text-3); line-height:1.7;
+}
 .tl-action {
-  margin-top: 6px;
-  background: var(--blue-glow);
-  border: 1px solid var(--border-1);
-  border-radius: 6px; padding: 6px 10px;
-  font-size: 11px; color: var(--blue-200); line-height: 1.6;
+  margin-top:8px;
+  background:var(--blue-glow);
+  border:1px solid var(--border-1);
+  border-radius:7px; padding:8px 11px;
+  font-size: var(--fs-sm);  /* 13px */
+  color:var(--blue-200); line-height:1.7;
 }
 
 /* Zone styles */
@@ -314,361 +315,362 @@ body::before {
 .dot-day   { border-color:var(--blue-400); background:rgba(59,130,246,0.3); }
 .dot-trans { border-color:#f59e0b; background:rgba(245,158,11,0.3); }
 .dot-night { border-color:var(--indigo-400); background:rgba(99,102,241,0.3); }
-.dot-perf  { border-color:#a855f7; background:rgba(168,85,247,0.3); box-shadow:0 0 6px rgba(168,85,247,0.4); }
+.dot-perf  { border-color:#a855f7; background:rgba(168,85,247,0.3); box-shadow:0 0 7px rgba(168,85,247,0.4); }
 .dot-end   { border-color:#64748b; background:rgba(100,116,139,0.3); }
 
 /* ===== POSITION DETAIL ===== */
 .pos-header {
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-lg);
-  padding: 16px;
-  margin-bottom: 10px;
-  position: relative; overflow: hidden;
+  background:var(--surface-1);
+  border:1px solid var(--border-1);
+  border-radius:var(--r-lg);
+  padding:18px; margin-bottom:12px;
+  position:relative; overflow:hidden;
 }
 .pos-header::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--ph-color, var(--blue-500)), transparent);
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--ph-color, var(--blue-500)), transparent);
 }
 .pos-header::after {
-  content: attr(data-icon);
-  position: absolute; right: 10px; top: 50%;
-  transform: translateY(-50%);
-  font-size: 52px; opacity: 0.07;
+  content:attr(data-icon); position:absolute; right:12px; top:50%;
+  transform:translateY(-50%); font-size:58px; opacity:0.07;
 }
 .pos-header-num {
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  color: var(--text-4); text-transform: uppercase; margin-bottom: 3px;
+  font-size: var(--fs-xs);   /* 12px */
+  font-weight:700; letter-spacing:1px; color:var(--text-4); text-transform:uppercase; margin-bottom:4px;
 }
-.pos-header-name { font-size: 18px; font-weight: 800; color: var(--text-1); margin-bottom: 10px; line-height: 1.3; }
-.pos-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.pos-header-name {
+  font-size: var(--fs-xl);   /* 20px */
+  font-weight:800; color:var(--text-1); margin-bottom:12px; line-height:1.3;
+}
+.pos-meta { display:flex; flex-wrap:wrap; gap:7px; }
 .pos-meta-item {
-  display: flex; align-items: center; gap: 4px;
-  font-size: 10px; color: var(--text-3);
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  padding: 3px 8px; border-radius: 20px;
+  display:flex; align-items:center; gap:4px;
+  font-size: var(--fs-sm);   /* 13px */
+  color:var(--text-2);
+  background:var(--surface-2);
+  border:1px solid var(--border-2);
+  padding:4px 10px; border-radius:20px;
 }
 
 /* ===== ACCORDION ===== */
-.accordion { margin-bottom: 6px; }
+.accordion { margin-bottom:8px; }
 .accordion-btn {
-  width: 100%;
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-sm);
-  padding: 11px 13px;
-  display: flex; align-items: center; justify-content: space-between;
-  cursor: pointer; transition: all 0.15s; text-align: left;
+  width:100%;
+  background:var(--surface-1);
+  border:1px solid var(--border-1);
+  border-radius:var(--r-sm);
+  padding:14px 15px;
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; transition:all 0.15s; text-align:left;
 }
-.accordion-btn:active { opacity: 0.8; }
+.accordion-btn:active { opacity:.8; }
 .accordion-btn.open {
-  background: var(--surface-2);
-  border-radius: var(--r-sm) var(--r-sm) 0 0;
-  border-bottom-color: transparent;
-  border-color: var(--border-focus);
+  background:var(--surface-2);
+  border-radius:var(--r-sm) var(--r-sm) 0 0;
+  border-bottom-color:transparent;
+  border-color:var(--border-focus);
 }
-.accordion-btn-left { display: flex; align-items: center; gap: 8px; }
-.accordion-btn-icon { font-size: 15px; }
-.accordion-btn-text { font-size: 13px; font-weight: 600; color: var(--text-1); }
+.accordion-btn-left { display:flex; align-items:center; gap:9px; }
+.accordion-btn-icon { font-size:18px; }
+.accordion-btn-text {
+  font-size: var(--fs-md);   /* 16px */
+  font-weight:700; color:var(--text-1);
+}
 .accordion-btn-badge {
-  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 20px;
-  background: var(--blue-glow); color: var(--blue-300);
-  border: 1px solid var(--border-1);
+  font-size: var(--fs-xs);   /* 12px */
+  font-weight:700; padding:3px 8px; border-radius:20px;
+  background:var(--blue-glow); color:var(--blue-300); border:1px solid var(--border-1);
 }
-.accordion-arrow { font-size: 11px; color: var(--text-4); transition: transform 0.25s; flex-shrink: 0; }
-.accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-arrow { font-size:13px; color:var(--text-4); transition:transform 0.25s; flex-shrink:0; }
+.accordion-btn.open .accordion-arrow { transform:rotate(180deg); }
 .accordion-body {
-  display: none;
-  background: var(--surface-1);
-  border: 1px solid var(--border-focus);
-  border-top: none;
-  border-radius: 0 0 var(--r-sm) var(--r-sm);
-  padding: 12px 13px;
-  margin-bottom: 6px;
+  display:none;
+  background:var(--surface-1);
+  border:1px solid var(--border-focus);
+  border-top:none;
+  border-radius:0 0 var(--r-sm) var(--r-sm);
+  padding:14px 15px; margin-bottom:8px;
 }
-.accordion-body.open { display: block; }
+.accordion-body.open { display:block; }
 
 /* ===== TASK LIST ===== */
-.task-list { list-style: none; }
+.task-list { list-style:none; }
 .task-item {
-  padding: 9px 0;
-  border-bottom: 1px solid var(--border-2);
-  display: flex; gap: 10px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border-2);
+  display:flex; gap:12px;
 }
-.task-item:last-child { border-bottom: none; padding-bottom: 0; }
+.task-item:last-child { border-bottom:none; padding-bottom:0; }
 .task-time {
-  font-size: 10px; font-weight: 700; color: var(--blue-300);
-  white-space: nowrap; flex-shrink: 0; padding-top: 2px; min-width: 90px;
+  font-size: var(--fs-sm);   /* 13px */
+  font-weight:700; color:var(--blue-300);
+  white-space:nowrap; flex-shrink:0; padding-top:2px; min-width:86px;
 }
-.task-content { flex: 1; }
-.task-main { font-size: 13px; color: var(--text-1); line-height: 1.5; font-weight: 500; }
-.task-sub { font-size: 11px; color: var(--text-3); margin-top: 3px; line-height: 1.6; }
+.task-content { flex:1; }
+.task-main {
+  font-size: var(--fs-md);   /* 16px */
+  color:var(--text-1); line-height:1.55; font-weight:600;
+}
+.task-sub {
+  font-size: var(--fs-sm);   /* 13px */
+  color:var(--text-3); margin-top:5px; line-height:1.75;
+}
 .task-badge {
-  display: inline-block; font-size: 9px; padding: 1px 6px;
-  border-radius: 4px; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.3px;
+  display:inline-block; font-size: var(--fs-xs); /* 12px */
+  padding:2px 8px; border-radius:5px; font-weight:700; margin-bottom:5px; letter-spacing:0.3px;
 }
 .badge-alert  { background:rgba(239,68,68,0.12);  color:#fca5a5; border:1px solid rgba(239,68,68,0.2); }
 .badge-info   { background:rgba(59,130,246,0.12); color:var(--blue-200); border:1px solid var(--border-1); }
 .badge-action { background:rgba(34,197,94,0.1);  color:#86efac; border:1px solid rgba(34,197,94,0.2); }
 
 /* ===== MENT CARDS ===== */
-.ment-list { list-style: none; }
+.ment-list { list-style:none; }
 .ment-item {
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  border-radius: var(--r-sm);
-  margin-bottom: 6px; overflow: hidden;
-  transition: border-color 0.15s;
+  background:var(--surface-2);
+  border:1px solid var(--border-2);
+  border-radius:var(--r-sm);
+  margin-bottom:8px; overflow:hidden;
+  transition:border-color 0.15s;
 }
-.ment-item:hover { border-color: var(--border-focus); }
+.ment-item:hover { border-color:var(--border-focus); }
 .ment-trigger {
-  padding: 10px 12px; cursor: pointer;
-  display: flex; align-items: center; gap: 8px;
+  padding:13px 14px; cursor:pointer;
+  display:flex; align-items:center; gap:10px;
 }
 .ment-num {
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--blue-glow);
-  border: 1px solid var(--border-focus);
-  color: var(--blue-300);
-  font-size: 9px; font-weight: 800;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width:24px; height:24px; border-radius:50%;
+  background:var(--blue-glow); border:1px solid var(--border-focus);
+  color:var(--blue-300);
+  font-size: var(--fs-xs);   /* 12px */
+  font-weight:800;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.ment-label { font-size: 12px; font-weight: 600; color: var(--text-2); flex: 1; }
-.ment-arrow { font-size: 10px; color: var(--text-4); transition: transform 0.25s; }
-.ment-trigger.open .ment-arrow { transform: rotate(180deg); }
+.ment-label {
+  font-size: var(--fs-base); /* 15px */
+  font-weight:600; color:var(--text-2); flex:1;
+}
+.ment-arrow { font-size:12px; color:var(--text-4); transition:transform 0.25s; }
+.ment-trigger.open .ment-arrow { transform:rotate(180deg); }
 .ment-body {
-  display: none; padding: 10px 12px 12px;
-  border-top: 1px solid var(--border-2);
+  display:none; padding:12px 14px 14px;
+  border-top:1px solid var(--border-2);
 }
-.ment-body.open { display: block; }
-.ment-quote {
-  border-left: 2px solid var(--blue-500);
-  padding-left: 10px;
-}
+.ment-body.open { display:block; }
+.ment-quote { border-left:3px solid var(--blue-500); padding-left:12px; }
 .ment-text {
-  font-size: 13px; color: var(--blue-100);
-  line-height: 1.9; font-style: italic;
+  font-size: var(--fs-md);   /* 16px */
+  color:var(--blue-100); line-height:2.0; font-style:italic;
 }
 .ment-note {
-  margin-top: 8px; font-size: 11px; color: var(--text-3);
-  background: var(--bg-3); padding: 6px 8px; border-radius: 6px;
+  margin-top:10px; font-size:var(--fs-sm); /* 13px */
+  color:var(--text-3); background:var(--bg-3); padding:7px 10px; border-radius:6px;
 }
 
 /* ===== WARNING LIST ===== */
-.warning-list { list-style: none; }
+.warning-list { list-style:none; }
 .warning-item {
-  display: flex; gap: 8px; padding: 8px 0;
-  border-bottom: 1px solid var(--border-2); align-items: flex-start;
+  display:flex; gap:10px; padding:11px 0;
+  border-bottom:1px solid var(--border-2); align-items:flex-start;
 }
-.warning-item:last-child { border-bottom: none; }
-.warning-icon { font-size: 13px; flex-shrink: 0; padding-top: 1px; }
-.warning-text { font-size: 12px; color: var(--text-2); line-height: 1.6; }
-.warning-highlight { color: #fca5a5; font-weight: 700; }
+.warning-item:last-child { border-bottom:none; }
+.warning-icon { font-size:16px; flex-shrink:0; padding-top:1px; }
+.warning-text { font-size: var(--fs-base); color:var(--text-2); line-height:1.7; } /* 15px */
 
 /* ===== SUPPLY TAGS ===== */
-.supply-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+.supply-grid { display:flex; flex-wrap:wrap; gap:7px; }
 .supply-tag {
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  border-radius: 20px; padding: 3px 10px;
-  font-size: 11px; color: var(--text-3);
+  background:var(--surface-2); border:1px solid var(--border-2);
+  border-radius:20px; padding:5px 12px;
+  font-size: var(--fs-sm);   /* 13px */
+  color:var(--text-3);
 }
 
 /* ===== CONTACT ===== */
-.contact-list { list-style: none; }
+.contact-list { list-style:none; }
 .contact-item {
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-md);
-  padding: 11px 12px;
-  margin-bottom: 6px;
-  display: flex; align-items: center; gap: 10px;
-  transition: border-color 0.15s;
+  background:var(--surface-1); border:1px solid var(--border-1);
+  border-radius:var(--r-md); padding:13px 14px;
+  margin-bottom:8px;
+  display:flex; align-items:center; gap:12px;
+  transition:border-color 0.15s;
 }
 .contact-item.emg {
-  background: linear-gradient(135deg, rgba(239,68,68,0.06), var(--surface-1));
-  border-color: var(--red-border);
+  background:linear-gradient(135deg, rgba(239,68,68,0.06), var(--surface-1));
+  border-color:var(--red-border);
 }
-.contact-icon { font-size: 22px; flex-shrink: 0; }
-.contact-info { flex: 1; min-width: 0; }
-.contact-org { font-size: 9px; color: var(--text-4); margin-bottom: 1px; letter-spacing: 0.2px; }
-.contact-name { font-size: 12px; font-weight: 700; color: var(--text-1); }
-.contact-role { font-size: 10px; color: var(--text-3); }
-.contact-divider { height: 1px; background: var(--border-1); margin: 8px 0; }
+.contact-icon { font-size:26px; flex-shrink:0; }
+.contact-info { flex:1; min-width:0; }
+.contact-org  { font-size: var(--fs-xs);   color:var(--text-4); margin-bottom:2px; letter-spacing:0.2px; } /* 12px */
+.contact-name { font-size: var(--fs-base); font-weight:700; color:var(--text-1); }   /* 15px */
+.contact-role { font-size: var(--fs-sm);   color:var(--text-3); margin-top:1px; }    /* 13px */
+.contact-divider { height:1px; background:var(--border-1); margin:10px 0; }
 .call-btn {
-  background: var(--blue-glow);
-  border: 1px solid var(--border-focus);
-  color: var(--blue-300);
-  border-radius: 20px; padding: 5px 12px;
-  font-size: 11px; font-weight: 700;
-  cursor: pointer; text-decoration: none;
-  display: block; text-align: center;
-  white-space: nowrap; flex-shrink: 0;
-  transition: all 0.15s;
+  background:var(--blue-glow); border:1px solid var(--border-focus);
+  color:var(--blue-300); border-radius:20px; padding:7px 15px;
+  font-size: var(--fs-base);  /* 15px */
+  font-weight:700; cursor:pointer; text-decoration:none;
+  display:block; text-align:center; white-space:nowrap; flex-shrink:0;
+  transition:all 0.15s;
 }
-.call-btn:active { background: var(--blue-500); color: #fff; }
-.call-btn.red {
-  background: rgba(239,68,68,0.12);
-  border-color: var(--red-border); color: #fca5a5;
-}
-.call-btn.red:active { background: var(--red); color: #fff; }
+.call-btn:active { background:var(--blue-500); color:#fff; }
+.call-btn.red { background:rgba(239,68,68,0.12); border-color:var(--red-border); color:#fca5a5; }
+.call-btn.red:active { background:var(--red); color:#fff; }
 
 /* ===== CUE SHEET ===== */
 .cue-item {
-  display: flex; gap: 10px; padding: 10px 0;
-  border-bottom: 1px solid var(--border-2); align-items: flex-start;
+  display:flex; gap:12px; padding:12px 0;
+  border-bottom:1px solid var(--border-2); align-items:flex-start;
 }
-.cue-item:last-child { border-bottom: none; }
-.cue-left { text-align: right; flex-shrink: 0; width: 68px; }
+.cue-item:last-child { border-bottom:none; }
+.cue-left { text-align:right; flex-shrink:0; width:64px; }
 .cue-seq {
-  display: inline-block; font-size: 8px; font-weight: 800;
-  background: var(--surface-3); border: 1px solid var(--border-1);
-  color: var(--text-4); padding: 1px 5px; border-radius: 4px;
-  margin-bottom: 2px; letter-spacing: 0.5px;
+  display:inline-block;
+  font-size: var(--fs-xs);   /* 12px */
+  font-weight:800;
+  background:var(--surface-3); border:1px solid var(--border-1);
+  color:var(--text-4); padding:1px 6px; border-radius:4px;
+  margin-bottom:3px; letter-spacing:0.5px;
 }
-.cue-time { font-size: 11px; font-weight: 700; color: var(--blue-300); }
-.cue-dur { font-size: 9px; color: var(--text-4); }
-.cue-right { flex: 1; }
-.cue-title { font-size: 13px; font-weight: 700; color: var(--text-1); }
-.cue-detail { font-size: 11px; color: var(--text-3); margin-top: 3px; line-height: 1.6; }
+.cue-time { font-size: var(--fs-sm);  font-weight:700; color:var(--blue-300); }  /* 13px */
+.cue-dur  { font-size: var(--fs-xs);  color:var(--text-4); }                     /* 12px */
+.cue-right { flex:1; }
+.cue-title  { font-size: var(--fs-md);  font-weight:700; color:var(--text-1); }  /* 16px */
+.cue-detail { font-size: var(--fs-sm);  color:var(--text-3); margin-top:4px; line-height:1.7; } /* 13px */
 .cue-action {
-  margin-top: 5px;
-  background: var(--blue-glow);
-  border: 1px solid var(--border-1);
-  border-radius: 6px; padding: 5px 9px;
-  font-size: 11px; color: var(--blue-200); line-height: 1.6;
+  margin-top:7px;
+  background:var(--blue-glow); border:1px solid var(--border-1);
+  border-radius:7px; padding:7px 10px;
+  font-size: var(--fs-sm);   /* 13px */
+  color:var(--blue-200); line-height:1.7;
 }
 
 /* ===== EMERGENCY ===== */
 .emg-section {
-  background: linear-gradient(135deg, rgba(239,68,68,0.06), var(--surface-1));
-  border: 1px solid var(--red-border);
-  border-radius: var(--r-md); padding: 14px; margin-bottom: 10px;
+  background:linear-gradient(135deg, rgba(239,68,68,0.06), var(--surface-1));
+  border:1px solid var(--red-border);
+  border-radius:var(--r-md); padding:16px; margin-bottom:12px;
 }
 .emg-section-title {
-  font-size: 13px; font-weight: 800; color: #fca5a5;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 6px;
+  font-size: var(--fs-lg);   /* 18px */
+  font-weight:800; color:#fca5a5;
+  margin-bottom:12px; display:flex; align-items:center; gap:7px;
 }
 .emg-step {
-  display: flex; gap: 10px; padding: 8px 0;
-  border-bottom: 1px solid rgba(239,68,68,0.1); align-items: flex-start;
+  display:flex; gap:12px; padding:10px 0;
+  border-bottom:1px solid rgba(239,68,68,0.1); align-items:flex-start;
 }
-.emg-step:last-child { border-bottom: none; }
+.emg-step:last-child { border-bottom:none; }
 .step-num {
-  width: 21px; height: 21px; border-radius: 50%;
-  background: rgba(239,68,68,0.15);
-  border: 1px solid rgba(239,68,68,0.3);
-  color: #fca5a5; font-size: 10px; font-weight: 800;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width:24px; height:24px; border-radius:50%;
+  background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3);
+  color:#fca5a5;
+  font-size: var(--fs-xs);   /* 12px */
+  font-weight:800;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  min-width:24px;
 }
-.step-text { font-size: 12px; color: #fecaca; line-height: 1.7; flex: 1; }
-.step-em { color: #f87171; font-weight: 700; }
+.step-text {
+  font-size: var(--fs-base); /* 15px */
+  color:#fecaca; line-height:1.75; flex:1;
+}
+.step-em { color:#f87171; font-weight:700; }
+
+/* step 색상 변형 */
+.step-v    { background:rgba(99,102,241,0.15);  border-color:rgba(99,102,241,0.3);  color:var(--indigo-400); }
+.step-warn { background:rgba(245,158,11,0.12);  border-color:rgba(245,158,11,0.3);  color:#fbbf24; }
+.step-ok   { background:rgba(34,197,94,0.1);    border-color:rgba(34,197,94,0.25);  color:#4ade80; }
+.step-org  { background:rgba(249,115,22,0.15);  border-color:rgba(249,115,22,0.3);  color:#fb923c; }
 
 /* ===== WEATHER GRID ===== */
-.weather-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-top: 8px; }
+.weather-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-top:10px; }
 .wc {
-  background: var(--surface-2); border: 1px solid var(--border-2);
-  border-radius: 6px; padding: 6px 4px; text-align: center;
+  background:var(--surface-2); border:1px solid var(--border-2);
+  border-radius:7px; padding:8px 4px; text-align:center;
 }
-.wc.wch { background: var(--surface-3); }
-.wc-l { font-size: 9px; font-weight: 700; color: var(--blue-300); }
-.wc-v { font-size: 8px; color: var(--text-3); margin-top: 2px; line-height: 1.5; }
+.wc.wch { background:var(--surface-3); }
+.wc-l { font-size: var(--fs-xs);  font-weight:700; color:var(--blue-300); }  /* 12px */
+.wc-v { font-size: var(--fs-xs);  color:var(--text-3); margin-top:3px; line-height:1.5; } /* 12px */
 
 /* ===== NOTICE BOX ===== */
 .notice-box {
-  background: var(--blue-glow-lg);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  font-size: 12px; color: var(--text-2); line-height: 1.8;
-  margin-bottom: 10px;
+  background:var(--blue-glow-lg); border:1px solid var(--border-1);
+  border-radius:var(--r-sm); padding:12px 14px;
+  font-size: var(--fs-base); /* 15px */
+  color:var(--text-2); line-height:1.8; margin-bottom:12px;
 }
-.notice-box strong { color: var(--blue-200); }
+.notice-box strong { color:var(--blue-200); }
 
 /* ===== QUOTA BOX ===== */
-.quota-box {
-  background: var(--surface-2); border: 1px solid var(--border-1);
-  border-radius: var(--r-sm); overflow: hidden;
-}
+.quota-box { background:var(--surface-2); border:1px solid var(--border-1); border-radius:var(--r-sm); overflow:hidden; }
 .quota-row {
-  display: flex; align-items: center;
-  padding: 8px 12px; border-bottom: 1px solid var(--border-2); gap: 8px;
+  display:flex; align-items:center;
+  padding:11px 14px; border-bottom:1px solid var(--border-2); gap:10px;
 }
-.quota-row:last-child { border-bottom: none; background: var(--surface-3); }
-.quota-label { flex: 1; font-size: 12px; color: var(--text-2); }
-.quota-num { font-size: 14px; font-weight: 800; color: var(--blue-300); }
-.quota-row:last-child .quota-label { font-weight: 700; color: var(--text-1); }
+.quota-row:last-child { border-bottom:none; background:var(--surface-3); }
+.quota-label { flex:1; font-size:var(--fs-base); color:var(--text-2); }   /* 15px */
+.quota-num   { font-size:var(--fs-xl); font-weight:800; color:var(--blue-300); } /* 20px */
+.quota-row:last-child .quota-label { font-weight:700; color:var(--text-1); }
 
 /* ===== POS SWITCHER ===== */
 .pos-switcher {
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-sm); padding: 9px 12px;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
+  background:var(--surface-1); border:1px solid var(--border-1);
+  border-radius:var(--r-sm); padding:10px 14px;
+  margin-bottom:12px; display:flex; align-items:center; gap:10px;
 }
-.pos-switcher-label { font-size: 10px; color: var(--text-4); white-space: nowrap; font-weight: 600; }
+.pos-switcher-label {
+  font-size: var(--fs-sm);   /* 13px */
+  color:var(--text-4); white-space:nowrap; font-weight:600;
+}
 .pos-switcher select {
-  flex: 1;
-  background: var(--surface-2);
-  border: 1px solid var(--border-focus);
-  border-radius: 6px; color: var(--text-1);
-  padding: 5px 10px; font-size: 12px; font-weight: 600;
-  appearance: none; -webkit-appearance: none; cursor: pointer;
+  flex:1; background:var(--surface-2); border:1px solid var(--border-focus);
+  border-radius:7px; color:var(--text-1); padding:7px 12px;
+  font-size: var(--fs-base); /* 15px */
+  font-weight:600; appearance:none; -webkit-appearance:none; cursor:pointer;
 }
 
 /* ===== BACK BUTTON ===== */
 .back-btn {
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-  color: var(--text-3); border-radius: 20px;
-  padding: 6px 14px; font-size: 12px; font-weight: 600;
-  cursor: pointer; margin-bottom: 12px;
-  display: inline-flex; align-items: center; gap: 4px;
-  transition: all 0.15s;
+  background:var(--surface-1); border:1px solid var(--border-1);
+  color:var(--text-3); border-radius:20px;
+  padding:8px 16px;
+  font-size: var(--fs-base); /* 15px */
+  font-weight:600; cursor:pointer; margin-bottom:14px;
+  display:inline-flex; align-items:center; gap:5px;
+  transition:all 0.15s;
 }
-.back-btn:active { opacity: 0.7; }
+.back-btn:active { opacity:.7; }
 
 /* ===== INFO ROW ===== */
-.info-row { display: flex; gap: 8px; margin-bottom: 7px; align-items: flex-start; }
-.info-key { font-size: 10px; font-weight: 600; color: var(--text-4); flex-shrink: 0; width: 50px; padding-top: 1px; }
-.info-val { font-size: 12px; color: var(--text-2); flex: 1; line-height: 1.6; }
+.info-row { display:flex; gap:10px; margin-bottom:9px; align-items:flex-start; }
+.info-key { font-size: var(--fs-sm);  font-weight:600; color:var(--text-4); flex-shrink:0; width:50px; padding-top:1px; } /* 13px */
+.info-val { font-size: var(--fs-base); color:var(--text-2); flex:1; line-height:1.65; } /* 15px */
 
 /* ===== DIVIDER ===== */
-.divider { height: 1px; background: var(--border-2); margin: 10px 0; }
+.divider { height:1px; background:var(--border-2); margin:12px 0; }
 
-/* ===== STEP VARIANTS ===== */
-.step-v { background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.3); color:var(--indigo-400); }
-.step-warn { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.3); color:#fbbf24; }
-.step-ok  { background:rgba(34,197,94,0.1);  border-color:rgba(34,197,94,0.25);  color:#4ade80; }
-
-/* ===== AMBIENT CHIP ===== */
+/* ===== FLOW / CHIP ===== */
+.flow-row { display:flex; align-items:center; flex-wrap:wrap; gap:7px; padding:4px 0; }
+.flow-arrow { color:var(--blue-400); font-weight:700; font-size:16px; }
 .chip {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; font-weight: 600; padding: 3px 8px;
-  border-radius: 20px; border: 1px solid var(--border-1);
+  display:inline-flex; align-items:center; gap:4px;
+  font-size: var(--fs-sm);  /* 13px */
+  font-weight:600; padding:5px 10px; border-radius:20px; border:1px solid var(--border-1);
 }
-.chip-blue   { background:var(--blue-glow);           color:var(--blue-300); border-color:var(--border-focus); }
-.chip-green  { background:rgba(34,197,94,0.1);         color:#4ade80; }
-.chip-amber  { background:rgba(245,158,11,0.1);        color:#fbbf24; }
-.chip-purple { background:rgba(168,85,247,0.1);        color:#c084fc; }
-.chip-red    { background:rgba(239,68,68,0.1);         color:#f87171; }
-.chip-gray   { background:rgba(100,116,139,0.1);       color:#94a3b8; }
+.chip-blue   { background:var(--blue-glow); color:var(--blue-300); border-color:var(--border-focus); }
+.chip-purple { background:rgba(168,85,247,0.1); color:#c084fc; }
 
-/* ===== FLOW ARROW ===== */
-.flow-row {
-  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
-  font-size: 12px; color: var(--text-2); padding: 4px 0;
+/* ===== SUB LABEL (기상 구분선 등) ===== */
+.sub-label {
+  font-size: var(--fs-base);   /* 15px */
+  font-weight:700; color:#fca5a5; margin-bottom:8px;
+  padding:5px 10px; background:rgba(239,68,68,0.1); border-radius:7px;
+  display:inline-block;
 }
-.flow-arrow { color: var(--blue-400); font-weight: 700; font-size: 14px; }
 
-/* @media */
-@media (max-width: 360px) {
-  .pos-grid, .home-grid { grid-template-columns: 1fr; }
-  .home-card.featured { grid-column: span 1; }
+@media (max-width:360px) {
+  .pos-grid, .home-grid { grid-template-columns:1fr; }
+  .home-card.featured { grid-column:span 1; }
+  body { font-size:15px; }
 }
 </style>
 </head>
@@ -714,9 +716,7 @@ body::before {
   </button>
 </nav>
 
-<!-- ============================================================ -->
-<!-- HOME -->
-<!-- ============================================================ -->
+<!-- ============================================================ HOME -->
 <div class="screen active" id="screen-home">
   <div class="page-content">
     <div class="section-title">행사 개요</div>
@@ -750,21 +750,21 @@ body::before {
     </div>
 
     <div class="section-title">1일 참여 인원</div>
-    <div class="card" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-      <div style="flex:1; min-width:80px; text-align:center; padding:10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
-        <div style="font-size:22px; font-weight:800; color:var(--blue-300);">30</div>
-        <div style="font-size:10px; color:var(--text-3); margin-top:2px;">유료 체험객</div>
+    <div class="card" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <div style="flex:1; min-width:80px; text-align:center; padding:14px 10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
+        <div class="stat-num">30</div>
+        <div class="stat-label">유료 체험객</div>
       </div>
-      <div style="flex:1; min-width:80px; text-align:center; padding:10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
-        <div style="font-size:22px; font-weight:800; color:var(--blue-300);">60</div>
-        <div style="font-size:10px; color:var(--text-3); margin-top:2px;">동반 가족</div>
+      <div style="flex:1; min-width:80px; text-align:center; padding:14px 10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
+        <div class="stat-num">60</div>
+        <div class="stat-label">동반 가족</div>
       </div>
-      <div style="flex:1; min-width:80px; text-align:center; padding:10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
-        <div style="font-size:22px; font-weight:800; color:var(--blue-300);">70</div>
-        <div style="font-size:10px; color:var(--text-3); margin-top:2px;">무료 관람객</div>
+      <div style="flex:1; min-width:80px; text-align:center; padding:14px 10px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--border-1);">
+        <div class="stat-num">70</div>
+        <div class="stat-label">무료 관람객</div>
       </div>
-      <div style="flex:0 0 100%; text-align:center; padding:8px; background:var(--blue-glow); border-radius:var(--r-sm); border:1px solid var(--border-focus);">
-        <span style="font-size:13px; font-weight:800; color:var(--blue-200);">총 160명 / 1일</span>
+      <div style="flex:0 0 100%; text-align:center; padding:10px; background:var(--blue-glow); border-radius:var(--r-sm); border:1px solid var(--border-focus);">
+        <span class="stat-total">총 160명 / 1일</span>
       </div>
     </div>
 
@@ -785,9 +785,7 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- TIMELINE -->
-<!-- ============================================================ -->
+<!-- ============================================================ TIMELINE -->
 <div class="screen" id="screen-timeline">
   <div class="page-content">
     <div class="section-title">오늘의 타임라인</div>
@@ -832,7 +830,7 @@ body::before {
       </div>
 
       <div class="tl-item">
-        <div class="tl-left"><div class="tl-time">17:00<br>~<br>18:20</div><div class="tl-dot dot-day"></div><div class="tl-line"></div></div>
+        <div class="tl-left"><div class="tl-time">17:00<br>~18:20</div><div class="tl-dot dot-day"></div><div class="tl-line"></div></div>
         <div class="tl-right">
           <span class="tl-zone zone-day">주간 운영</span>
           <div class="tl-title">공연 전 관객 맞이</div>
@@ -899,7 +897,7 @@ body::before {
       </div>
 
       <div class="tl-item">
-        <div class="tl-left"><div class="tl-time">20:30</div><div class="tl-dot dot-end"></div><div class="tl-line" style="display:none;"></div></div>
+        <div class="tl-left"><div class="tl-time">20:30</div><div class="tl-dot dot-end"></div></div>
         <div class="tl-right">
           <span class="tl-zone zone-end">마감</span>
           <div class="tl-title">행사 종료 / 행사장 정리</div>
@@ -911,9 +909,7 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- POSITION LIST -->
-<!-- ============================================================ -->
+<!-- ============================================================ POSITION LIST -->
 <div class="screen" id="screen-pos-list">
   <div class="page-content">
     <div class="section-title">포지션별 핸디북</div>
@@ -955,7 +951,7 @@ body::before {
         <div class="pc-name">효심우체통<br>무료체험존</div>
         <div class="pc-who">요원 9·14·15</div>
       </div>
-      <div class="pos-card" style="--pc-color:#c9993a;" onclick="showPos(7)">
+      <div class="pos-card" style="--pc-color:#f59e0b;" onclick="showPos(7)">
         <span class="pc-icon">🍱</span>
         <div class="pc-num">POSITION 7</div>
         <div class="pc-name">서버<br>병과·연회장</div>
@@ -971,9 +967,7 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- POSITION DETAIL -->
-<!-- ============================================================ -->
+<!-- ============================================================ POSITION DETAIL -->
 <div class="screen" id="screen-pos-detail">
   <div class="page-content">
     <button class="back-btn" onclick="showScreen('screen-pos-list')">‹ 포지션 목록</button>
@@ -994,9 +988,7 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- PERFORMANCE CUE SHEET -->
-<!-- ============================================================ -->
+<!-- ============================================================ PERFORMANCE -->
 <div class="screen" id="screen-performance">
   <div class="page-content">
     <div class="section-title">공연 큐시트</div>
@@ -1008,131 +1000,85 @@ body::before {
       <div class="info-row"><div class="info-key">공연</div><div class="info-val">박접무, 예도무(창작), 설장고춤</div></div>
     </div>
 
-    <div class="notice-box">
-      ⚡ <strong>상황에 따라 5~10분 일찍 시작될 수 있음</strong><br>
-      공연 중 기본적으로 화장실 이동 금지 (집중도 유지)
-    </div>
+    <div class="notice-box">⚡ <strong>상황에 따라 5~10분 일찍 시작될 수 있음</strong><br>공연 중 기본적으로 화장실 이동 금지</div>
 
     <div class="card" style="padding:0; overflow:hidden;">
-      <div style="padding:12px 14px; border-bottom:1px solid var(--border-2);">
+      <div style="padding:14px 16px; border-bottom:1px solid var(--border-2);">
         <div class="card-title" style="margin-bottom:0;">🕐 공연 순서 및 요원 액션</div>
       </div>
-      <div style="padding:0 14px;">
+      <div style="padding:0 16px;">
 
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">PRE</div><div class="cue-time">18:00</div></div>
-          <div class="cue-right"><div class="cue-title">하우스 오픈 / 야간 통제 전환</div>
-          <div class="cue-detail">일반 관람객 퇴장</div>
-          <div class="cue-action">🏃 전 요원: 야간 포지션 이동 완료</div></div>
+          <div class="cue-right"><div class="cue-title">하우스 오픈 / 야간 통제 전환</div><div class="cue-detail">일반 관람객 퇴장</div><div class="cue-action">🏃 전 요원: 야간 포지션 이동 완료</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">PRE</div><div class="cue-time">18:35</div></div>
-          <div class="cue-right"><div class="cue-title">동반가족 공연장 입장</div>
-          <div class="cue-detail">대기실 번호 순 10팀씩 인솔, 부모님 좌석 뒷편 착석</div>
-          <div class="cue-action">🏃 요원 4·5·6·7: 대기실 → 공연장 인솔</div></div>
+          <div class="cue-right"><div class="cue-title">동반가족 공연장 입장</div><div class="cue-detail">대기실 번호 순 10팀씩 인솔</div><div class="cue-action">🏃 요원 4·5·6·7: 대기실 → 공연장 인솔</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">PRE</div><div class="cue-time">18:50</div></div>
-          <div class="cue-right"><div class="cue-title">행사 전 안내방송 시작</div>
-          <div class="cue-detail">참여가족·관람객 입장 안내 / 정위치 안내</div>
-          <div class="cue-action">🏃 유료 체험객 대기실 집결 확인 완료</div></div>
+          <div class="cue-right"><div class="cue-title">행사 전 안내방송 시작</div><div class="cue-detail">참여가족·관람객 정위치 안내</div><div class="cue-action">🏃 유료 체험객 대기실 집결 확인 완료</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">①</div><div class="cue-time">19:00</div><div class="cue-dur">2'</div></div>
-          <div class="cue-right"><div class="cue-title">좌통례·나각 입장</div>
-          <div class="cue-detail">창이·경이(사회자) 사전 인사</div></div>
+          <div class="cue-right"><div class="cue-title">좌통례·나각 입장</div><div class="cue-detail">창이·경이(사회자) 사전 인사</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">②</div><div class="cue-time">19:02</div><div class="cue-dur">8'</div></div>
-          <div class="cue-right"><div class="cue-title">초엄: 휘 입장 / 체험객 입장 및 착석</div>
-          <div class="cue-detail">연주: 천년만세 / 사회자 행사 소개</div>
-          <div class="cue-action">🏃 요원 4·5·6·7: 좌석 안내<br>좌1열(1~9번) → 우3열(30~22번) → 2열(10~21번)</div></div>
+          <div class="cue-right"><div class="cue-title">초엄: 휘 입장 / 체험객 입장·착석</div><div class="cue-detail">연주: 천년만세 / 사회자 행사 소개</div><div class="cue-action">🏃 요원 4·5·6·7: 좌석 안내<br>좌1열(1~9번) → 우3열(30~22번) → 2열(10~21번)</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">③</div><div class="cue-time">19:10</div><div class="cue-dur">5'</div></div>
-          <div class="cue-right"><div class="cue-title">박접무 (6명)</div>
-          <div class="cue-detail">연주: 취타</div></div>
+          <div class="cue-right"><div class="cue-title">박접무 (6명)</div><div class="cue-detail">연주: 취타</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">④</div><div class="cue-time">19:15</div><div class="cue-dur">2'</div></div>
           <div class="cue-right"><div class="cue-title">이엄, 세자(상례) 입장</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑤</div><div class="cue-time">19:17</div><div class="cue-dur">3'</div></div>
-          <div class="cue-right"><div class="cue-title">삼엄, 왕 입장 및 환영인사</div>
-          <div class="cue-detail">운검·청선·내관·사옹제조 / 연주: 삼엄·수제천</div></div>
+          <div class="cue-right"><div class="cue-title">삼엄, 왕 입장 및 환영인사</div><div class="cue-detail">운검·청선·내관·사옹제조 / 연주: 삼엄·수제천</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑥</div><div class="cue-time">19:20</div><div class="cue-dur">5'</div></div>
-          <div class="cue-right"><div class="cue-title">진화의식 소개 및 진화</div>
-          <div class="cue-detail">참여객과의 스몰토크 진행 / 연주: 천년만세</div></div>
+          <div class="cue-right"><div class="cue-title">진화의식 소개 및 진화</div><div class="cue-detail">참여객과의 스몰토크 / 연주: 천년만세</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑦</div><div class="cue-time">19:25</div><div class="cue-dur">3'</div></div>
-          <div class="cue-right"><div class="cue-title">진작의식 소개 및 진작 — 참여객 진다</div>
-          <div class="cue-detail">연주: 여민락</div>
-          <div class="cue-action">🏃 요원 12·13: 서버 역할 대기</div></div>
+          <div class="cue-right"><div class="cue-title">진작의식 소개 및 진작 — 참여객 진다</div><div class="cue-detail">연주: 여민락</div><div class="cue-action">🏃 요원 12·13: 서버 역할 대기</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑧</div><div class="cue-time">19:28</div><div class="cue-dur">5'</div></div>
-          <div class="cue-right"><div class="cue-title">예도무 (3명)</div>
-          <div class="cue-detail">연주: 천년만세</div></div>
+          <div class="cue-right"><div class="cue-title">예도무 (3명)</div><div class="cue-detail">연주: 천년만세</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑨</div><div class="cue-time">19:33</div><div class="cue-dur">2'</div></div>
-          <div class="cue-right"><div class="cue-title">진병과 소개 및 진병과 — 참여객 진병과</div>
-          <div class="cue-detail">추가 음악</div>
-          <div class="cue-action">🏃 요원 12·13: 병과 전달 지원</div></div>
+          <div class="cue-right"><div class="cue-title">진병과 소개 및 진병과 — 참여객 진병과</div><div class="cue-detail">추가 음악</div><div class="cue-action">🏃 요원 12·13: 병과 전달 지원</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑩</div><div class="cue-time">19:35</div><div class="cue-dur">6'</div></div>
-          <div class="cue-right"><div class="cue-title">설장고춤 (6명)</div>
-          <div class="cue-detail">연주: 여민락령</div></div>
+          <div class="cue-right"><div class="cue-title">설장고춤 (6명)</div><div class="cue-detail">연주: 여민락령</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑪</div><div class="cue-time">19:41</div><div class="cue-dur">3'</div></div>
-          <div class="cue-right"><div class="cue-title">치사낭독 (세자)</div>
-          <div class="cue-detail">참여객과의 스몰토크 진행</div></div>
+          <div class="cue-right"><div class="cue-title">치사낭독 (세자)</div><div class="cue-detail">참여객과의 스몰토크 진행</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑫</div><div class="cue-time">19:44</div><div class="cue-dur">5'</div></div>
-          <div class="cue-right"><div class="cue-title">부모님 전상서 (2명)</div>
-          <div class="cue-detail">체험객 가족 대표 2인 무대 등단 후 낭독<br>문정전 지붕 위 잡상의 시선으로 나레이션</div>
-          <div class="cue-action">🏃 사전 선정된 2인 호명 대기 (요원 확인)</div></div>
+          <div class="cue-right"><div class="cue-title">부모님 전상서 (2명)</div><div class="cue-detail">체험객 가족 대표 2인 무대 등단 후 낭독</div><div class="cue-action">🏃 사전 선정된 2인 호명 대기 (요원 확인)</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑬</div><div class="cue-time">19:49</div><div class="cue-dur">6'</div></div>
-          <div class="cue-right"><div class="cue-title">국왕 인사 및 행사 종료</div>
-          <div class="cue-action">🏃 퇴장 동선 준비 / 어좌촬영 보조 이동</div></div>
+          <div class="cue-right"><div class="cue-title">국왕 인사 및 행사 종료</div><div class="cue-action">🏃 퇴장 동선 준비 / 어좌촬영 보조 이동</div></div>
         </div>
-
         <div class="cue-item">
           <div class="cue-left"><div class="cue-seq">⑭</div><div class="cue-time">19:55</div><div class="cue-dur">15'</div></div>
-          <div class="cue-right"><div class="cue-title">어좌 사진 촬영</div>
-          <div class="cue-detail">가족 사진 촬영 시작 / 만족도 조사 진행 유도</div>
-          <div class="cue-action">🏃 요원 2·3: 어좌촬영 보조<br>행운의 제비뽑기 당첨자: 마지막에 진행</div></div>
+          <div class="cue-right"><div class="cue-title">어좌 사진 촬영</div><div class="cue-detail">가족 사진 촬영 / 만족도 조사 유도</div><div class="cue-action">🏃 요원 2·3: 어좌촬영 보조<br>행운의 제비뽑기 당첨자: 마지막에 진행</div></div>
         </div>
-
         <div class="cue-item" style="border-bottom:none;">
           <div class="cue-left"><div class="cue-seq">⑮</div><div class="cue-time">20:10</div><div class="cue-dur">20'</div></div>
-          <div class="cue-right"><div class="cue-title">행사장 정리 및 퇴장</div>
-          <div class="cue-detail">복식 환복 안내 / 사진·액자 배포 / 퇴장 동선 안내</div>
-          <div class="cue-action">🏃 전 요원: 퇴장 안내 및 행사장 정리</div></div>
+          <div class="cue-right"><div class="cue-title">행사장 정리 및 퇴장</div><div class="cue-detail">복식 환복 안내 / 사진·액자 배포 / 퇴장 동선 안내</div><div class="cue-action">🏃 전 요원: 퇴장 안내 및 행사장 정리</div></div>
         </div>
 
       </div>
@@ -1143,8 +1089,8 @@ body::before {
       <div class="info-row"><div class="info-key">입장열</div><div class="info-val">두 줄로 입장<br>좌측열 1~9번 / 우측열 30~22번 / 뒤이어 10~21번</div></div>
       <div class="info-row"><div class="info-key">무료석</div><div class="info-val">70석 (정중앙 동반가족석 별도 지정, 팔찌 관리)</div></div>
       <div class="divider"></div>
-      <div class="card-title" style="font-size:10px; color:var(--text-4);">관직 배치 참조</div>
-      <div style="font-size:10px; color:var(--text-3); line-height:2.1;">
+      <div style="font-size:var(--fs-sm); color:var(--text-4); font-weight:700; margin-bottom:6px;">관직 배치 참조</div>
+      <div style="font-size:var(--fs-sm); color:var(--text-3); line-height:2.1;">
         <span style="color:var(--blue-300);">[서측 무관]</span> 1 절충장군 · 2 겸사복장 · 3 장용사 · 4 내금위장 · 5 병마절도사 · 6 수군통제사 · 7 수어사 · 8 제조 · 9 도제조<br>
         <span style="color:var(--blue-300);">[동·남측 문관]</span> 10 공조참판 · 11 공조판서 · 12 형조판서 · 13 우찬성 · 14 우의정 · 15 영의정 · 16 좌의정 · 17 좌찬성 · 18 병조판서 · 19 예조판서 · 20 호조판서 · 21 이조판서<br>
         22 한성부판윤 · 23 대사헌 · 24 좌참찬 · 25 우참찬 · 26 이조참판 · 27 호조참판 · 28 예조참판 · 29 병조참판
@@ -1153,14 +1099,11 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- EMERGENCY -->
-<!-- ============================================================ -->
+<!-- ============================================================ EMERGENCY -->
 <div class="screen" id="screen-emergency">
   <div class="page-content">
     <div class="section-title">비상 대응 매뉴얼</div>
 
-    <!-- 연락망 -->
     <div class="card">
       <div class="card-title">📞 비상연락망</div>
       <ul class="contact-list">
@@ -1248,24 +1191,21 @@ body::before {
     <!-- 안전사고 -->
     <div class="emg-section">
       <div class="emg-section-title">🩺 안전사고 / 응급환자</div>
-      <div style="font-size:11px; color:#fecaca; margin-bottom:10px; line-height:1.7;">
+      <div style="font-size:var(--fs-base); color:#fecaca; margin-bottom:12px; line-height:1.75;">
         최초 목격자는 빠른 시간 내 안전관리요원 및 안전담당자에게 보고, 현장 대기 중인 구급요원에게 연락
       </div>
-
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px; padding:4px 8px; background:rgba(239,68,68,0.1); border-radius:6px;">🩹 경미한 부상</div>
+      <div class="sub-label">🩹 경미한 부상</div>
       <div class="emg-step"><div class="step-num">1</div><div class="step-text">부상자 상황 파악 (주변 스텝)</div></div>
       <div class="emg-step"><div class="step-num">2</div><div class="step-text">스텝 안내로 안전관리요원 인계 → 운영사무국 부스로 이동</div></div>
       <div class="emg-step"><div class="step-num">3</div><div class="step-text">응급 구급함 상비약으로 1차 응급처치 / 대기 응급요원 호출</div></div>
       <div class="divider" style="background:rgba(239,68,68,0.15);"></div>
-
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px; padding:4px 8px; background:rgba(239,68,68,0.1); border-radius:6px;">🚨 중상</div>
+      <div class="sub-label">🚨 중상</div>
       <div class="emg-step"><div class="step-num">1</div><div class="step-text">첫 발견 스텝 → <span class="step-em">안전담당자 즉시 보고</span></div></div>
       <div class="emg-step"><div class="step-num">2</div><div class="step-text">응급센터 연락:<br><span class="step-em">서울아산병원 02-3010-3333</span><br><span class="step-em">서울삼성병원 02-2410-0129</span></div></div>
       <div class="emg-step"><div class="step-num">3</div><div class="step-text">안전관리요원 연락 / 환자 상태 보존 → 구급차 유도 → 구급차 인계</div></div>
       <div class="emg-step"><div class="step-num">4</div><div class="step-text">종합방재센터 및 운영사무국에 상황 전파</div></div>
       <div class="divider" style="background:rgba(239,68,68,0.15);"></div>
-
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px; padding:4px 8px; background:rgba(239,68,68,0.1); border-radius:6px;">🤕 두통 등 고통 호소</div>
+      <div class="sub-label">🤕 두통 등 고통 호소</div>
       <div class="emg-step"><div class="step-num">1</div><div class="step-text">운영사무국 안내·이동 / 응급 구급함 상비약으로 1차 처치</div></div>
       <div class="emg-step"><div class="step-num">2</div><div class="step-text">상태 지속 확인 / 필요 시 응급의료센터 안내</div></div>
       <div class="emg-step"><div class="step-num">3</div><div class="step-text">상태 악화 시 대기 응급요원 호출 및 처치</div></div>
@@ -1284,34 +1224,30 @@ body::before {
     <!-- 기상악화 -->
     <div class="emg-section">
       <div class="emg-section-title">🌧️ 기상 악화</div>
-      <div class="notice-box" style="border-color:rgba(245,158,11,0.25); background:rgba(245,158,11,0.05); color:#fde68a; margin-bottom:10px;">
+      <div class="notice-box" style="border-color:rgba(245,158,11,0.25); background:rgba(245,158,11,0.05); color:#fde68a; margin-bottom:12px;">
         ⚠️ <strong style="color:#fbbf24;">복식의 특성상 비·습기에 취약</strong><br>
         우천 예보가 조금이라도 있을 경우 취소 예정<br>
         <strong style="color:#fbbf24;">최종 결정: 당일 오전 11시 취소 공지 문자 발송</strong>
       </div>
 
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">💧 강우 단계별 대응</div>
+      <div class="sub-label">💧 강우 단계별 대응</div>
       <div class="weather-grid">
         <div class="wc wch"><div class="wc-l">단계</div></div>
         <div class="wc wch"><div class="wc-l">기준</div></div>
         <div class="wc wch"><div class="wc-l">상황</div></div>
         <div class="wc wch"><div class="wc-l">대응</div></div>
-
         <div class="wc"><div class="wc-l" style="color:#4ade80;">관심</div></div>
         <div class="wc"><div class="wc-v">10mm/h 이하</div></div>
         <div class="wc"><div class="wc-v">약한 비</div></div>
         <div class="wc"><div class="wc-v">진행, 설비 커버링</div></div>
-
         <div class="wc"><div class="wc-l" style="color:#fbbf24;">주의</div></div>
         <div class="wc"><div class="wc-v">10mm/h 이상</div></div>
         <div class="wc"><div class="wc-v">빗소리 들림</div></div>
         <div class="wc"><div class="wc-v">자바라 설치, 일부 중단</div></div>
-
         <div class="wc"><div class="wc-l" style="color:#f97316;">경계</div></div>
         <div class="wc"><div class="wc-v">15mm/h 이상</div></div>
         <div class="wc"><div class="wc-v">시야 확보 어려움</div></div>
         <div class="wc"><div class="wc-v">행사 중지, 철수</div></div>
-
         <div class="wc"><div class="wc-l" style="color:#ef4444;">심각</div></div>
         <div class="wc"><div class="wc-v">20mm/h 이상</div></div>
         <div class="wc"><div class="wc-v">강한 빗줄기</div></div>
@@ -1319,37 +1255,37 @@ body::before {
       </div>
 
       <div class="divider"></div>
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">💧 강우 의사결정 프로세스</div>
+      <div class="sub-label">💧 강우 의사결정</div>
       <div class="emg-step"><div class="step-num step-v">1차</div><div class="step-text">3mm/h 이하 → 우천대비품 구비<br>3mm/h 이상 → 결정 대기</div></div>
       <div class="emg-step"><div class="step-num step-v">상황</div><div class="step-text">3mm/h 이하 → 우천대응 점검<br>3mm/h 이상 → 결정 대기, 참여사 공유</div></div>
       <div class="emg-step"><div class="step-num step-v">2차</div><div class="step-text">3mm/h 이하 → 행사 개최 고지<br>3mm/h 이상 → 행사 취소 고지</div></div>
       <div class="emg-step"><div class="step-num step-v">진행중</div><div class="step-text">3mm/h 이하 → 자바라 등 우천용품 설치<br>3mm/h 이상 → 현장 프로그램 취소 안내</div></div>
 
       <div class="divider"></div>
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">💨 강풍 단계별 대응</div>
-      <div class="emg-step"><div class="step-num step-ok">관심</div><div class="step-text">잔디광장 순간풍속 5m/s 이상 → 상황 주시</div></div>
+      <div class="sub-label">💨 강풍 단계별 대응</div>
+      <div class="emg-step"><div class="step-num step-ok">관심</div><div class="step-text">순간풍속 5m/s 이상 → 상황 주시</div></div>
       <div class="emg-step"><div class="step-num step-warn">주의</div><div class="step-text">8m/s → 행사 대기 / 임시 중단, 강풍 안내방송</div></div>
-      <div class="emg-step"><div class="step-num" style="background:rgba(249,115,22,0.15); border-color:rgba(249,115,22,0.3); color:#fb923c;">경계</div><div class="step-text">10m/s → 행사 중지, 무대 집기 철수, MQ텐트 등 철수</div></div>
+      <div class="emg-step"><div class="step-num step-org">경계</div><div class="step-text">10m/s → 행사 중지, 무대 집기·MQ텐트 철수</div></div>
       <div class="emg-step"><div class="step-num">심각</div><div class="step-text">14m/s → 행사 취소, 현장 집기 철수, 화물차 대기</div></div>
 
       <div class="divider"></div>
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">🌏 지진 단계별 대응</div>
-      <div class="emg-step"><div class="step-num step-v">진도5</div><div class="step-text">행사 대기, 지진 발생 안내방송, 넓은 공터로 이동 안내</div></div>
-      <div class="emg-step"><div class="step-num step-v">진도6</div><div class="step-text">행사 중지, 지진 대피방송, 스탭 안전 퇴로 안내, 시설물 점검</div></div>
-      <div class="emg-step"><div class="step-num step-v">진도7</div><div class="step-text">행사 중지, 지진 대피방송, 피난 안전구역 이동 안내</div></div>
+      <div class="sub-label">🌏 지진 단계별 대응</div>
+      <div class="emg-step"><div class="step-num step-v">진도5</div><div class="step-text">행사 대기, 안내방송, 넓은 공터로 이동 안내</div></div>
+      <div class="emg-step"><div class="step-num step-v">진도6</div><div class="step-text">행사 중지, 대피방송, 스탭 안전 퇴로 안내, 시설물 점검</div></div>
+      <div class="emg-step"><div class="step-num step-v">진도7</div><div class="step-text">행사 중지, 대피방송, 피난 안전구역 이동 안내</div></div>
       <div class="emg-step"><div class="step-num">진도8</div><div class="step-text">소방·경찰 출동, 유관기관 합동 대응, 구조 지원</div></div>
     </div>
 
     <!-- 미아·분실물 -->
     <div class="emg-section">
       <div class="emg-section-title">👦 미아 / 분실물</div>
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">미아 발견 시</div>
+      <div class="sub-label">미아 발견 시</div>
       <div class="emg-step"><div class="step-num">1</div><div class="step-text">안전담당자 및 운영사무국 보고</div></div>
       <div class="emg-step"><div class="step-num">2</div><div class="step-text">운영사무국에서 미아 보호</div></div>
       <div class="emg-step"><div class="step-num">3</div><div class="step-text">미아 찾기 안내방송 진행 (현장 콘솔)</div></div>
       <div class="emg-step"><div class="step-num">4</div><div class="step-text">보호자 확인 후 인계</div></div>
       <div class="divider" style="background:rgba(239,68,68,0.15);"></div>
-      <div style="font-size:11px; font-weight:700; color:#fca5a5; margin-bottom:6px;">분실물 발생 시</div>
+      <div class="sub-label">분실물 발생 시</div>
       <div class="emg-step"><div class="step-num">1</div><div class="step-text">분실물 습득 후 운영사무국 임시 보관</div></div>
       <div class="emg-step"><div class="step-num">2</div><div class="step-text">분실물 안내방송 (현장 콘솔)</div></div>
       <div class="emg-step"><div class="step-num">3</div><div class="step-text">분실자 및 물품 확인 후 인수인계</div></div>
@@ -1358,45 +1294,32 @@ body::before {
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- JS -->
-<!-- ============================================================ -->
+<!-- ============================================================ JS -->
 <script>
-// Date
 (function(){
-  const d = new Date();
-  const days = ['일','월','화','수','목','금','토'];
-  document.getElementById('headerDate').textContent =
-    `${d.getMonth()+1}/${d.getDate()}(${days[d.getDay()]})`;
+  const d=new Date(), days=['일','월','화','수','목','금','토'];
+  document.getElementById('headerDate').textContent=`${d.getMonth()+1}/${d.getDate()}(${days[d.getDay()]})`;
 })();
 
-// Screen
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
-  const map = {
-    'screen-home':'nav-home','screen-timeline':'nav-timeline',
-    'screen-pos-list':'nav-pos','screen-pos-detail':'nav-pos',
-    'screen-performance':'nav-perf','screen-emergency':'nav-emergency'
-  };
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const map={'screen-home':'nav-home','screen-timeline':'nav-timeline','screen-pos-list':'nav-pos','screen-pos-detail':'nav-pos','screen-performance':'nav-perf','screen-emergency':'nav-emergency'};
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   if(map[id]) document.getElementById(map[id])?.classList.add('active');
 }
 
-// Accordion
-document.addEventListener('click', function(e){
-  const ab = e.target.closest('.accordion-btn');
-  if(ab){ const body=ab.nextElementSibling; ab.classList.toggle('open'); body.classList.toggle('open'); return; }
-  const mt = e.target.closest('.ment-trigger');
-  if(mt){ const body=mt.nextElementSibling; mt.classList.toggle('open'); body.classList.toggle('open'); }
+document.addEventListener('click',function(e){
+  const ab=e.target.closest('.accordion-btn');
+  if(ab){ab.classList.toggle('open');ab.nextElementSibling.classList.toggle('open');return;}
+  const mt=e.target.closest('.ment-trigger');
+  if(mt){mt.classList.toggle('open');mt.nextElementSibling.classList.toggle('open');}
 });
 
-// Position Data
-const P = {
-  1:{
-    num:'POSITION 1', name:'안내소 — 유료 체험객 등록·안내', icon:'🎫', color:'#3b82f6',
-    who:'운영요원 1(영어 가능자), 2, 3', location:'홍화문 좌측 종합안내소 (3×3 컨테이너 부스)', hours:'17:00 오픈 ~ 20:30 마감',
+const P={
+  1:{num:'POSITION 1',name:'안내소 — 유료 체험객 등록·안내',icon:'🎫',color:'#3b82f6',
+    who:'운영요원 1(영어 가능자), 2, 3',location:'홍화문 좌측 종합안내소 (3×3 컨테이너 부스)',hours:'17:00 오픈 ~ 20:30 마감',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'명단 최종 확인 / 비표 준비 / 업데이트 명단 수령',sub:'All S/B 완료 후 포지션 이동'},
       {time:'17:00~18:00',badge:'action',bt:'주간운영',main:'유료 체험객 등록 시작',sub:'명단 확인 → 비표(입장패) 배부 → 대기실로 안내\n현장 체험객 → 야연 모바일 QR 소개 및 무료 참여 방법 설명'},
@@ -1420,11 +1343,9 @@ const P = {
       {icon:'✅',text:'요원 2·3: 공연 시작 후 어좌촬영 보조 위치로 이동'},
       {icon:'📋',text:'비표는 목에 걸어드리는 방식으로 배부'}
     ],
-    supplies:['3×3 컨테이너 부스','테이블 1','의자 4','유료관객 등록안내 배너','야연 모바일 QR 배너','유료체험객 명단','유료 체험객 비표(입장패)']
-  },
-  2:{
-    num:'POSITION 2', name:'대기실 관리·안내', icon:'🏠', color:'#6366f1',
-    who:'운영요원 4, 5, 6, 7', location:'체험자 대기실 구역 (자바라텐트 3×6 공간 × 15동)', hours:'17:00 오픈 ~ 20:30 마감',
+    supplies:['3×3 컨테이너 부스','테이블 1','의자 4','유료관객 등록안내 배너','야연 모바일 QR 배너','유료체험객 명단','유료 체험객 비표(입장패)']},
+  2:{num:'POSITION 2',name:'대기실 관리·안내',icon:'🏠',color:'#6366f1',
+    who:'운영요원 4, 5, 6, 7',location:'체험자 대기실 구역 (자바라텐트 3×6 공간 × 15동)',hours:'17:00 오픈 ~ 20:30 마감',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'대기실 세팅 확인 및 청결 점검',sub:'각티슈·물티슈·생수·병과·효심편지세트·기념품(망토) 물자 확인'},
       {time:'17:00~18:20',badge:'action',bt:'주간운영',main:'체험객 대기실 배정·안내',sub:'도착 순서대로 고유 번호 대기실 배정\n복식→메이크업→장수사진 순서 안내\n18:50 대기실 복귀 반드시 강조\n대기 중 효심편지 작성 독려'},
@@ -1447,11 +1368,9 @@ const P = {
       {icon:'✅',text:'한 대기실에서 함께 사용 원하는 경우 물자 이동 진행'},
       {icon:'📋',text:'도착 소식은 무전으로 대감/부인 번호 전달 후 인계'}
     ],
-    supplies:['각티슈 1','물티슈 1','생수 4','가족용 병과 2','체험객 병과 1','효심편지세트 2','안내 POP','쓰레기통','포충기','조명','선풍기','테이블 1','의자 4','전기선','멀티탭 1','기념품 1 (대형 곤룡포 망토)','자바라텐트 (3×6 × 15동)']
-  },
-  3:{
-    num:'POSITION 3', name:'복식존 지원', icon:'👘', color:'#22d3ee',
-    who:'운영요원 10 (전담), 복식 선생님 6인', location:'복식 구역 — 자바라텐트 3×6 2동, 3×3 1동', hours:'17:00 오픈 ~ 20:30 마감',
+    supplies:['각티슈 1','물티슈 1','생수 4','가족용 병과 2','체험객 병과 1','효심편지세트 2','안내 POP','쓰레기통','포충기','조명','선풍기','테이블 1','의자 4','전기선','멀티탭 1','기념품 1 (대형 곤룡포 망토)','자바라텐트 (3×6 × 15동)']},
+  3:{num:'POSITION 3',name:'복식존 지원',icon:'👘',color:'#22d3ee',
+    who:'운영요원 10 (전담), 복식 선생님 6인',location:'복식 구역 — 자바라텐트 3×6 2동, 3×3 1동',hours:'17:00 오픈 ~ 20:30 마감',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'세팅 확인',sub:'행거·옷걸이·매트·파티션·전신거울·조명·멀티탭 확인\n사전 체크한 체험객 사이즈/복장 목록 확인'},
       {time:'17:00~18:20',badge:'action',bt:'주간운영',main:'대기실에서 체험객 인솔 → 복식 선생님께 인계',sub:'복식 착용 완료 후 → 헤어메이크업 텐트로 안내\n가능하면 헤어/메이크업 전에 복식 먼저 착장'},
@@ -1474,14 +1393,12 @@ const P = {
       {icon:'📅',text:'5/18: 창경궁 행사장에서 수문장으로 복식 반출'},
       {icon:'⚠️',text:'복식 특이사항 발생 시 즉시 대행사 보고 → 대행사는 발주처에 보고 후 처리'}
     ],
-    supplies:['자바라텐트 3×6 2동, 3×3 1동','테이블 1','의자 8','행거 8','옷걸이 50','바닥매트 6','조명 5','전신거울 3','멀티탭 3','파티션 10']
-  },
-  4:{
-    num:'POSITION 4', name:'헤어·메이크업 지원', icon:'💄', color:'#f472b6',
-    who:'운영요원 11 (전담), 메이크업 아티스트 7인, 헤어아티스트 1인', location:'헤어메이크업 텐트 — 자바라텐트 3×6 2동, 3×3 1동', hours:'17:00 오픈 ~ 20:30 마감',
+    supplies:['자바라텐트 3×6 2동, 3×3 1동','테이블 1','의자 8','행거 8','옷걸이 50','바닥매트 6','조명 5','전신거울 3','멀티탭 3','파티션 10']},
+  4:{num:'POSITION 4',name:'헤어·메이크업 지원',icon:'💄',color:'#f472b6',
+    who:'운영요원 11 (전담), 메이크업 아티스트 7인, 헤어아티스트 1인',location:'헤어메이크업 텐트 — 자바라텐트 3×6 2동, 3×3 1동',hours:'17:00 오픈 ~ 20:30 마감',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'텐트 세팅 확인',sub:'탁상거울·메이크업세트·멀티탭 확인'},
-      {time:'17:00~18:20',badge:'action',bt:'주간운영',main:'복식 완료 체험객을 헤어메이크업 텐트로 안내',sub:'메이크업·헤어 완료 후 장수사진 부스로 이동 안내\n대사는 최소화, 분위기 조성에 집중\n스피드 있는 원활한 체험 진행 우선'},
+      {time:'17:00~18:20',badge:'action',bt:'주간운영',main:'복식 완료 체험객을 헤어메이크업 텐트로 안내',sub:'메이크업·헤어 완료 후 장수사진 부스로 이동 안내\n대사는 최소화, 분위기 조성에 집중'},
       {time:'18:20~19:00',badge:'info',bt:'야간전환',main:'잔여 체험객 메이크업 마무리',sub:'이후 연회장 내 좌석 안내 / 안전관리'},
       {time:'19:55~',badge:'info',bt:'종료',main:'분장제거 안내',sub:'귀가 시 불편 최소화 안내 / 연회장 정리 지원'}
     ],
@@ -1495,18 +1412,16 @@ const P = {
     warnings:[
       {icon:'⚠️',text:'내추럴한 사극풍 메이크업 지향 (귀가 시 불편함 최소화)'},
       {icon:'⚠️',text:'복식에 어울리는 색감과 느낌 / 복식에 어울리는 헤어스타일링'},
-      {icon:'✅',text:'스피드 있는 원활한 체험 진행을 위해 대사는 필요한 것만 간결하게 사용'},
+      {icon:'✅',text:'스피드 있는 원활한 체험 진행을 위해 대사는 필요한 것만 간결하게'},
       {icon:'✅',text:'각 프로그램 안내/운영보조 인원이 동선 동시 관리 지원'}
     ],
-    supplies:['자바라텐트 3×6 2동, 3×3 1동','테이블 2','의자 8','탁상거울 5','메이크업세트 5(메이크업팀)','멀티탭 5']
-  },
-  5:{
-    num:'POSITION 5', name:'효잡이 운영', icon:'🎋', color:'#f59e0b',
-    who:'운영요원 8, 전문 사진작가 1인 (장수사진과 병행)', location:'효잡이 부스 — 자바라텐트 3×6 1동', hours:'17:00 오픈 ~ 19:00 마감 (이후 연회장 입장 안내·체험장 통제)',
+    supplies:['자바라텐트 3×6 2동, 3×3 1동','테이블 2','의자 8','탁상거울 5','메이크업세트 5(메이크업팀)','멀티탭 5']},
+  5:{num:'POSITION 5',name:'효잡이 운영',icon:'🎋',color:'#f59e0b',
+    who:'운영요원 8, 전문 사진작가 1인 (장수사진과 병행)',location:'효잡이 부스 — 자바라텐트 3×6 1동',hours:'17:00 오픈 ~ 19:00 마감 (이후 연회장 입장 안내·체험장 통제)',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'부스 세팅 확인',sub:'장부·대나무봉·엽전·쌀가마니·수반 등 물자 확인\n응원봉 수량 확인'},
       {time:'17:00~19:00',badge:'action',bt:'주간운영',main:'효잡이 체험 운영 (유료 체험객 대상)',sub:'체험 완료 후 공연장 입장 시간 반복 공지\n응원봉 대여 (레인보우 or 흰색 구분)'},
-      {time:'19:00~19:55',badge:'info',bt:'야간전환',main:'연회장 입장 안내 / 체험장 통제 전환',sub:'어찰 찾기 미션 완료자 응원봉 반납 안내 진행'},
+      {time:'19:00~19:55',badge:'info',bt:'야간전환',main:'연회장 입장 안내 / 체험장 통제 전환',sub:'어찰 찾기 미션 완료자 응원봉 반납 안내'},
       {time:'19:55~',badge:'info',bt:'종료',main:'연회장 정리 지원',sub:'응원봉 반납 수거 확인'}
     ],
     ments:[
@@ -1518,8 +1433,8 @@ const P = {
       {label:'💰 엽전 선택 시',text:'"이 엽전은 마음만 하지 말고! 물질적인 것으로도 효도하라는 뜻이오! 대감/부인의 자제분들은 지금 바로 용돈을 드리겠소? 허허~ 그렇다면 오늘 저녁엔 맛있는 것으로 부모님께 대접하시오!"'},
       {label:'🌾 쌀가마니 선택 시',text:'"대감/부인의 자제분들은 부모님을 극진히 모시겠다는 뜻으로 지금 이자리에서 부모님을 업고 저~기까지 걸어 갔다 오시오!"'},
       {label:'마무리',text:'"*오래~토록 건강하시길 빌면서 늘 부모님께 효도하시오~ 잘 가시오!"'},
-      {label:'⚡ 대체 ① (노부부 / 신체 부담 시)',text:'"이 의미는 부모의 몸을 짊어 지고 부양하는 효를 행하는 것인데, 보아하니 어려울 듯 하고, 대신 마음을 다하여 30초간 꼬옥 안아드리도록 하시오~"'},
-      {label:'⚡ 대체 ② (노부부 / 신체 부담 시)',text:'"본디 효를 다하기 위해 부모의 신체를 짊어져야 하는 미션이지만 상황이 이러하니… 신체를 부양하는 의미로 시간을 내어 맛있는 식사를 직접 지어 대접하도록 하시오~"'}
+      {label:'⚡ 대체 ① (노부부 / 신체 부담)',text:'"이 의미는 부모의 몸을 짊어 지고 부양하는 효를 행하는 것인데, 보아하니 어려울 듯 하고, 대신 마음을 다하여 30초간 꼬옥 안아드리도록 하시오~"'},
+      {label:'⚡ 대체 ② (노부부 / 신체 부담)',text:'"본디 효를 다하기 위해 부모의 신체를 짊어져야 하는 미션이지만 상황이 이러하니… 신체를 부양하는 의미로 시간을 내어 맛있는 식사를 직접 지어 대접하도록 하시오~"'}
     ],
     warnings:[
       {icon:'⚠️',text:'노부부만 참여하거나 신체 부담이 있는 경우 반드시 대체 미션으로 유연하게 대응'},
@@ -1527,15 +1442,13 @@ const P = {
       {icon:'✅',text:'미션 완료자: 레인보우 컬러 응원봉 / 미참가자: 흰색 응원봉으로 구분'},
       {icon:'✅',text:'체험 후 공연 입장 시간을 반드시 반복 안내'}
     ],
-    supplies:['자바라텐트 3×6 1동','장부 1','대나무봉 1','엽전 1꾸러미','쌀가마니 1','테이블 2','의자 3','조명 2','멀티탭 2','물건 올려놓을 수반','응원봉 (레인보우·흰색 구분)']
-  },
-  6:{
-    num:'POSITION 6', name:'효심우체통 / 무료체험존 안내', icon:'📮', color:'#22c55e',
-    who:'운영요원 9 (효심우체통), 요원 14·15 (무료체험존)', location:'무료체험존 안내부스 / 행사장 내 우체통', hours:'17:00 오픈 ~ 20:30 (우체통: 상시)',
+    supplies:['자바라텐트 3×6 1동','장부 1','대나무봉 1','엽전 1꾸러미','쌀가마니 1','테이블 2','의자 3','조명 2','멀티탭 2','물건 올려놓을 수반','응원봉 (레인보우·흰색 구분)']},
+  6:{num:'POSITION 6',name:'효심우체통 / 무료체험존 안내',icon:'📮',color:'#22c55e',
+    who:'운영요원 9 (효심우체통), 요원 14·15 (무료체험존)',location:'무료체험존 안내부스 / 행사장 내 우체통',hours:'17:00 오픈 ~ 20:30 (우체통: 상시)',
     tasks:[
-      {time:'~17:00',badge:'action',bt:'준비',main:'부스 세팅 / 배너 설치 확인',sub:'효심 문과시험 + 어명:마음을 전하라 참여안내 배너 확인\n포토부스 작동 여부 확인'},
+      {time:'~17:00',badge:'action',bt:'준비',main:'부스 세팅 / 배너 설치 확인',sub:'효심 문과시험 + 어명:마음을 전하라 배너 확인\n포토부스 작동 여부 확인'},
       {time:'17:00~18:00',badge:'action',bt:'주간운영',main:'무료 체험존 미션 안내',sub:'효심 문과시험: QR 스캔 → 3문제 이상 정답 → SNS 해시태그 업로드 → 포토부스 이용\n어명! 마음을 전하라: 소중한 사람에게 문자 발송 → 선착순 70명 무료 관람 특전'},
-      {time:'18:00~18:35',badge:'alert',bt:'중요',main:'무료 체험객 입장 대기열 관리 (선착순 70명)',sub:'18:00부터 차단봉 가이드라인에 맞춰 선착순 줄세우기\n입장 조건 최종 확인 (미션 수행 여부)'},
+      {time:'18:00~18:35',badge:'alert',bt:'중요',main:'무료 체험객 입장 대기열 관리 (선착순 70명)',sub:'18:00부터 차단봉 가이드라인에 맞춰 선착순 줄세우기'},
       {time:'18:35',badge:'alert',bt:'중요',main:'무료 체험객 인솔 → 공연장 입장',sub:'무료관객석 착석 안내 / 입장은 선착순 70명까지'},
       {time:'상시',badge:'info',bt:'효심우체통',main:'효심우체통 운영',sub:'효 편지지세트 배부 → 작성 → 봉투에 6개월/1년 선택 체크\n보내는 사람/받는 사람 정확한 주소 이중 확인\n매일 행사 종료 후 6개월/1년 기준 분리 취합'},
       {time:'19:55~',badge:'info',bt:'종료',main:'퇴장 안내 및 안전 관리',sub:'무료 관람객 먼저 퇴장 안내'}
@@ -1556,39 +1469,31 @@ const P = {
       {icon:'✅',text:'포토부스 인원 몰릴 경우 대기열 관리 집중'}
     ],
     supplies:['테이블 1','의자 4','효심 문과시험 T배너','어명 마음을 전하라 T배너','효심 우체통','효 편지지세트 1','붓펜 1','포토이즘 자판기 1대','이벤트 안내 T배너 1','멀티탭 1'],
-    extra:{title:'📊 포토부스 이용 쿼터',rows:[
-      {label:'효심문과시험/어명 인증자 (선착순)',val:'20명'},
-      {label:'유료 체험객',val:'30명'},
-      {label:'총 1일 기준',val:'50명(팀)'}
-    ]}
-  },
-  7:{
-    num:'POSITION 7', name:'서버 — 병과 세팅·연회장', icon:'🍱', color:'#f59e0b',
-    who:'운영요원 12, 13', location:'연회장 (문정전 일원)', hours:'15:30 병과 도착 ~ 20:30 마감',
+    extra:{title:'📊 포토부스 이용 쿼터',rows:[{label:'효심문과시험/어명 인증자 (선착순)',val:'20명'},{label:'유료 체험객',val:'30명'},{label:'총 1일 기준',val:'50명(팀)'}]}},
+  7:{num:'POSITION 7',name:'서버 — 병과 세팅·연회장',icon:'🍱',color:'#f59e0b',
+    who:'운영요원 12, 13',location:'연회장 (문정전 일원)',hours:'15:30 병과 도착 ~ 20:30 마감',
     tasks:[
       {time:'15:30',badge:'alert',bt:'필수',main:'일일 병과 도착 수령',sub:'병과 수령·정리 시작 (매일 15:30)'},
       {time:'~18:20',badge:'action',bt:'주간운영',main:'병과 수령·정리·세팅',sub:'각 체험객 좌석 앞 이름표(관직·성명) 배치 확인\n동반가족석 팔찌 관리 확인 (체험자 자리 뒤편 2명씩)'},
-      {time:'18:20~19:00',badge:'action',bt:'야간전환',main:'연회장 세팅 최종 확인 / 좌석 안내',sub:'무료 관객석 70석 확인\n체험자 자리 이름표 최종 점검'},
+      {time:'18:20~19:00',badge:'action',bt:'야간전환',main:'연회장 세팅 최종 확인 / 좌석 안내',sub:'무료 관객석 70석 확인 / 체험자 자리 이름표 최종 점검'},
       {time:'19:00~19:55',badge:'action',bt:'공연중',main:'연회장 내 세팅 및 안내',sub:'⑦ 진작의식: 서버 역할 대기\n⑨ 진병과: 참여객에게 병과 전달 지원'},
       {time:'19:55~',badge:'info',bt:'종료',main:'연회장 정리',sub:'사진·액자 등 배포 / 연회장 정리 전반'}
     ],
     ments:[],
     warnings:[
-      {icon:'⚠️',text:'좌석 앞 관직·성명 이름표 사전 배치 확인 필수 (공연 전날 RSVP 문자와 함께 모바일 초대장 발송된 내역 기준)'},
+      {icon:'⚠️',text:'좌석 앞 관직·성명 이름표 사전 배치 확인 필수'},
       {icon:'⚠️',text:'동반가족석: 체험자 자리 뒷편 2명씩 배치 / 별도 팔찌로 관리'},
       {icon:'✅',text:'병과는 각 자리에 사전 세팅 완료 후 공연 시작'},
       {icon:'📅',text:'리허설 시 병과 도착 예정 (날짜 별도 확인)'}
     ],
-    supplies:['각 좌석별 관직·성명 이름표','체험객 병과 (좌석 세팅용)','가족용 병과','동반가족 팔찌']
-  },
-  8:{
-    num:'POSITION 8', name:'안전관리 · 입구통제', icon:'🛡️', color:'#ef4444',
-    who:'운영요원 14, 15, 16, 17, 18', location:'각 입구, 무대 후면, 체험장 외곽, 문정전 주·야간 통제', hours:'전일 상주 (주·야간 문정전 통제)',
+    supplies:['각 좌석별 관직·성명 이름표','체험객 병과 (좌석 세팅용)','가족용 병과','동반가족 팔찌']},
+  8:{num:'POSITION 8',name:'안전관리 · 입구통제',icon:'🛡️',color:'#ef4444',
+    who:'운영요원 14, 15, 16, 17, 18',location:'각 입구, 무대 후면, 체험장 외곽, 문정전 주·야간 통제',hours:'전일 상주 (주·야간 문정전 통제)',
     tasks:[
       {time:'~17:00',badge:'action',bt:'준비',main:'각 통제 지점 사전 점검',sub:'입구·출구·무대 후면·야간통제구역 경계 확인'},
       {time:'17:00~18:00',badge:'action',bt:'주간운영',main:'행사장 통제 / 안전관리 / 무료 관객 안내',sub:'유료 관객 인솔·안내 (요원 14)\n무료존/대기열 관리 (요원 15)\n입구 통제/안전관리 (요원 16·17·18)'},
-      {time:'18:00',badge:'alert',bt:'전환필수',main:'야간 통제 모드 전환',sub:'일반 관람객 전원 퇴장 안내\n야간 출입제한 구역 통제 시작 (18~21시)\n무료 체험객 선착순 입장 대기열 관리'},
-      {time:'18:20~19:55',badge:'action',bt:'공연중',main:'출입통제 / 무대 뒷편 통제 / 무료존 관리',sub:'공연 중 화장실 문의 대응\n입구 통제 유지'},
+      {time:'18:00',badge:'alert',bt:'전환필수',main:'야간 통제 모드 전환',sub:'일반 관람객 전원 퇴장 안내\n야간 출입제한 구역 통제 시작 (18~21시)'},
+      {time:'18:20~19:55',badge:'action',bt:'공연중',main:'출입통제 / 무대 뒷편 통제 / 무료존 관리',sub:'공연 중 화장실 문의 대응 / 입구 통제 유지'},
       {time:'19:55~',badge:'info',bt:'종료',main:'퇴장 안내 / 안전관리',sub:'퇴장 동선 관리 / 행사장 정리 / 잔여 인원 확인'}
     ],
     ments:[
@@ -1600,66 +1505,44 @@ const P = {
       {icon:'⚠️',text:'야간 출입제한: 18~21시 야간개장구역 외 체험장 통제'},
       {icon:'✅',text:'행사 D-2 사전 기상 체크 및 대비책 마련'},
       {icon:'✅',text:'비상 상황 발생 시 즉시 안전담당자·운영사무국 보고'},
-      {icon:'📋',text:'차량 입출입: 목록 기재 차량 외 외부 배차 차량은 출입 전일 차량정보 제공 필요'},
+      {icon:'📋',text:'외부 배차 차량은 출입 전일 차량정보 제공 필요'},
       {icon:'🚑',text:'구급차 대기 위치 사전 확인 / 응급 키트 위치 숙지'}
     ],
-    supplies:['소화기 (각 구역)','응급 구급함','무전기','통제 차단봉','야간 출입제한 사인물']
-  }
+    supplies:['소화기 (각 구역)','응급 구급함','무전기','통제 차단봉','야간 출입제한 사인물']}
 };
 
 function showPos(num){
-  const d = P[num]; if(!d) return;
-  const sel = document.querySelector('.pos-switcher select');
-  if(sel) sel.value = num;
+  const d=P[num]; if(!d) return;
+  const sel=document.querySelector('.pos-switcher select');
+  if(sel) sel.value=num;
 
-  let h = `
-    <div class="pos-header" data-icon="${d.icon}" style="--ph-color:${d.color};">
-      <div class="pos-header-num">${d.num}</div>
-      <div class="pos-header-name">${d.name}</div>
-      <div class="pos-meta">
-        <div class="pos-meta-item">👤 ${d.who}</div>
-        <div class="pos-meta-item">📍 ${d.location}</div>
-        <div class="pos-meta-item">🕐 ${d.hours}</div>
-      </div>
-    </div>
-  `;
+  let h=`<div class="pos-header" data-icon="${d.icon}" style="--ph-color:${d.color};"><div class="pos-header-num">${d.num}</div><div class="pos-header-name">${d.name}</div><div class="pos-meta"><div class="pos-meta-item">👤 ${d.who}</div><div class="pos-meta-item">📍 ${d.location}</div><div class="pos-meta-item">🕐 ${d.hours}</div></div></div>`;
 
-  // Tasks accordion — open by default
-  h += `<div class="accordion"><div class="accordion-btn open" style="border-left:3px solid ${d.color};"><div class="accordion-btn-left"><span class="accordion-btn-icon">⏰</span><span class="accordion-btn-text">시간대별 할 일</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body open"><ul class="task-list">`;
-  d.tasks.forEach(t=>{
-    h+=`<li class="task-item"><div class="task-time">${t.time}</div><div class="task-content"><span class="task-badge badge-${t.badge}">${t.bt}</span><div class="task-main">${t.main}</div>${t.sub?`<div class="task-sub">${t.sub.replace(/\n/g,'<br>')}</div>`:''}</div></li>`;
-  });
-  h += `</ul></div></div>`;
+  h+=`<div class="accordion"><div class="accordion-btn open" style="border-left:3px solid ${d.color};"><div class="accordion-btn-left"><span class="accordion-btn-icon">⏰</span><span class="accordion-btn-text">시간대별 할 일</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body open"><ul class="task-list">`;
+  d.tasks.forEach(t=>{h+=`<li class="task-item"><div class="task-time">${t.time}</div><div class="task-content"><span class="task-badge badge-${t.badge}">${t.bt}</span><div class="task-main">${t.main}</div>${t.sub?`<div class="task-sub">${t.sub.replace(/\n/g,'<br>')}</div>`:''}</div></li>`;});
+  h+=`</ul></div></div>`;
 
-  // Ments
-  if(d.ments && d.ments.length>0){
-    h += `<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #6366f1;"><div class="accordion-btn-left"><span class="accordion-btn-icon">💬</span><span class="accordion-btn-text">주요 멘트 모음</span><span class="accordion-btn-badge">${d.ments.length}개</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><ul class="ment-list">`;
-    d.ments.forEach((m,i)=>{
-      h+=`<li class="ment-item"><div class="ment-trigger"><div class="ment-num">${i+1}</div><div class="ment-label">${m.label}</div><div class="ment-arrow">▼</div></div><div class="ment-body"><div class="ment-quote"><div class="ment-text">${m.text}</div></div>${m.note?`<div class="ment-note">${m.note}</div>`:''}</div></li>`;
-    });
-    h += `</ul></div></div>`;
+  if(d.ments&&d.ments.length>0){
+    h+=`<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #6366f1;"><div class="accordion-btn-left"><span class="accordion-btn-icon">💬</span><span class="accordion-btn-text">주요 멘트 모음</span><span class="accordion-btn-badge">${d.ments.length}개</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><ul class="ment-list">`;
+    d.ments.forEach((m,i)=>{h+=`<li class="ment-item"><div class="ment-trigger"><div class="ment-num">${i+1}</div><div class="ment-label">${m.label}</div><div class="ment-arrow">▼</div></div><div class="ment-body"><div class="ment-quote"><div class="ment-text">${m.text}</div></div>${m.note?`<div class="ment-note">${m.note}</div>`:''}</div></li>`;});
+    h+=`</ul></div></div>`;
   }
 
-  // Warnings
-  h += `<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #f59e0b;"><div class="accordion-btn-left"><span class="accordion-btn-icon">⚠️</span><span class="accordion-btn-text">주의사항</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><ul class="warning-list">`;
-  d.warnings.forEach(w=>{
-    h+=`<li class="warning-item"><div class="warning-icon">${w.icon}</div><div class="warning-text">${w.text}</div></li>`;
-  });
-  h += `</ul></div></div>`;
+  h+=`<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #f59e0b;"><div class="accordion-btn-left"><span class="accordion-btn-icon">⚠️</span><span class="accordion-btn-text">주의사항</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><ul class="warning-list">`;
+  d.warnings.forEach(w=>{h+=`<li class="warning-item"><div class="warning-icon">${w.icon}</div><div class="warning-text">${w.text}</div></li>`;});
+  h+=`</ul></div></div>`;
 
-  // Supplies
-  h += `<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #22c55e;"><div class="accordion-btn-left"><span class="accordion-btn-icon">📦</span><span class="accordion-btn-text">담당 물자 목록</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="supply-grid">`;
-  d.supplies.forEach(s=>{ h+=`<div class="supply-tag">${s}</div>`; });
-  h += `</div></div></div>`;
+  h+=`<div class="accordion"><div class="accordion-btn" style="border-left:3px solid #22c55e;"><div class="accordion-btn-left"><span class="accordion-btn-icon">📦</span><span class="accordion-btn-text">담당 물자 목록</span></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="supply-grid">`;
+  d.supplies.forEach(s=>{h+=`<div class="supply-tag">${s}</div>`;});
+  h+=`</div></div></div>`;
 
-  // Extra
   if(d.extra){
     h+=`<div class="card"><div class="card-title">${d.extra.title}</div><div class="quota-box">`;
-    d.extra.rows.forEach(r=>{ h+=`<div class="quota-row"><div class="quota-label">${r.label}</div><div class="quota-num">${r.val}</div></div>`; });
+    d.extra.rows.forEach(r=>{h+=`<div class="quota-row"><div class="quota-label">${r.label}</div><div class="quota-num">${r.val}</div></div>`;});
     h+=`</div></div>`;
   }
 
-  document.getElementById('pos-detail-content').innerHTML = h;
+  document.getElementById('pos-detail-content').innerHTML=h;
   showScreen('screen-pos-detail');
 }
 </script>
