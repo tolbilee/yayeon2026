@@ -125,7 +125,7 @@ function renderPage({ message, foundCount = 0, maxCount = 3, displayCode, detail
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       color: var(--ink);
-      background: #0c2344 url('/images/yayeon-bg.jpg') center/cover fixed no-repeat;
+      background: #0c2344 url('/images/yayeon-bg2.jpg') center/cover fixed no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
