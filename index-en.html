@@ -1129,13 +1129,16 @@
 
         /* 2026 visual skin override: colorful bg + refined glass */
         :root {
-            --glass-fill: rgba(255, 255, 255, 0.07);
-            --glass-fill-strong: rgba(255, 255, 255, 0.07);
-            --glass-stroke: rgba(255, 255, 255, 0.18);
-            --glass-stroke-soft: rgba(255, 255, 255, 0.18);
-            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            --glass-highlight: inset 0 0 0 rgba(255, 255, 255, 0);
-            --text-glow: 0 1px 6px rgba(18, 33, 74, 0.18);
+            --glass-fill: rgba(255, 255, 255, 0.24);
+            --glass-fill-strong: rgba(255, 255, 255, 0.36);
+            --glass-stroke: rgba(255, 255, 255, 0.4);
+            --glass-stroke-soft: rgba(255, 255, 255, 0.26);
+            --glass-shadow: 0 10px 28px rgba(48, 32, 40, 0.1);
+            --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+            --text-glow: none;
+            --ink: #32263a;
+            --ink-soft: #5a4b5c;
+            --ink-accent: #8c3f4a;
         }
 
         body {
@@ -1165,17 +1168,17 @@
         .schedule-card,
         .info-card,
         .timeline-item {
-            background: rgba(255, 255, 255, 0.03) !important;
+            background: var(--glass-fill) !important;
             border: 1px solid var(--glass-stroke-soft);
             box-shadow: var(--glass-highlight), var(--glass-shadow);
-            backdrop-filter: blur(6px) saturate(100%);
-            -webkit-backdrop-filter: blur(6px) saturate(100%);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.05) !important;
+            background: var(--glass-fill-strong) !important;
             border-color: var(--glass-stroke);
-            box-shadow: var(--glass-highlight), 0 22px 44px rgba(6, 10, 24, 0.52);
+            box-shadow: var(--glass-highlight), 0 16px 32px rgba(48, 32, 40, 0.16);
             transform: translateY(-3px);
         }
 
@@ -1200,19 +1203,57 @@
         .current-time-container,
         .btn,
         .btn.active {
-            backdrop-filter: blur(6px) saturate(100%);
-            -webkit-backdrop-filter: blur(6px) saturate(100%);
-            box-shadow: var(--glass-highlight), 0 10px 24px rgba(6, 10, 22, 0.35);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow: var(--glass-highlight), 0 8px 20px rgba(48, 32, 40, 0.1);
         }
 
-        .current-time-container { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.18); }
-        .btn { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.25); }
-        .btn:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.34); }
-        .btn.active { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.4); }
+        .current-time-container { background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.32); }
+        .btn { background: rgba(255, 255, 255, 0.22); border-color: rgba(50, 38, 58, 0.16); color: var(--ink); }
+        .btn:hover { background: rgba(255, 255, 255, 0.36); border-color: rgba(50, 38, 58, 0.24); }
+        .btn.active { background: var(--ink-accent); border-color: transparent; color: #fff; }
+
+        .glass-card,
+        .glass-card *,
+        .schedule-card,
+        .schedule-card *,
+        .info-card,
+        .timeline-item,
+        .timeline-item * {
+            color: var(--ink) !important;
+            text-shadow: none !important;
+        }
+
+        .glass-card p,
+        .glass-card li,
+        .glass-card span,
+        .event-description,
+        .current-time-label,
+        .current-date {
+            color: var(--ink-soft) !important;
+        }
+
+        .glass-card h2,
+        .glass-card h3,
+        .glass-card h4,
+        .glass-card .event-title-large,
+        #food-section .glass-card h3,
+        #program-details .glass-card h4 {
+            color: var(--ink-accent) !important;
+        }
+
+        .current-time {
+            color: var(--ink) !important;
+        }
+
+        .glass-card .caption-button,
+        .glass-card .caption-button * {
+            color: #fff !important;
+        }
 
         .sub-nav .btn {
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.78);
+            color: var(--ink) !important;
         }
 
         .sub-nav .btn:not(.active) {
@@ -1220,10 +1261,10 @@
         }
 
         .sub-nav .btn.active {
-            background: rgba(255, 255, 255, 0.34);
-            color: #243b6b;
+            background: var(--ink-accent);
+            color: #fff !important;
             border-color: transparent;
-            box-shadow: 0 4px 12px rgba(36, 59, 107, 0.22);
+            box-shadow: 0 4px 12px rgba(140, 63, 74, 0.28);
             opacity: 1;
         }
 
@@ -1235,7 +1276,7 @@
         h4,
         .timeline-activity,
         .timeline-time {
-            text-shadow: var(--text-glow);
+            text-shadow: none;
         }
 
         @media (max-width: 768px) {
@@ -1243,8 +1284,8 @@
             .schedule-card,
             .info-card,
             .timeline-item {
-                backdrop-filter: blur(6px) saturate(100%);
-                -webkit-backdrop-filter: blur(6px) saturate(100%);
+                backdrop-filter: blur(16px) saturate(150%);
+                -webkit-backdrop-filter: blur(16px) saturate(150%);
             }
         }
     </style>
@@ -1737,49 +1778,61 @@
                 <div class="food-category" id="family-food">
                     <div class="glass-card">
                         <div class="image-container">
-                            <img src="https://cdn.imweb.me/thumbnail/20250928/8465de1f8ee6e.jpg" alt="Green Tea Yaksik">
+                            <img src="images/yakgwa.jpg" alt="Yakgwa (Honey Cookie)">
                         </div>
-                        <h3 style="color: #f2d58f; font-weight: bold;">Green Tea Yaksik</h3>
+                        <h3 style="color: #f2d58f; font-weight: bold;">Yakgwa (Honey Cookie)</h3>
+                        <p>A signature Korean confection made by kneading wheat flour with sesame oil, honey, and rice wine, shaping it into a blossom, frying it, and finishing it in malt syrup. Yakgwa was traditionally served on auspicious days such as Chuseok and weddings, leaving a rich, lingering sweetness.</p>
+                        <div class="info-card">
+                            <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Key Ingredients</div>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Wheat flour, sesame oil, honey, rice wine, ginger, malt syrup, cooking oil</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="image-container">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/8465de1f8ee6e.jpg" alt="Yaksik">
+                        </div>
+                        <h3 style="color: #f2d58f; font-weight: bold;">Yaksik (Sweet Rice)</h3>
                         <p>Yaksik, also known as yakbap, is a beloved Korean sweet rice dish that has graced festive tables for centuries. Glutinous rice is soaked overnight in a savory-sweet soy and sugar brine, then steamed with chestnuts and jujubes, folded in sesame oil, and finished with pine nuts.</p>
                         <div class="info-card">
                             <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Key Ingredients</div>
-                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Glutinous rice, salt, chestnuts, jujube, pine nuts, sugar, cinnamon powder, green tea powder, honey, sesame oil</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Glutinous rice, soy sauce, sugar, chestnuts, jujube, pine nuts, cinnamon powder, honey, sesame oil</p>
                         </div>
                     </div>
 
                     <div class="glass-card">
                         <div class="image-container">
-                            <img src="https://cdn.imweb.me/thumbnail/20250928/5bc888f9c5e4b.jpg" alt="Lotus Root Danggwa">
+                            <img src="images/songpyeon.jpg" alt="Songpyeon (Half-Moon Rice Cake)">
                         </div>
-                        <h3 style="color: #f2d58f; font-weight: bold;">Lotus Root Danggwa</h3>
-                        <p>A winter-season delicacy with a story rooted in history. Lotus root is prized in traditional Korean medicine for its ability to stop bleeding, reduce inflammation, dissolve blood clots, and ease respiratory ailments. Here, it is thinly sliced, briefly blanched, soaked in salted water, dried, and fried to a satisfying crisp.</p>
+                        <h3 style="color: #f2d58f; font-weight: bold;">Songpyeon (Half-Moon Rice Cake)</h3>
+                        <p>A traditional rice cake that marks Korea's harvest festival, Chuseok. Rice dough is filled, shaped into half-moons, and steamed over pine needles. This banquet offers two kinds: white songpyeon filled with sesame, and mugwort-tinted songpyeon filled with beans.</p>
                         <div class="info-card">
                             <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Key Ingredients</div>
-                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Lotus root, cooking oil, sugar, salt</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Rice flour, mugwort, sesame, beans, salt, sesame oil, pine needles</p>
                         </div>
                     </div>
 
                     <div class="glass-card">
                         <div class="image-container">
-                            <img src="images/baejeonggha.jpg" alt="Pear Jeonggwa">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/5bc888f9c5e4b.jpg" alt="Lotus Root Bugak">
                         </div>
-                        <h3 style="color: #f2d58f; font-weight: bold;">Pear Jeonggwa</h3>
-                        <p>Juicy Korean pear, packed with natural moisture and dietary fiber, is slowly simmered in honey or a light sugar syrup to create a gentle, floral preserve.</p>
+                        <h3 style="color: #f2d58f; font-weight: bold;">Lotus Root Bugak</h3>
+                        <p>Thin slices of lotus root are coated in glutinous rice paste, dried, and fried into a traditional bugak. The result is a crisp bite that keeps the lotus root's naturally mild flavor, long enjoyed at autumn and winter tables.</p>
                         <div class="info-card">
                             <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Key Ingredients</div>
-                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Pear, sugar, pine nuts</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Lotus root, glutinous rice flour, cooking oil, salt</p>
                         </div>
                     </div>
 
                     <div class="glass-card">
                         <div class="image-container">
-                            <img src="https://cdn.imweb.me/thumbnail/20250928/33ca01af6afb9.jpg" alt="Gaeseong Juak">
+                            <img src="https://cdn.imweb.me/thumbnail/20250928/9f210d7138ecc.jpg" alt="Walnut Jeonggwa (Candied Walnuts)">
                         </div>
-                        <h3 style="color: #f2d58f; font-weight: bold;">Gaeseong Juak</h3>
-                        <p>A prized delicacy of Joseon royal banquets, juak was once reserved for distinguished guests and grand occasions. Glutinous rice flour and wheat flour are kneaded with makgeolli, shaped, and fried until golden.</p>
+                        <h3 style="color: #f2d58f; font-weight: bold;">Walnut Jeonggwa (Candied Walnuts)</h3>
+                        <p>Walnuts are blanched three times in hot water, then slowly simmered in sugar and corn syrup before being lightly fried to a golden finish. Rich in unsaturated fatty acids, walnuts are celebrated for supporting brain health and skin vitality.</p>
                         <div class="info-card">
                             <div class="info-label" style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Key Ingredients</div>
-                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Glutinous rice flour, wheat flour, makgeolli, sugar, corn syrup, ginger, cooking oil</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.8em;">Walnuts, sugar, corn syrup, cooking oil</p>
                         </div>
                     </div>
                 </div>
